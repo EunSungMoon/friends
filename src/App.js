@@ -1,11 +1,19 @@
+import { BrowserRouter, Switch } from 'react-router-dom';
 import './App.scss';
-import { FaBeer } from 'react-icons/fa';
+import Header from './Components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <FaBeer />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <div className="container-fluid">
+          <Header />
+          <Switch>
+
+          </Switch>
+        </div>
+      </div >
+    </BrowserRouter>
   );
 }
 
