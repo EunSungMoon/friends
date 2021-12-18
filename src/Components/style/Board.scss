@@ -1,0 +1,97 @@
+@import 'common';
+
+.flexNone {
+  flex: none;
+}
+/*********************************************************************
+
+list 디자인
+
+*********************************************************************/
+#board-main {
+  margin-top: 50px;
+  .titleWrap {
+    @include display(center);
+    .h2 {
+      text-align: center;
+      font-weight: bold;
+      width: 1170px;
+      padding-left: 69px;
+    }
+    .writing-btn {
+      width: 100px;
+      height: 40px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  .contentWrap {
+    list-style: none;
+    padding: 0;
+
+    .list {
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      width: 628px;
+      border: none;
+      border-radius: 16px;
+      margin: 10px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
+      &:hover {
+        transform: translateY(-4px);
+      }
+      .listTitle {
+        @include display(space-between);
+        .h3 {
+          font-size: 20px;
+          font-weight: 600;
+        }
+        .apply-state {
+          border-radius: 5px;
+          width: 90px;
+          height: 32px;
+          line-height: 32px;
+          text-align: center;
+          color: #fff;
+          font-weight: bold;
+          font-size: 17px;
+          margin-bottom: 0;
+        }
+      }
+      .listContent {
+        p {
+          margin: 0;
+          font-size: 15px;
+        }
+        .bi {
+          padding-right: 10px;
+        }
+        .date {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+.apply-ing {
+  background: #01c3bc;
+}
+
+.apply-complete {
+  background: #6c757d;
+}
+
+@media screen and (max-width: 1400px) {
+  .contentWrap {
+    justify-content: center;
+  }
+  .titleWrap {
+    .h2 {
+      width: 520px !important;
+    }
+  }
+}

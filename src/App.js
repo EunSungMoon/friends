@@ -1,6 +1,7 @@
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Header from './Components/Header';
+import Board from './Components/Board';
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
         <div className="container-fluid">
           <Header />
           <Switch>
-
+            <Route>
+              <Board />
+            </Route>
           </Switch>
         </div>
       </div >
