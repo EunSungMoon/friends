@@ -8,7 +8,8 @@
       "need_date": "2021.12.18",
       "people_number": "2",
       "address": "oppo valley",
-      "detail": "상세내용입니다. 내용이 길어져야합니다"
+      "detail": "상세내용입니다. 내용이 길어져야합니다",
+      "state" : "apply-state apply-ing"
     },
     {
       "number": 2,
@@ -18,7 +19,8 @@
       "need_date": "2021.12.19",
       "people_number": "4",
       "address": "pangyo valley",
-      "detail": "상세내용입니다. 내용이 길어져야합니다"
+      "detail": "상세내용입니다. 내용이 길어져야합니다",
+      "state" : "apply-state apply-complete"
     },
     {
       "number": 3,
@@ -28,7 +30,8 @@
       "need_date": "2021.12.20",
       "people_number": "3",
       "address": "venture valley",
-      "detail": "상세내용입니다. 내용이 길어져야합니다"
+      "detail": "상세내용입니다. 내용이 길어져야합니다",
+      "state" : "apply-state apply-ing"
     }
   ]
 }

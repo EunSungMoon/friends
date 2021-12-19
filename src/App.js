@@ -13,6 +13,9 @@ function App() {
             <Route>
               <Board />
             </Route>
+            <Route>
+
+            </Route>
           </Switch>
         </div>
       </div >

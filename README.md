@@ -28,3 +28,8 @@ react, scss, bootstrap, bootstrap-icon
   - 바닐라js로 만든 volunteerMatching 프로젝트를 react로 리팩토링 시작
   - 기존과 동일하게 scss, bootstrap, icon사용, react추가
   - header 퍼블리싱 진행 
+  - board 퍼블리싱 진행
+
+### 2021.12.19
+  - board.js ListModal.js 
+    게시글 상세 내용 모달
