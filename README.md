@@ -31,5 +31,10 @@ react, scss, bootstrap, bootstrap-icon
   - board 퍼블리싱 진행
 
 ### 2021.12.19
-  - board.js ListModal.js 
+  - Board.js ListDetailModal.js 
     게시글 상세 내용 모달
+
+### 2021.12.20
+  - 게시글 상세 내용 모달 디자인
+  - Header.js/LogInModal.js/SignInModal.js
+    로그인, 회원가입 버튼 클릭 시 모달 출력.
