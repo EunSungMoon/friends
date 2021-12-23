@@ -1,12 +1,10 @@
 import './style/Board.scss';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
 import useFetch from '../Hooks/useFetch';
-import { React, useState } from 'react';
-import ListDetailModal from './ListDetailModal'
+import { Link } from 'react-router-dom';
 
 export default function Board() {
-  const boards = useFetch('http://localhost:3001/list')
-  const [modalShow, setModalShow] = useState(false);
+  const lists = useFetch('http://localhost:3001/lists')
 
   return (
     <main id="board-main">
@@ -18,29 +16,25 @@ export default function Board() {
         <section className="container">
           <ol className="contentWrap row">
 
-            {boards.map(board => (
-              <li className="col-6 list" data-type={board.number} key={board.number} onClick={() => setModalShow(true)}>
-                <div className="listTitle">
-                  <h3 className="h3">{board.title}</h3>
-                  <p className={board.state}>모집중</p>
-                </div>
-                <div className="listContent">
-                  <p className="field">{board.part}</p>
-                  <p className="date"><BsCalendarDate className="bi" />{board.need_date}</p>
-                  <p className="headcount"><BsPeople className="bi" />{board.people_number}명</p>
-                  <p className="address"><BsShopWindow className="bi" />{board.address}</p>
-                </div>
+            {lists.map(list => (
+              <li className="col-6 list" data-type={list.number} key={list.number}>
+                <Link to={`/list/${list.number}`}>
+                  <div className="listTitle">
+                    <h3 className="h3">{list.title}</h3>
+                    <p className={list.state}>모집중</p>
+                  </div>
+                  <div className="listContent">
+                    <p className="field">{list.part}</p>
+                    <p className="date"><BsCalendarDate className="bi" />{list.need_date}</p>
+                    <p className="headcount"><BsPeople className="bi" />{list.people_number}명</p>
+                    <p className="address"><BsShopWindow className="bi" />{list.address}</p>
+                  </div>
+                </Link>
               </li>
             ))}
           </ol>
         </section>
       </div>
-        <ListDetailModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          // name={board}
-        />
-
     </main>
   )
 }

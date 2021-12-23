@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Header from './Components/Header';
 import Board from './Components/Board';
+import ListDetail from './Components/ListDetail';
 
 function App() {
   return (
@@ -10,11 +11,11 @@ function App() {
         <div className="container-fluid">
           <Header />
           <Switch>
-            <Route>
+            <Route exact path='/'>
               <Board />
             </Route>
-            <Route>
-
+            <Route path='/list/:number'>
+              <ListDetail />
             </Route>
           </Switch>
         </div>

@@ -38,3 +38,6 @@ react, scss, bootstrap, bootstrap-icon
   - 게시글 상세 내용 모달 디자인
   - Header.js/LogInModal.js/SignInModal.js
     로그인, 회원가입 버튼 클릭 시 모달 출력.
+
+### 2021.12.23
+  - 게시글 상세 내용 보기 클릭 시 해당 상세내용 페이지 이동으로 수정.
