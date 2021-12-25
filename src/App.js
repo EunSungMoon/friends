@@ -14,7 +14,7 @@ function App() {
             <Route exact path='/'>
               <Board />
             </Route>
-            <Route path='/list/:number'>
+            <Route path='/list/:id'>
               <ListDetail />
             </Route>
           </Switch>

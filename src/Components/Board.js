@@ -17,17 +17,17 @@ export default function Board() {
           <ol className="contentWrap row">
 
             {lists.map(list => (
-              <li className="col-6 list" data-type={list.number} key={list.number}>
-                <Link to={`/list/${list.number}`}>
+              <li className="col-6 list" data-type={list.id} key={list.id}>
+                <Link to={`/list/${list.id}`}>
                   <div className="listTitle">
                     <h3 className="h3">{list.title}</h3>
                     <p className={list.state}>모집중</p>
                   </div>
                   <div className="listContent">
                     <p className="field">{list.part}</p>
-                    <p className="date"><BsCalendarDate className="bi" />{list.need_date}</p>
-                    <p className="headcount"><BsPeople className="bi" />{list.people_number}명</p>
-                    <p className="address"><BsShopWindow className="bi" />{list.address}</p>
+                    <p className="date"><BsCalendarDate className="bi" />{list.dday}</p>
+                    <p className="headcount"><BsPeople className="bi" />{list.members}명</p>
+                    <p className="address"><BsShopWindow className="bi" />{list.place}</p>
                   </div>
                 </Link>
               </li>

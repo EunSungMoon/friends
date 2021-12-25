@@ -9,9 +9,10 @@ list 디자인
 
 *********************************************************************/
 #board-main {
-  margin-top: 50px;
+  margin-top: 30px;
   .titleWrap {
     @include display(center);
+    margin-bottom: 10px;
     .h2 {
       text-align: center;
       font-weight: bold;
@@ -42,6 +43,10 @@ list 디자인
       transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
       &:hover {
         transform: translateY(-4px);
+      }
+      a {
+        text-decoration: none;
+        color: black
       }
       .listTitle {
         @include display(space-between);
