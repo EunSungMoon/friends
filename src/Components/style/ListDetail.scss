@@ -1,0 +1,58 @@
+@import "common";
+
+#article-main {
+  margin-top: 30px;
+
+  section {
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    .titleWrap {
+      @include display(space-between);
+      padding-bottom: 25px;
+      border-bottom: 1px solid #e7eaf1;
+      .article-header {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+      .article-date {
+        font-size: 13px;
+        margin-bottom: 0;
+      }
+    }
+    .tableWrap {
+      tr {
+        font-size: 14px;
+        border-bottom: 1px solid #e7eaf1;
+        height: 60px;
+      }
+      .subject {
+        text-align: center;
+      }
+      td {
+        padding: 10px 0;
+      }
+      .article-detail {
+        margin-top: 20px;
+        p {
+          border-bottom: 1px solid#e7eaf1;
+          padding-bottom: 15px;
+        }
+      }
+    }
+    .profileWrap {
+      @include display(space-between);
+      .profile {
+        @include display(center);
+        p {
+          margin-bottom: 0;
+          margin-left: 10px;
+        }
+      }
+      .borderBtn{
+        margin-right: 10px;
+      }
+    }
+  }
+}

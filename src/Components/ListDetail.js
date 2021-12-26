@@ -1,7 +1,7 @@
-
 import { useParams } from "react-router-dom";
 import useFetch from "../Hooks/useFetch";
 import { BsFillPersonFill, BsPencil, BsChatDots } from "react-icons/bs";
+import './style/ListDetail.scss';
 
 export default function ListDetail() {
   const { id } = useParams();
@@ -9,54 +9,55 @@ export default function ListDetail() {
 
   return (
     <div>
-      {lists.map(list=>(
-        <main id = "articel-main" key={list.id}>
-          <section className = "container">
-            <article>
-              <h2 className = "article-header">{list.title}</h2>
-              <p>{list.created_at}</p>
+      {lists.map(list => (
+        <main id="article-main" key={list.id}>
+          <section className="container">
+            <article className="titleWrap">
+              <h2 className="article-header">{list.title}</h2>
+              <p className="article-date">{list.created_at}</p>
             </article>
-            <article>
+            <article className="tableWrap">
               <table>
                 <colgroup>
-                  <col style={{width : '150px'}}></col>
-                  <col style={{width : '500px'}}></col>
+                  <col style={{ width: '200px' }}></col>
+                  <col style={{ width: '1000px' }}></col>
                 </colgroup>
                 <tbody>
                   <tr>
-                    <th className = "subject">봉사일</th>
+                    <th className="subject">봉사일</th>
                     <td>{list.dday}</td>
                   </tr>
                   <tr>
-                    <th className = "subject">인원수</th>
+                    <th className="subject">인원수</th>
                     <td>{list.members}명</td>
                   </tr>
                   <tr>
-                    <th className = "subject">분야</th>
+                    <th className="subject">분야</th>
                     <td>{list.part}</td>
                   </tr>
                   <tr>
-                    <th className = "subject">장소</th>
+                    <th className="subject">장소</th>
                     <td>{list.place}</td>
-                  </tr>
-                  <tr>
-                    <th className = "subject">세부내용</th>
-                    <td>{list.detail}</td>
                   </tr>
                 </tbody>
               </table>
+              <div className="article-detail">
+                <p>{list.detail}</p>
+              </div>
             </article>
-            <article>
+            <article className="profileWrap">
               <div className="profile">
-                <BsFillPersonFill />
+                <BsFillPersonFill size={50}/>
                 <p>{list.author}</p>
               </div>
-              <button className="borderBtn">
-                <BsPencil />수정하기
-              </button>
-              <button className="borderBtn">
-                <BsChatDots />채팅하기
-              </button>
+              <div className="btnWrap">
+                <button className="borderBtn editBtn">
+                  <BsPencil className="fa"/>수정하기
+                </button>
+                <button className="borderBtn chatBtn">
+                  <BsChatDots className="fa"/>채팅하기
+                </button>
+              </div>
             </article>
           </section>
         </main>
