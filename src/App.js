@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './Components/Header';
 import Board from './Components/Board';
 import ListDetail from './Components/ListDetail';
+import SignIn from './Components/SignIn'
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Board />
+            </Route>
+            <Route path='/signin'>
+              <SignIn />
             </Route>
             <Route path='/list/:id'>
               <ListDetail />

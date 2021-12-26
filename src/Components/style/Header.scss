@@ -53,6 +53,10 @@
     }
     .signIn {
       @include btn(#ff7867, 80px, 30px, #ff6d5a);
+      a{
+        color: #fff;
+        text-decoration: none;
+      }
     }
   }
 }
