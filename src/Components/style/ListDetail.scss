@@ -51,6 +51,7 @@
         }
       }
       .borderBtn{
+        @include borderBtn(95px, 32px, 13px);
         margin-right: 10px;
       }
     }

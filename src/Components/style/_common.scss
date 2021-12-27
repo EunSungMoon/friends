@@ -16,48 +16,19 @@
   }
 }
 
-.borderBtn {
+@mixin borderBtn($width, $height, $size) {
   border: 2px solid #e7eaf1;
   border-radius: 5px;
   background: #fff;
-  width: 95px;
-  height: 32px;
+  width: $width;
+  height: $height;
   color: #6a7684;
-  font-size: 13px;
+  font-size: $size;
   font-weight: 600;
   &:hover {
     background: #e7eaf1;
   }
 }
-
-.long-btn {
-  width: 312px;
-  height: 48px;
-  margin-bottom: 12px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-.text-input {
-  border: 1px solid #F1F3FB;
-  background-color: #F1F3FB;
-  padding: 0 16px;
-
-  &:focus {
-    outline: 2px solid #01c3bc;
-  }
-  &:-webkit-autofill {
-    transition: background-color 5000s ease-in-out 0s;
-  }
-}
-
-.section {
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 40px;
-  border-radius: 7px;
-}
-
 .fa {
   margin-right: 5px;
 }

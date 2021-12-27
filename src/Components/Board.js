@@ -11,7 +11,7 @@ export default function Board() {
       <div className="container">
         <div className="titleWrap">
           <h2 className="h2">게시판</h2>
-          <button className="writing-btn borderBtn"><BsPencil className="fa" />글쓰기</button>
+          <button className="borderBtn"><BsPencil className="fa" />글쓰기</button>
         </div>
         <section className="container">
           <ol className="contentWrap row">
