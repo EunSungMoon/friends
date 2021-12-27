@@ -19,14 +19,12 @@ list 디자인
       width: 1170px;
       padding-left: 69px;
     }
-    // .writing-btn {
-    //   width: 100px;
-    //   height: 40px;
-    //   font-size: 16px;
-    //   font-weight: bold;
-    // }
     .borderBtn{
-      @include borderBtn(100px, 40px, 16px)
+      @include borderBtn(100px, 40px, 16px);
+      a {
+        color: #6a7684;
+        text-decoration: none;
+      }
     }
   }
   .contentWrap {
@@ -49,7 +47,7 @@ list 디자인
       }
       a {
         text-decoration: none;
-        color: black
+        color: #333
       }
       .listTitle {
         @include display(space-between);

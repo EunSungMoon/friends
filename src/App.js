@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Board from './Components/Board';
 import ListDetail from './Components/ListDetail';
 import SignIn from './Components/SignIn'
+import ArticleForm from './Components/ArticleForm';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route path='/list/:id'>
               <ListDetail />
+            </Route>
+            <Route path='/articleForm'>
+              <ArticleForm />
             </Route>
           </Switch>
         </div>
