@@ -22,7 +22,7 @@ export default function LogInModal(props) {
         <button className='longWidth loginBtn'>로그인</button>
         <div className='signinNav'>
           <span className='signin-text'>프렌즈가 처음이세요?</span>
-          <Link to={'signin'}><button className='longWidth signinBtn' onClick={props.onHide}>회원가입</button></Link>
+          <Link to={'/signin'}><button className='longWidth signinBtn' onClick={props.onHide}>회원가입</button></Link>
         </div>
       </div>
     </Modal>
