@@ -21,7 +21,7 @@ export default function Header() {
         </nav>
         <div className="btnWrap">
           <button className="login flexNone" onClick={() => setloginModalShow(true)}>로그인</button>
-          <button className="signIn flexNone"><Link to={'signin'}>회원가입</Link></button>
+          <button className="signIn flexNone"><Link to={'/signin'}>회원가입</Link></button>
         </div>
       </div>
       <LogInModal

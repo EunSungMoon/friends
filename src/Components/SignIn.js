@@ -2,12 +2,12 @@ import './style/SignIn.scss';
 import { useState } from 'react';
 import InputCom from './InputCom';
 
-export default function SignInModal(props) {
+export default function SignIn(props) {
 
   const [reason, setReason] = useState('volunteer');
   const [visible, setVisible] = useState(false)
   const [password, setPassword] = useState('');
-  const [isPassword, setIsPassword] = useState(false)
+  // const [isPassword, setIsPassword] = useState(false)
   const [passwordError, setPasswordError] = useState(false);
   const [setPasswordCheck] = useState('');
 
@@ -26,9 +26,9 @@ export default function SignInModal(props) {
     setPasswordCheck(e.target.value);
   };
 
-  const checkPassword = () => {
+  // const checkPassword = () => {
     
-  }
+  // }
 
 
   return (
