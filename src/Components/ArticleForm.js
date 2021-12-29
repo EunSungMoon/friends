@@ -21,18 +21,18 @@ export default function ArticleForm() {
       <div className='container'>
         <div className='titleWrap'>
           <h2 className='h2'>봉사 모집 등록</h2>
-          <button>등록하기</button>
+          <button className='borderBtn'>등록하기</button>
         </div>
         <section className='section'>
           <table>
             <colgroup>
-              <col style={{ width: '120px' }}></col>
-              <col style={{ width: '420px' }}></col>
+              <col style={{ width: '150px' }}></col>
+              <col></col>
             </colgroup>
             <tbody>
               <tr>
                 <th>글 제목</th>
-                <td><input type='text' placeholder='제목을 입력해주세요.' /></td>
+                <td><input type='text' className='article-input' placeholder='제목을 입력해주세요.' /></td>
               </tr>
               <tr>
                 <th>봉사 일</th>
@@ -45,7 +45,6 @@ export default function ArticleForm() {
                     timeFormat='HH:mm'
                     timeCaption='time'
                     dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
-
                   />
                 </td>
               </tr>

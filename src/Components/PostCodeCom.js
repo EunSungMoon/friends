@@ -1,10 +1,8 @@
-import React from 'react'
-import { Modal } from 'react-bootstrap';
-import DaumPostcode from 'react-daum-postcode'
+import DaumPostcode from "react-daum-postcode";
 
-export default function PostCodeCom(props) {
 
-  const handleComplete = (data) => {
+export default function PostcodeCom(props) {
+  const handlePostCode = (data) => {
     let fullAddress = data.address;
     let extraAddress = '';
 
@@ -18,27 +16,23 @@ export default function PostCodeCom(props) {
       fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
     }
 
-    console.log(fullAddress);
+    props.onClose()
+    document.getElementById('sample4_postcode').value = data.zonecode
+    document.getElementById('sample4_roadAddress').value = data.address
+    document.getElementById('sample4_jibunAddress').value = data.jibunAddress
   }
 
   const postCodeStyle = {
-    height: "500px",
+    display: "block",
+    width: "510px",
+    height: "560px",
+    padding: "7px",
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton></Modal.Header>
-      <Modal.Body>
-        <DaumPostcode
-          style={postCodeStyle}
-          onComplete={handleComplete}
-        />
-      </Modal.Body>
-    </Modal>
+    <div className="postCodeDom">
+      <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
+      <button type='button' onClick={() => { props.onClose() }} className='postCode_btn'>닫기</button>
+    </div>
   )
 }

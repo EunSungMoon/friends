@@ -24,10 +24,10 @@ export default function NumberCountCom() {
   }
 
   return (
-    <>
-      <button onClick={onIncrease}>+</button>
+    <div className="countDom">
+      <button className="minus countBtn" onClick={onDecrease}></button>
       <p>{number}명</p>
-      <button onClick={onDecrease}>-</button>
-    </>
+      <button className="plus countBtn" onClick={onIncrease}></button>
+    </div>
   )
 }

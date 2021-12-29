@@ -1,0 +1,195 @@
+@import "common";
+
+@mixin input($width, $length) {
+  width: $width;
+  height: 32px;
+  border: 2px solid #f1f3fb;
+  border-radius: 5px;
+  padding-left: $length;
+  background: #fff;
+  &:focus {
+    border: 2px solid #01c3bc;
+    outline: none;
+  }
+  &:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+@mixin img($url, $position) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-position: $position;
+}
+
+#articleForm-main {
+  margin-top: 30px;
+  .titleWrap {
+    @include display(center);
+    margin-bottom: 10px;
+    .h2 {
+      text-align: center;
+      font-weight: bold;
+      width: 900px;
+      padding-left: 69px;
+      margin-bottom: 40px;
+    }
+    .borderBtn {
+      @include borderBtn(100px, 40px, 16px);
+      a {
+        color: #6a7684;
+        text-decoration: none;
+      }
+    }
+  }
+  .section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 1000px;
+    margin: 0 auto;
+    @include display(center);
+
+    table {
+      tr {
+        font-size: 14px;
+        border-bottom: 1px solid #f1f3fb;
+        height: 60px;
+
+        th,
+        td {
+          padding: 10px 0;
+        }
+        th {
+          text-align: center;
+        }
+      }
+    }
+
+    .article-input {
+      @include input(500px, 16px);
+    }
+    .react-datepicker-wrapper {
+      input {
+        @include input(265px, 35px);
+        @include img("./img/calendar.svg", 10px);
+      }
+    }
+    .countDom {
+      display: flex;
+      p {
+        margin: 0;
+        padding: 5px 10px;
+      }
+      .countBtn {
+        border: 2px solid #f1f3fb;
+        border-radius: 5px;
+        background: #fff;
+        width: 32px;
+        height: 32px;
+        &:hover {
+          background-color: #f1f3fb;
+        }
+      }
+      .minus {
+        @include img("./img/remove.svg", center);
+      }
+      .plus {
+        @include img("./img/add.svg", center);
+      }
+    }
+    .optionSelector {
+      border: 2px solid #f1f3fb;
+      border-radius: 5px;
+      width: 100px;
+      height: 32px;
+      padding-left: 5px;
+      color: #6a7684;
+      &:focus {
+        border: 2px solid #01c3bc;
+        outline: none;
+      }
+      &:-webkit-autofill {
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+    .addressInput {
+      margin: 3px 5px 3px 0;
+      border-radius: 5px;
+      border: 2px solid #f1f3fb;
+      height: 32px;
+      padding-left: 10px;
+      &:focus {
+        border: 2px solid #01c3bc;
+        outline: none;
+      }
+      &:-webkit-autofill {
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+    .zipcode {
+      width: 100px;
+    }
+    .road,
+    .jibun {
+      width: 340px;
+    }
+    .detail {
+      width: 275px;
+    }
+    .codeFinder {
+      border: 2px solid #f1f3fb;
+      border-radius: 5px;
+      background: #fff;
+      height: 32px;
+      color: #6a7684;
+      &:hover {
+        background-color: #f1f3fb;
+      }
+    }
+    .textarea {
+      width: 685px;
+      height: 450px;
+      resize: none;
+      border: 2px solid #f1f3fb;
+      border-radius: 5px;
+      padding: 5px 10px;
+      &:focus {
+        border: 2px solid #01c3bc;
+        outline: none;
+      }
+      &:-webkit-autofill {
+        transition: background-color 5000s ease-in-out 0s;
+      }
+    }
+  }
+}
+
+.postCodeDom {
+  display: flex;
+  justify-content: start;
+  .postCode_btn {
+    width: 60px;
+    height: 32px;
+    border-radius: 5px;
+    border: 2px solid #e7eaf1;
+    background: #fff;
+    color: #6a7684;
+    &:hover {
+      background-color: #e7eaf1;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .titleWrap {
+    .h2 {
+      width: 897px !important;
+    }
+  }
+  #articleForm-main {
+    .section {
+      width: 935px;
+    }
+  }
+}

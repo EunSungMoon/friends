@@ -33,7 +33,7 @@ react, scss, bootstrap, bootstrap-icon
     - 이메일 체크 메세지 출력 -ok
     - 비밀번호 체크 메세지 -ok
     - 가입완료 메세지 출력
-    - input에 아무것도 입력하지 않았을때 알림 메세지 
+    - input이 빈값이면 알림 메세지 
     - 가입 정보 백엔드로 전달
 
   2. 로그인 
@@ -43,12 +43,14 @@ react, scss, bootstrap, bootstrap-icon
     - 로그인 모달 안에 있는 회원가입 버튼 클릭시 모달창 close, 회원가입 페이지 출력
 
   3. 게시글 작성
-    - 게시글 작성 폼 퍼블리싱
-    - 봉사 일자 react bootstrap datepicker 활용
-    - 봉사인원, 봉사 분야 select box
-    - 봉사 장소 : 우편번호 찾기 api활용, 상세주소 입력칸 출력
-    - 상세내용 입력칸
+    - 게시글 작성 폼 퍼블리싱 -ok
+    - 봉사 일자 react bootstrap datepicker 활용 -ok
+    - 봉사인원, 봉사 분야 select box -ok
+    - 봉사 장소 : 우편번호 찾기 api활용, 상세주소 입력칸 출력 -ok
+    - 상세내용 입력칸 -ok
     - 등록하기 버튼 -> 작성 완료 알림창 -> 게시판 메인 화면으로 
+    - input 빈값이면 알림메세지 출력
+    - 게시글 내용 백엔드로 전달
 
   4. 게시글 수정
   5. 토큰 기반
@@ -93,3 +95,8 @@ react, scss, bootstrap, bootstrap-icon
 ### 2021.12.28
   - 게시글 작성 폼 페이지 퍼블리싱
   - 카카오 우편번호 찾기 api활용
+
+### 2021.12.29
+  - 카카오 우편번호 찾기 
+  - 우편찾기에서 주소 클릭 -> input에 주소 출력
+  - 게시글 작성 폼 페이지 디자인

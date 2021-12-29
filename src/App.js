@@ -16,11 +16,11 @@ function App() {
             <Route exact path='/'>
               <Board />
             </Route>
-            <Route path='/signin'>
-              <SignIn />
-            </Route>
             <Route path='/list/:id'>
               <ListDetail />
+            </Route>
+            <Route path='/signin'>
+              <SignIn />
             </Route>
             <Route path='/articleForm'>
               <ArticleForm />

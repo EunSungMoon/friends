@@ -32,3 +32,9 @@
 .fa {
   margin-right: 5px;
 }
+
+@mixin inputLength($width) {
+  width: $width;
+  height: 48px;
+  border-radius: 7px;
+}

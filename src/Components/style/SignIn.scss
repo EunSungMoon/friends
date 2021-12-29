@@ -1,9 +1,4 @@
 @import "common";
-@mixin inputLength($width) {
-  width: $width;
-  height: 48px;
-  border-radius: 7px;
-}
 
 #sign-main {
   margin-top: 30px;
