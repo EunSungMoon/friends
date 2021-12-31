@@ -9,10 +9,11 @@
   }
   .section {
     background: #fff;
-    display: flex;
-    flex-direction: column;
+    @include display(center);
     padding: 40px;
-    border-radius: 5px;
+    border-radius: 7px;
+    width: 628px;
+    margin: 0 auto;
 
     form {
       margin: 0 auto;
@@ -20,8 +21,7 @@
       p {
         margin-bottom: 5px;
       }
-      .form-common,
-      .pw {
+      .form-common {
         margin-bottom: 24px;
       }
       .longWidth {
@@ -53,10 +53,11 @@
         @include btn(#01c3bc, 90px, 48px, #00afa9);
         margin-left: 15px;
       }
-    }
-    .joinComplete {
-      @include btn(#01c3bc, 200px, 48px, #00afa9);
-      margin: 0 auto;
+      .joinComplete {
+        @include btn(#01c3bc, 200px, 48px, #00afa9);
+        @include display(center);
+        margin: 25px auto 0;
+      }
     }
     .infoText {
       text-align: center;
