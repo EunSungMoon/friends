@@ -25,13 +25,13 @@
   margin-top: 30px;
   .titleWrap {
     @include display(center);
-    margin-bottom: 10px;
+    margin-bottom: 40px;
     .h2 {
       text-align: center;
       font-weight: bold;
       width: 900px;
       padding-left: 69px;
-      margin-bottom: 40px;
+      margin-bottom: 0;
     }
     .borderBtn {
       @include borderBtn(100px, 40px, 16px);
@@ -185,7 +185,7 @@
   #articleForm-main{
     .titleWrap {
       .h2 {
-        width: 897px !important;
+        width: 838px !important;
       }
     }
     .section {
