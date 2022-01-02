@@ -4,20 +4,18 @@ import InputCom from './InputCom';
 import useForm from '../Hooks/useForm';
 import validate from './validate';
 
-export default function SignIn(props) {
+export default function SignIn() {
 
   const { values, errors, submitting, handleChange, handleSubmit } = useForm({
-    initialValues: { email: '', password: '', nickName: '' },
+    initialValues: { email: '', password: '', nickName: '', password2: '' },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 3));
+      alert(JSON.stringify(values, null, 4));
     },
     validate
   })
 
   const [visible, setVisible] = useState(false);
   const [reason, setReason] = useState('volunteer');
-
-  const [password, setPassword] = useState('');
 
   const [noMatchPassword, setNoMatchPassword] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -28,11 +26,7 @@ export default function SignIn(props) {
     setVisible(!visible)
   }
 
-  const handlePassword = e => {
-    setPassword(e.target.value)
-  }
-
-  const handlePasswordChk = (e) => {
+  const handlePasswordChk = e => {
     setNoMatchPassword(e.target.value !== values.password);
     setPasswordCheck(e.target.value);
   };
@@ -63,20 +57,20 @@ export default function SignIn(props) {
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
                 event={handleChange}
-                onChange={handlePassword}
-                value={values.password}
+                // value={values.password}
               />
               {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
             </div>
-            <div className='password-input form-common'>
+            <div className='password-input form-common' onChange={handlePasswordChk}>
               <InputCom
                 title="비밀번호 재확인"
-                name="password"
+                name="password2"
                 type="password"
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
-                event={handlePasswordChk}
+                event={handleChange}
               />
+              {errors.password2 && <p style={{ color: 'red' }}>{errors.password2}</p>}
               {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
             </div>
             <div className='nickname-input form-common'>
