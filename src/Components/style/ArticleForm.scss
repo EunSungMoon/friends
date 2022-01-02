@@ -182,12 +182,12 @@
 }
 
 @media screen and (max-width: 1400px) {
-  .titleWrap {
-    .h2 {
-      width: 897px !important;
+  #articleForm-main{
+    .titleWrap {
+      .h2 {
+        width: 897px !important;
+      }
     }
-  }
-  #articleForm-main {
     .section {
       width: 935px;
     }

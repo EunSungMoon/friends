@@ -95,9 +95,11 @@ list 디자인
   .contentWrap {
     justify-content: center;
   }
-  .titleWrap {
-    .h2 {
-      width: 520px !important;
+  #board-main{
+    .titleWrap {
+      .h2 {
+        width: 520px !important;
+      }
     }
   }
 }

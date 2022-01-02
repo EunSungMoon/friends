@@ -5,6 +5,7 @@ import Board from './Components/Board';
 import ListDetail from './Components/ListDetail';
 import SignIn from './Components/SignIn'
 import ArticleForm from './Components/ArticleForm';
+import SignInComplete from './Components/SignInComplete';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route path='/signin'>
               <SignIn />
+            </Route>
+            <Route path='/signinComplete'>
+              <SignInComplete />
             </Route>
             <Route path='/articleForm'>
               <ArticleForm />

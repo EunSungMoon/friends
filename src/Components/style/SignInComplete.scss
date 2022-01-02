@@ -1,0 +1,28 @@
+@import "common";
+
+#siginComplete-main {
+  margin-top: 30px;
+  .titleWrap{
+    margin-bottom: 40px;
+    .h2 {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .message{
+    @include display(center);
+    flex-direction: column;
+    p{
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+    .goHome{
+      @include btn(#01c3bc, 200px, 48px, #00afa9);
+      a{
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+}
