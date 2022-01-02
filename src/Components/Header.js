@@ -16,7 +16,7 @@ export default function Header() {
           <ol className="flexNone">
             <li><Link to='/'>게시판</Link></li>
             <li><Link to='/'>채팅</Link></li>
-            <li><Link to='/'>프로필</Link></li>
+            <li><Link to='/profile'>프로필</Link></li>
           </ol>
         </nav>
         <div className="btnWrap">

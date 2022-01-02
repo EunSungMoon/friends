@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../Hooks/useFetch";
-import { BsFillPersonFill, BsPencil, BsChatDots } from "react-icons/bs";
+import { BsFillPersonFill, BsChatDots } from "react-icons/bs";
 import './style/ListDetail.scss';
 
 export default function ListDetail() {
@@ -47,13 +47,12 @@ export default function ListDetail() {
             </article>
             <article className="profileWrap">
               <div className="profile">
+                {/* 해당 프로필 페이지로 이동 */}
                 <BsFillPersonFill size={50}/>
                 <p>{list.author}</p>
               </div>
               <div className="btnWrap">
-                <button className="borderBtn editBtn">
-                  <BsPencil className="fa"/>수정하기
-                </button>
+                {/* 사용자에 따라 보여줄지 말지 로직 생성 예정 */}
                 <button className="borderBtn chatBtn">
                   <BsChatDots className="fa"/>채팅하기
                 </button>
