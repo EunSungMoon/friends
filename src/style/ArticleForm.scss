@@ -49,22 +49,6 @@
     width: 1000px;
     margin: 0 auto;
 
-    table {
-      tr {
-        font-size: 14px;
-        border-bottom: 1px solid #f1f3fb;
-        height: 60px;
-
-        th,
-        td {
-          padding: 10px 0;
-        }
-        th {
-          text-align: center;
-        }
-      }
-    }
-
     form{
       display: flex;
       flex-direction: column;

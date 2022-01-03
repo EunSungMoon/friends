@@ -52,21 +52,6 @@
   margin: 0 auto;
 }
 
-#articleForm-main .section table tr {
-  font-size: 14px;
-  border-bottom: 1px solid #f1f3fb;
-  height: 60px;
-}
-
-#articleForm-main .section table tr th,
-#articleForm-main .section table tr td {
-  padding: 10px 0;
-}
-
-#articleForm-main .section table tr th {
-  text-align: center;
-}
-
 #articleForm-main .section form {
   display: -webkit-box;
   display: -ms-flexbox;
