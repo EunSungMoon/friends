@@ -1,11 +1,11 @@
-import './style/ArticleForm.scss';
-import SelectBoxCom from './SelectBoxCom';
-import NumberCountCom from './NumberCountCom';
+import '../style/ArticleForm.scss';
+import SelectBoxCom from '../Components/SelectBoxCom';
+import NumberCountCom from '../Components/NumberCountCom';
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import { ko } from 'date-fns/esm/locale'
-import AddressCom from './AddressCom';
+import AddressCom from '../Components/AddressCom';
 
 export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());

@@ -1,7 +1,7 @@
-import './style/Header.scss';
+import '../style/Header.scss';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
-import LogInModal from './LogInModal';
+import LogInModal from '../Components/LogInModal';
 
 export default function Header() {
   const [loginModalShow, setloginModalShow] = useState(false);

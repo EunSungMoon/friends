@@ -1,4 +1,4 @@
-import './style/Board.scss';
+import '../style/Board.scss';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
 import useFetch from '../Hooks/useFetch';
 import { Link } from 'react-router-dom';

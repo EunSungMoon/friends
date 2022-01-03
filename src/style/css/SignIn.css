@@ -17,12 +17,16 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 40px;
-  border-radius: 5px;
+  border-radius: 7px;
+  width: 628px;
+  margin: 0 auto;
 }
 
 #sign-main .section form {
@@ -33,8 +37,7 @@
   margin-bottom: 5px;
 }
 
-#sign-main .section form .form-common,
-#sign-main .section form .pw {
+#sign-main .section form .form-common {
   margin-bottom: 24px;
 }
 
@@ -87,17 +90,26 @@
   background: #00afa9;
 }
 
-#sign-main .section .joinComplete {
+#sign-main .section form .joinComplete {
   background: #01c3bc;
   border-radius: 5px;
   border: none;
   width: 200px;
   height: 48px;
   color: #fff;
-  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 25px auto 0;
 }
 
-#sign-main .section .joinComplete:hover {
+#sign-main .section form .joinComplete:hover {
   background: #00afa9;
 }
 

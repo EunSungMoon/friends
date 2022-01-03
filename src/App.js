@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import Header from './Components/Header';
-import Board from './Components/Board';
-import ListDetail from './Components/ListDetail';
-import SignIn from './Components/SignIn'
-import ArticleForm from './Components/ArticleForm';
-import SignInComplete from './Components/SignInComplete';
-import ProfilePage from './Components/ProfilePage';
+import Header from './Pages/Header';
+import Board from './Pages/Board';
+import ListDetail from './Pages/ListDetail';
+import SignIn from './Pages/SignIn'
+import ArticleForm from './Pages/ArticleForm';
+import SignInComplete from './Pages/SignInComplete';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
   return (

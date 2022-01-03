@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../Hooks/useFetch";
 import { BsFillPersonFill, BsChatDots } from "react-icons/bs";
-import './style/ListDetail.scss';
+import '../style/ListDetail.scss';
 
 export default function ListDetail() {
   const { id } = useParams();

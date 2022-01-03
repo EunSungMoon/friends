@@ -1,4 +1,4 @@
-import './style/SignInComplete.scss';
+import '../style/SignInComplete.scss';
 import { Link } from 'react-router-dom';
 
 export default function SignInComplete() {

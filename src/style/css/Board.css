@@ -28,7 +28,7 @@ list 디자인
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 #board-main .titleWrap .h2 {
@@ -36,6 +36,7 @@ list 디자인
   font-weight: bold;
   width: 1170px;
   padding-left: 69px;
+  margin-bottom: 0;
 }
 
 #board-main .titleWrap .borderBtn {
@@ -148,7 +149,7 @@ list 디자인
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .titleWrap .h2 {
+  #board-main .titleWrap .h2 {
     width: 520px !important;
   }
 }

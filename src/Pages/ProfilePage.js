@@ -1,7 +1,7 @@
-import './style/ProfilePage.scss';
-import ProfileCom from './ProfileCom';
+import '../style/ProfilePage.scss';
+import ProfileCom from '../Components/ProfileCom';
 import { useState } from 'react';
-import MyBoardCom from './MyBoardCom';
+import MyBoardCom from '../Components/MyBoardCom';
 
 export default function ProfilePage() {
 

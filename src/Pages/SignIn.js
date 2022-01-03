@@ -1,8 +1,8 @@
-import './style/SignIn.scss';
+import '../style/SignIn.scss';
 import { useState } from 'react';
-import InputCom from './InputCom';
+import InputCom from '../Components/InputCom';
 import useForm from '../Hooks/useForm';
-import validate from './validate';
+import validate from '../Components/validate';
 
 export default function SignIn() {
 
