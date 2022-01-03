@@ -1,4 +1,4 @@
-export default function MyArticleCom() {
+export default function MyArticle() {
   return(
     <div>
       myArticle

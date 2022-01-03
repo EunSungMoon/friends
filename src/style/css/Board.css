@@ -1,8 +1,4 @@
 @charset "UTF-8";
-.fa {
-  margin-right: 5px;
-}
-
 .flexNone {
   -webkit-box-flex: 0;
       -ms-flex: none;
@@ -110,7 +106,20 @@ list 디자인
   font-weight: 600;
 }
 
-#board-main .contentWrap .list .listTitle .apply-state {
+.listContent p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.listContent .bi {
+  margin-right: 10px;
+}
+
+.listContent .date {
+  margin-top: 10px;
+}
+
+.apply-state {
   border-radius: 5px;
   width: 90px;
   height: 32px;
@@ -120,19 +129,6 @@ list 디자인
   font-weight: bold;
   font-size: 17px;
   margin-bottom: 0;
-}
-
-#board-main .contentWrap .list .listContent p {
-  margin: 0;
-  font-size: 15px;
-}
-
-#board-main .contentWrap .list .listContent .bi {
-  margin-right: 10px;
-}
-
-#board-main .contentWrap .list .listContent .date {
-  margin-top: 10px;
 }
 
 .apply-ing {

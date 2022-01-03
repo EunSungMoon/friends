@@ -1,15 +1,122 @@
-@import 'common';
+@import "common";
 /**********************************************************
 
 프로필 디자인
 
 ***********************************************************/
+#profile-main {
+  margin-top: 30px;
+  .h2 {
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 7px;
+    margin: 0 auto;
+    width: 900px;
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+
+      .infoWrap {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        margin: 10px auto;
+
+        span {
+          width: 186px;
+        }
+        .infoBox {
+          width: 400px;
+          border-radius: 5px;
+
+          background: #f1f3fb;
+
+          .infoText {
+            padding: 12px;
+          }
+        }
+        .belong-input {
+          width: 394px;
+          height: 50px;
+          border-radius: 5px;
+          border: none;
+          background: #f1f3fb;
+          padding-left: 10px;
+          &:focus {
+            outline: 2px solid #01c3bc;
+          }
+          &:-webkit-autofill {
+            transition: background-color 5000s ease-in-out 0s;
+          }
+        }
+      }
+    }
+  }
+}
 
 /**********************************************************
 
 MyBoardCom  나의 게시글 리스트 디자인
 
 ***********************************************************/
+#myBoard {
+  padding: 0 40px 40px !important;
+  .h3 {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .contentWrap {
+    list-style: none;
+    padding: 0 20px;
+
+    .list {
+      width: 628px;
+      margin: 10px auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
+      &:hover {
+        transform: translateY(-4px);
+      }
+
+      .listTitle {
+        @include display(space-between);
+        .h4 {
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+      .listWrap {
+        @include display(space-between);
+
+        .buttonWrap {
+          margin-top: 70px;
+          .editBtn {
+            border: 2px solid #e7eaf1;
+            border-radius: 5px;
+            background-color: #fff;
+            width: 32px;
+            height: 32px;
+            color: #6a7684;
+            padding-bottom: 5px;
+            &:hover {
+              background-color: #e7eaf1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 /**********************************************************
 

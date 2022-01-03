@@ -1,7 +1,3 @@
-.fa {
-  margin-right: 5px;
-}
-
 #articleForm-main {
   margin-top: 30px;
 }
@@ -266,4 +262,8 @@
   #articleForm-main .section {
     width: 935px;
   }
+}
+
+.fa {
+  margin-right: 5px;
 }

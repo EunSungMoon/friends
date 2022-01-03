@@ -7,6 +7,7 @@ import SignIn from './Pages/SignIn'
 import ArticleForm from './Pages/ArticleForm';
 import SignInComplete from './Pages/SignInComplete';
 import ProfilePage from './Pages/ProfilePage';
+import MyArticle from './Pages/MyArticle';
 
 function App() {
   return (
@@ -27,13 +28,15 @@ function App() {
             <Route path='/profile'>
               <ProfilePage />
             </Route>
+            <Route path='/myarticle'>
+              <MyArticle />
+            </Route>
             <Route path='/signin'>
               <SignIn />
             </Route>
             <Route path='/signinComplete'>
               <SignInComplete />
             </Route>
-
           </Switch>
         </div>
       </div >

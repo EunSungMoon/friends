@@ -56,32 +56,34 @@ list 디자인
           font-size: 20px;
           font-weight: 600;
         }
-        .apply-state {
-          border-radius: 5px;
-          width: 90px;
-          height: 32px;
-          line-height: 32px;
-          text-align: center;
-          color: #fff;
-          font-weight: bold;
-          font-size: 17px;
-          margin-bottom: 0;
-        }
-      }
-      .listContent {
-        p {
-          margin: 0;
-          font-size: 15px;
-        }
-        .bi {
-          margin-right: 10px;
-        }
-        .date {
-          margin-top: 10px;
-        }
       }
     }
   }
+}
+
+.listContent {
+  p {
+    margin: 0;
+    font-size: 15px;
+  }
+  .bi {
+    margin-right: 10px;
+  }
+  .date {
+    margin-top: 10px;
+  }
+}
+
+.apply-state {
+  border-radius: 5px;
+  width: 90px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 0;
 }
 
 .apply-ing {

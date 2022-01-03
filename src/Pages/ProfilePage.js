@@ -30,15 +30,12 @@ export default function ProfilePage() {
             />
             <div className='infoWrap'>
               <span>소속</span>
-              <div className='infoBox'>
-                <div className='infoInput'>
-                  <input name="belong" type="text" defaultValue={belong ? belong : '빈칸'} placeholder='변경할 소속명을 입력해주세요.' onChange={handleChange}/>
-                </div>
-              </div>
+              <input name="belong" type="text" className='belong-input' defaultValue={belong ? belong : '아무개 병원'} placeholder='변경할 소속명을 입력해주세요.' onChange={handleChange} />
             </div>
           </form>
         </section>
-        <section>
+        <section className='section' id='myBoard'>
+          <h3 className='h3'>내 게시글</h3>
           <MyBoardCom />
         </section>
       </div>
