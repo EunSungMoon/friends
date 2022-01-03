@@ -50,15 +50,6 @@
   margin-bottom: 30px;
   width: 1000px;
   margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 #articleForm-main .section table tr {
@@ -74,6 +65,40 @@
 
 #articleForm-main .section table tr th {
   text-align: center;
+}
+
+#articleForm-main .section form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#articleForm-main .section form .formWrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+  border-bottom: 1px solid #f1f3fb;
+  padding: 15px 0;
+}
+
+#articleForm-main .section form .formWrap span {
+  width: 140px;
+  padding-left: 15px;
+}
+
+#articleForm-main .section form .formWrap .inputWrap {
+  width: 700px;
 }
 
 #articleForm-main .section .article-input {
@@ -96,7 +121,7 @@
 }
 
 #articleForm-main .section .react-datepicker-wrapper input {
-  width: 265px;
+  width: 300px;
   height: 32px;
   border: 2px solid #f1f3fb;
   border-radius: 5px;

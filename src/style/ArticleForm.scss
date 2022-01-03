@@ -48,7 +48,6 @@
     margin-bottom: 30px;
     width: 1000px;
     margin: 0 auto;
-    @include display(center);
 
     table {
       tr {
@@ -66,12 +65,31 @@
       }
     }
 
+    form{
+      display: flex;
+      flex-direction: column;
+      .formWrap{
+        @include display(space-between);
+        margin: 0 auto;
+        border-bottom: 1px solid #f1f3fb;
+        padding: 15px 0;
+
+        span{
+          width: 140px;
+          padding-left: 15px;
+        }
+        .inputWrap{
+          width: 700px
+        }
+      }
+    }
+
     .article-input {
       @include input(500px, 16px);
     }
     .react-datepicker-wrapper {
       input {
-        @include input(265px, 35px);
+        @include input(300px, 35px);
         @include img("./img/calendar.svg", 10px);
       }
     }

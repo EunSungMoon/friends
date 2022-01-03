@@ -25,9 +25,9 @@ export default function NumberCountCom() {
 
   return (
     <div className="countDom">
-      <button className="minus countBtn" onClick={onDecrease}></button>
+      <button type="button" className="minus countBtn" onClick={onDecrease}></button>
       <p>{number}명</p>
-      <button className="plus countBtn" onClick={onIncrease}></button>
+      <button type="button" className="plus countBtn" onClick={onIncrease}></button>
     </div>
   )
 }
