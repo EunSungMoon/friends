@@ -158,6 +158,11 @@ MyBoardCom  나의 게시글 리스트 디자인
   background-color: #e7eaf1;
 }
 
+#myBoard .contentWrap .list .listWrap .buttonWrap .editBtn a {
+  color: #6a7684;
+  text-decoration: none;
+}
+
 /**********************************************************
 
 MyArticleCom  나의 게시글 상세 폼 디자인

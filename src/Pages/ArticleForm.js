@@ -48,7 +48,7 @@ export default function ArticleForm() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap'>
-                <NumberCountCom />
+                <NumberCountCom value={1} number={1}/>
               </div>
             </div>
             <div className='artivle-part formWrap'>

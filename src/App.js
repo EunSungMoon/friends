@@ -19,7 +19,7 @@ function App() {
             <Route exact path='/'>
               <Board />
             </Route>
-            <Route path='/list/:id'>
+            <Route path='/board/:id/'>
               <ListDetail />
             </Route>
             <Route path='/articleForm'>
@@ -28,7 +28,7 @@ function App() {
             <Route path='/profile'>
               <ProfilePage />
             </Route>
-            <Route path='/myarticle'>
+            <Route path='/myarticle/:id'>
               <MyArticle />
             </Route>
             <Route path='/signin'>

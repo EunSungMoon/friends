@@ -4,6 +4,7 @@ import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow, BsTrash } from "react
 
 export default function MyBoardCom() {
   const lists = useFetch('http://localhost:3001/lists')
+  
 
   return (
     <ol className="contentWrap row">
@@ -21,7 +22,7 @@ export default function MyBoardCom() {
               <p className="address"><BsShopWindow className="bi" />{list.place}</p>
             </div>
             <div className='buttonWrap'>
-              <button className='editBtn' title='수정하기'><Link to='/myarticle'><BsPencil /></Link></button>
+              <button className='editBtn' title='수정하기'><Link to={`/myarticle/${list.id}`}><BsPencil /></Link></button>
               <button className='editBtn' title='삭제하기'><BsTrash /></button>
             </div>
           </div>

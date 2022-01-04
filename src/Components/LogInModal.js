@@ -1,6 +1,6 @@
 import { Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './style/LogIn.scss';
+import '../style/LogIn.scss';
 
 export default function LogInModal(props) {
 

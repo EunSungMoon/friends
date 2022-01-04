@@ -1,18 +1,23 @@
 import '../style/SignIn.scss';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import InputCom from '../Components/InputCom';
 import useForm from '../Hooks/useForm';
 import validate from '../Components/validate';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import axios from 'axios'
+
 
 export default function SignIn() {
 
   const { values, errors, submitting, handleChange, handleSubmit } = useForm({
-    initialValues: { email: '', password: '', nickName: '', password2: '' },
+    initialValues: { email: '', password: '', nickName: '', password2: '', belong: '' },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 4));
     },
     validate
   })
+
+  const history = useHistory();
 
   const [visible, setVisible] = useState(false);
   const [reason, setReason] = useState('volunteer');
@@ -57,7 +62,7 @@ export default function SignIn() {
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
                 event={handleChange}
-                // value={values.password}
+              // value={values.password}
               />
               {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
             </div>
@@ -93,7 +98,7 @@ export default function SignIn() {
                 <input
                   type='radio'
                   name='join'
-                  value='volunteer'
+                  value={true}
                   checked={reason === 'volunteer'}
                   onChange={handleReason}
                 />봉사활동을 하고 싶어요
@@ -102,7 +107,7 @@ export default function SignIn() {
                 <input
                   type='radio'
                   name='join'
-                  value='need-helper'
+                  value={false}
                   checked={reason === 'need-helper'}
                   onChange={handleReason}
                 />봉사자의 도움이 필요해요
@@ -117,6 +122,7 @@ export default function SignIn() {
                   type="text"
                   class="longWidth text-input belong"
                   placeholder="00병원"
+                  value={values.belongs}
                 />
               </div>
             }
