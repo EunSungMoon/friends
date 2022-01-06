@@ -1,35 +1,25 @@
 import '../style/SignIn.scss';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import InputCom from '../Components/InputCom';
 import useForm from '../Hooks/useForm';
 import validate from '../Components/validate';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import axios from 'axios'
-
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function SignIn() {
+  const history = useHistory()
 
-  const { values, errors, submitting, handleChange, handleSubmit } = useForm({
-    initialValues: { email: '', password: '', nickName: '', password2: '', belong: '' },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 4));
+  //빈 값일때, 비밀번호 오류 로직
+  const { values, errors, visible, submitting, handleChange, handleReason, handleSubmit } = useForm({
+    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: 'true' },
+    onSubmit: () => {
+      history.push('/signinComplete')
     },
     validate
   })
 
-  const history = useHistory();
-
-  const [visible, setVisible] = useState(false);
-  const [reason, setReason] = useState('volunteer');
-
+  // const [reason, setReason] = useState();
   const [noMatchPassword, setNoMatchPassword] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState('');
-
-
-  const handleReason = e => {
-    setReason(e.currentTarget.value);
-    setVisible(!visible)
-  }
 
   const handlePasswordChk = e => {
     setNoMatchPassword(e.target.value !== values.password);
@@ -45,14 +35,14 @@ export default function SignIn() {
             <div className='email-input form-common'>
               <InputCom
                 title="이메일"
-                name="email"
+                name="username"
                 type="text"
                 class="text-input longWidth"
                 placeholder="이메일주소를 입력해주세요."
                 event={handleChange}
-                value={values.email}
+                value={values.username}
               />
-              {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+              {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
             </div>
             <div className='password-input form-common'>
               <InputCom
@@ -73,7 +63,7 @@ export default function SignIn() {
                 type="password"
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
-                event={handleChange}
+              // event={handleChange}
               />
               {errors.password2 && <p style={{ color: 'red' }}>{errors.password2}</p>}
               {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
@@ -81,15 +71,15 @@ export default function SignIn() {
             <div className='nickname-input form-common'>
               <InputCom
                 title="별명"
-                name="nickName"
+                name="nickname"
                 type="text"
                 class="text-input nickname"
                 placeholder="별명을 입력해주세요."
                 event={handleChange}
-                value={values.nickName}
+                value={values.nickname}
               />
               <button type='button' className='confirmBtn'>중복확인</button>
-              {errors.nickName && <p style={{ color: 'red' }}>{errors.nickName}</p>}
+              {errors.nickname && <p style={{ color: 'red' }}>{errors.nickname}</p>}
             </div>
 
             <div className='join-reason form-common'>
@@ -97,18 +87,17 @@ export default function SignIn() {
               <label className='volunteer'>
                 <input
                   type='radio'
-                  name='join'
-                  value={true}
-                  checked={reason === 'volunteer'}
+                  name='purpose'
+                  value='true'
+                  defaultChecked
                   onChange={handleReason}
                 />봉사활동을 하고 싶어요
               </label>
               <label className='need-helper'>
                 <input
                   type='radio'
-                  name='join'
-                  value={false}
-                  checked={reason === 'need-helper'}
+                  name='purpose'
+                  value='false'
                   onChange={handleReason}
                 />봉사자의 도움이 필요해요
               </label>
@@ -123,6 +112,7 @@ export default function SignIn() {
                   class="longWidth text-input belong"
                   placeholder="00병원"
                   value={values.belongs}
+                  event={handleChange}
                 />
               </div>
             }
