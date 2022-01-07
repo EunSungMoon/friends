@@ -22,6 +22,25 @@ export default function SignIn() {
     setPasswordCheck(e.target.value);
   };
 
+  //별명 체크 로직
+  const [nicknameCheck, setNicknameCheck] = useState(false)
+
+  const handleNickname = () => {
+    fetch('http://15.164.62.156:8888/api/nicknamecheck/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values.nickname)
+    }).then((response) => {
+      console.log(response.json())
+      console.log(values.nickname)
+    }).catch((error) => {
+      console.log(error.json())
+    })
+  }
+
+
   return (
     <main id="sign-main">
       <div className="container">
@@ -31,6 +50,7 @@ export default function SignIn() {
             <div className='email-input form-common'>
               <InputCom
                 title="이메일"
+                necessary='*'
                 name="username"
                 type="text"
                 class="text-input longWidth"
@@ -43,6 +63,7 @@ export default function SignIn() {
             <div className='password-input form-common'>
               <InputCom
                 title="비밀번호"
+                necessary='*'
                 name="password"
                 type="password"
                 class="text-input longWidth"
@@ -54,6 +75,7 @@ export default function SignIn() {
             <div className='password-input form-common' onChange={handlePasswordChk}>
               <InputCom
                 title="비밀번호 재확인"
+                necessary='*'
                 name="password2"
                 type="password"
                 class="text-input longWidth"
@@ -64,6 +86,7 @@ export default function SignIn() {
             <div className='nickname-input form-common'>
               <InputCom
                 title="별명"
+                necessary='*'
                 name="nickname"
                 type="text"
                 class="text-input nickname"
@@ -71,8 +94,9 @@ export default function SignIn() {
                 event={handleChange}
                 value={values.nickname}
               />
-              <button type='button' className='confirmBtn'>중복확인</button>
+              <button type='button' className='confirmBtn' onClick={handleNickname}>중복확인</button>
               {errors.nickname && <p style={{ color: 'red' }}>{errors.nickname}</p>}
+              {nicknameCheck && <p style={{color:'red'}}>이미 사용 중인 별명입니다.</p>}
             </div>
 
             <div className='join-reason form-common'>
