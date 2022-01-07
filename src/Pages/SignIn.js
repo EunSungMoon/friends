@@ -23,7 +23,7 @@ export default function SignIn() {
   };
 
   //별명 체크 로직
-  const [nicknameCheck, setNicknameCheck] = useState(false)
+  const [btnName, setBtnName] = useState('중복확인')
 
   const handleNickname = () => {
     fetch('http://15.164.62.156:8888/api/nicknamecheck/', {
@@ -31,13 +31,29 @@ export default function SignIn() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(values.nickname)
+      body: JSON.stringify({ "nickname": values.nickname })
     }).then((response) => {
-      console.log(response.json())
-      console.log(values.nickname)
+      return response.json()
+    }).then((response) => {
+      if (response.message === 'possible nickname') {
+        if (values.nickname === '') {
+          alert('별명을 입력해주세요.')
+        } else {
+          alert('사용 가능한 별명입니다.')
+          setBtnName('확인완료')
+        }
+      } else if (response.message === 'already exists') {
+        alert('이미 존재하는 별명입니다.')
+      }
     }).catch((error) => {
       console.log(error.json())
     })
+  }
+
+  const test = e => {
+    if (e.target.value !== values.nickname) {
+      setBtnName('중복확인')
+    }
   }
 
 
@@ -83,7 +99,7 @@ export default function SignIn() {
               />
               {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
             </div>
-            <div className='nickname-input form-common'>
+            <div className='nickname-input form-common' onChange={test}>
               <InputCom
                 title="별명"
                 necessary='*'
@@ -94,9 +110,8 @@ export default function SignIn() {
                 event={handleChange}
                 value={values.nickname}
               />
-              <button type='button' className='confirmBtn' onClick={handleNickname}>중복확인</button>
+              <button type='button' className='confirmBtn' onClick={handleNickname}>{btnName}</button>
               {errors.nickname && <p style={{ color: 'red' }}>{errors.nickname}</p>}
-              {nicknameCheck && <p style={{color:'red'}}>이미 사용 중인 별명입니다.</p>}
             </div>
 
             <div className='join-reason form-common'>
