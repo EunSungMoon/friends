@@ -3,21 +3,17 @@ import { useState } from 'react';
 import InputCom from '../Components/InputCom';
 import useForm from '../Hooks/useForm';
 import validate from '../Components/validate';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function SignIn() {
-  const history = useHistory()
-
   //빈 값일때, 비밀번호 오류 로직
   const { values, errors, visible, submitting, handleChange, handleReason, handleSubmit } = useForm({
-    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: 'true' },
+    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: '' },
     onSubmit: () => {
-      history.push('/signinComplete')
+      console.log(JSON.stringify(values));
     },
     validate
   })
 
-  // const [reason, setReason] = useState();
   const [noMatchPassword, setNoMatchPassword] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState('');
 
@@ -52,7 +48,6 @@ export default function SignIn() {
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
                 event={handleChange}
-              // value={values.password}
               />
               {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
             </div>
@@ -63,9 +58,7 @@ export default function SignIn() {
                 type="password"
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
-              // event={handleChange}
               />
-              {errors.password2 && <p style={{ color: 'red' }}>{errors.password2}</p>}
               {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
             </div>
             <div className='nickname-input form-common'>
@@ -84,20 +77,20 @@ export default function SignIn() {
 
             <div className='join-reason form-common'>
               <p>가입이유</p>
-              <label className='volunteer'>
+              <label className='volunteer' onChange={handleChange}>
                 <input
                   type='radio'
                   name='purpose'
-                  value='true'
-                  defaultChecked
+                  value={true}
                   onChange={handleReason}
+                  defaultChecked
                 />봉사활동을 하고 싶어요
               </label>
-              <label className='need-helper'>
+              <label className='need-helper' onChange={handleChange}>
                 <input
                   type='radio'
                   name='purpose'
-                  value='false'
+                  value={false}
                   onChange={handleReason}
                 />봉사자의 도움이 필요해요
               </label>

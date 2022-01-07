@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function useForm({ initialValues, onSubmit, validate }) {
   const [values, setValues] = useState(initialValues);
@@ -7,7 +8,7 @@ export default function useForm({ initialValues, onSubmit, validate }) {
 
 
   const [visible, setVisible] = useState(false);
-  const [purpose, setPurpose] = useState('volunteer')
+  const history = useHistory()
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -36,11 +37,9 @@ export default function useForm({ initialValues, onSubmit, validate }) {
           },
           body: JSON.stringify(values)
         }).then((response) => {
-          console.log(response.json())
-          console.log('new user added!')
-          console.log(values)
+          history.push('/signinComplete')
         }).catch(() => {
-          console.log('error')
+          alert('회원가입에 실패하였습니다. 다시 시도해주세요.')
         })
       }
       setSubmitting(false);
