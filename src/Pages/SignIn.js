@@ -7,7 +7,7 @@ import validate from '../Components/validate';
 export default function SignIn() {
   //빈 값일때, 비밀번호 오류 로직
   const { values, errors, visible, submitting, handleChange, handleReason, handleSubmit } = useForm({
-    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: '' },
+    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: 'true' },
     onSubmit: () => {
       console.log(JSON.stringify(values));
     },
@@ -15,11 +15,15 @@ export default function SignIn() {
   })
 
   const [noMatchPassword, setNoMatchPassword] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('비밀번호가 일치하지 않습니다.');
 
   const handlePasswordChk = e => {
-    setNoMatchPassword(e.target.value !== values.password);
-    setPasswordCheck(e.target.value);
+    if (setNoMatchPassword(e.target.value !== values.password)) {
+      setPasswordCheck('비밀번호가 일치하지 않습니다.')
+    } else if (e.target.value === '') {
+      setPasswordCheck('비밀번호를 입력해주세요.')
+      console.log(e.target.value)
+    }
   };
 
   //별명 체크 로직
@@ -50,12 +54,11 @@ export default function SignIn() {
     })
   }
 
-  const test = e => {
+  const changeBtnName = e => {
     if (e.target.value !== values.nickname) {
       setBtnName('중복확인')
     }
   }
-
 
   return (
     <main id="sign-main">
@@ -97,9 +100,10 @@ export default function SignIn() {
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
               />
-              {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
+              {noMatchPassword && <p style={{ color: 'red' }}>{passwordCheck}</p>}
+              {/* {passwordCheck && <p style={{ color: 'red' }}>비밀번호를 입력해주세요.</p>} */}
             </div>
-            <div className='nickname-input form-common' onChange={test}>
+            <div className='nickname-input form-common' onChange={changeBtnName}>
               <InputCom
                 title="별명"
                 necessary='*'
@@ -116,20 +120,18 @@ export default function SignIn() {
 
             <div className='join-reason form-common'>
               <p>가입이유</p>
-              <label className='volunteer' onChange={handleChange}>
+              <label className='volunteer' onChange={handleChange} value={values.purpose==='true'}>
                 <input
                   type='radio'
                   name='purpose'
-                  value={true}
                   onChange={handleReason}
                   defaultChecked
                 />봉사활동을 하고 싶어요
               </label>
-              <label className='need-helper' onChange={handleChange}>
+              <label className='need-helper' onChange={handleChange} value={values.purpose==='false'}>
                 <input
                   type='radio'
                   name='purpose'
-                  value={false}
                   onChange={handleReason}
                 />봉사자의 도움이 필요해요
               </label>
@@ -150,7 +152,7 @@ export default function SignIn() {
             }
 
             <p className='infoText'>회원가입 시 이메일 인증 메일이 발송됩니다. <br />정확한 이메일 주소를 입력해주세요.</p>
-            <button type='submit' className='joinComplete' disabled={submitting} >회원가입</button>
+            <button type='submit' className='joinComplete' disabled={btnName==='중복확인'} >회원가입</button>
           </form>
         </section>
       </div>
