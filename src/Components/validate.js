@@ -1,4 +1,4 @@
-export default function validate({ username, password, nickname }) {
+export default function validate({ username, password, password2, nickname }) {
   const errors = {};
 
   if (!username) {
@@ -11,6 +11,12 @@ export default function validate({ username, password, nickname }) {
     errors.password = "비밀번호가 입력되지 않았습니다.";
   } else if (password.length < 8) {
     errors.password = "8자 이상의 패스워드를 사용해야 합니다.";
+  }
+
+  if (!password2) {
+    errors.password2 = "비밀번호가 입력되지 않았습니다.";
+  } else if (password2.length < 8) {
+    errors.password2 = "8자 이상의 패스워드를 사용해야 합니다.";
   }
   
   if (!nickname) {

@@ -36,11 +36,20 @@ export default function useForm({ initialValues, onSubmit, validate }) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(values)
-        }).then((response) => {
-          history.push('/signinComplete')
-        }).catch(() => {
-          alert('회원가입에 실패하였습니다. 다시 시도해주세요.')
         })
+          .then(response => {
+            return response.json()
+          })
+          .then(data => {
+            if (data.message === 'success') {
+              history.push('/signinComplete')
+            } else if (data.username[0] === 'custom_user with this username already exists.') {
+              alert('메일 주소 중복입니다.')
+            }
+          })
+          .catch(error => {
+            alert('회원가입에 실패하였습니다. 다시 시도해주세요.')
+          })
       }
       setSubmitting(false);
     }

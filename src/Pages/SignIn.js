@@ -6,24 +6,20 @@ import validate from '../Components/validate';
 
 export default function SignIn() {
   //빈 값일때, 비밀번호 오류 로직
-  const { values, errors, visible, submitting, handleChange, handleReason, handleSubmit } = useForm({
-    initialValues: { username: '', password: '', nickname: '', belong: '', purpose: 'true' },
+  const { values, errors, visible, handleChange, handleReason, handleSubmit } = useForm({
+    initialValues: { username: '', password: '', nickname: '', belong: '봉사자', purpose: 'true', password2: '' },
     onSubmit: () => {
-      console.log(JSON.stringify(values));
+      console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname, "belong": values.belong, "purpose": values.purpose }));
     },
     validate
   })
 
   const [noMatchPassword, setNoMatchPassword] = useState(false);
-  const [passwordCheck, setPasswordCheck] = useState('비밀번호가 일치하지 않습니다.');
-
+  const [passwordCheck, setPasswordCheck] = useState('');
+  
   const handlePasswordChk = e => {
-    if (setNoMatchPassword(e.target.value !== values.password)) {
-      setPasswordCheck('비밀번호가 일치하지 않습니다.')
-    } else if (e.target.value === '') {
-      setPasswordCheck('비밀번호를 입력해주세요.')
-      console.log(e.target.value)
-    }
+    setNoMatchPassword(e.target.value !== values.password);
+    setPasswordCheck(e.target.value);
   };
 
   //별명 체크 로직
@@ -50,7 +46,7 @@ export default function SignIn() {
         alert('이미 존재하는 별명입니다.')
       }
     }).catch((error) => {
-      console.log(error.json())
+      alert('별명 설정에 오류가 발생하였습니다. 다시 시도해주세요.')
     })
   }
 
@@ -99,9 +95,10 @@ export default function SignIn() {
                 type="password"
                 class="text-input longWidth"
                 placeholder="비밀번호를 입력해주세요."
+                event={handleChange}
               />
-              {noMatchPassword && <p style={{ color: 'red' }}>{passwordCheck}</p>}
-              {/* {passwordCheck && <p style={{ color: 'red' }}>비밀번호를 입력해주세요.</p>} */}
+              {noMatchPassword && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
+              {errors.password2 && <p style={{ color: 'red' }}>{errors.password2}</p>}
             </div>
             <div className='nickname-input form-common' onChange={changeBtnName}>
               <InputCom
@@ -120,19 +117,21 @@ export default function SignIn() {
 
             <div className='join-reason form-common'>
               <p>가입이유</p>
-              <label className='volunteer' onChange={handleChange} value={values.purpose==='true'}>
+              <label className='volunteer' onChange={handleChange} value="true">
                 <input
                   type='radio'
                   name='purpose'
                   onChange={handleReason}
                   defaultChecked
+                  value='true'
                 />봉사활동을 하고 싶어요
               </label>
-              <label className='need-helper' onChange={handleChange} value={values.purpose==='false'}>
+              <label className='need-helper' onChange={handleChange} value='false'>
                 <input
                   type='radio'
                   name='purpose'
                   onChange={handleReason}
+                  value='false'
                 />봉사자의 도움이 필요해요
               </label>
             </div>
