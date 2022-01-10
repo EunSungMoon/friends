@@ -8,7 +8,7 @@ export default function LogInModal(props) {
   const [inputs, setInputs] = useState({
     email: '',
     password: ''
-  })
+  });
   const { email, password } = inputs
 
   const onChange = e => {
@@ -18,10 +18,10 @@ export default function LogInModal(props) {
       [name]: value,
     }
     setInputs(nextInputs)
-    console.log(JSON.stringify(inputs))
   }
 
-  const handleLogin = () => {
+  const handleLogin = e => {
+    e.preventDefault()
     fetch('http://15.164.62.156:8888/api/login/', {
       method: 'POST',
       headers: {
@@ -33,14 +33,29 @@ export default function LogInModal(props) {
       }),
     })
       .then(response => {
-        return console.log(response.json())
+        return response.json()
       })
-      .then(response => {
-        console.log(response.error)
+      .then(data => {
+        if (data.token) {
+          alert('로그인 완료')
+          onClickLoginBtn()
+        }
+        else if (data.error === 'invalid user') {
+          alert('아이디 또는 비밀번호 확인헤주세요.')
+        }
       })
       .catch(error => {
         console.log(error)
       })
+  }
+
+  const onClickLoginBtn = () => {
+    const resetInputs = {
+      email: '',
+      password: ''
+    }
+    setInputs(resetInputs)
+    props.onHide()
   }
 
   return (
@@ -54,7 +69,7 @@ export default function LogInModal(props) {
         <div className='titleWrap'>
           <h1>프렌즈</h1>
         </div>
-        <form onChange={handleLogin}>
+        <form onSubmit={handleLogin}>
           <input
             name="email"
             type="text"
@@ -70,9 +85,8 @@ export default function LogInModal(props) {
             placeholder='비밀번호를 입력해주세요.'
             onChange={onChange}
           />
-          <button type='button' className='longWidth loginBtn'>로그인</button>
+          <button type='submit' className='longWidth loginBtn'>로그인</button>
         </form>
-
         <div className='signinNav'>
           <span className='signin-text'>프렌즈가 처음이세요?</span>
           <Link to={'/signin'}><button className='longWidth signinBtn' onClick={props.onHide}>회원가입</button></Link>
