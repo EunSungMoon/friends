@@ -1,4 +1,4 @@
-@import 'common';
+@import "common";
 
 #header {
   border-bottom: 1px solid #e7eaf1;
@@ -34,11 +34,15 @@
           text-decoration: none;
           color: black;
           width: 100%;
-          font-weight: bold;
-          font-size: 20px;
-          &:hover {
-            color: #01c3bc;
-          }
+        }
+      }
+      .tab {
+        font-weight: bold;
+        font-size: 20px;
+        color: black;
+        cursor: pointer;
+        &:hover {
+          color: #01c3bc;
         }
       }
     }
@@ -51,12 +55,18 @@
       margin-right: 10px;
       @include btn(#01c3bc, 70px, 30px, #00afa9);
     }
+    .logout {
+      @include btn(#01c3bc, 80px, 30px, #00afa9);
+    }
     .signIn {
       @include btn(#ff7867, 80px, 30px, #ff6d5a);
-      a{
+      a {
         color: #fff;
         text-decoration: none;
       }
+    }
+    .welcomeText {
+      margin-right: 10px;
     }
   }
 }

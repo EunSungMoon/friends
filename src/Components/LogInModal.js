@@ -38,6 +38,7 @@ export default function LogInModal(props) {
       .then(data => {
         if (data.token) {
           alert('로그인 완료')
+          localStorage.setItem('token', data.token)
           onClickLoginBtn()
         }
         else if (data.error === 'invalid user') {
