@@ -40,6 +40,7 @@ export default function LogInModal(props) {
           alert('로그인 완료')
           localStorage.setItem('token', data.token)
           onClickLoginBtn()
+          document.location.href = '/'
         }
         else if (data.error === 'invalid user') {
           alert('아이디 또는 비밀번호 확인헤주세요.')

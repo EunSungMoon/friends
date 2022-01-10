@@ -3,12 +3,14 @@ import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import LogInModal from '../Components/LogInModal';
 
 export default function Board() {
 
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [loginModalShow, setloginModalShow] = useState(false);
 
   const fetchUsers = async () => {
     try {
@@ -37,7 +39,26 @@ export default function Board() {
       <div className="container">
         <div className="titleWrap">
           <h2 className="h2">게시판</h2>
-          <button className="borderBtn"><Link to={'/articleForm'}><BsPencil className="fa" />글쓰기</Link></button>
+
+          {localStorage.token ?
+            (
+              <>
+                <button className="borderBtn">
+                  <Link to={'/articleForm'}><BsPencil className="fa" />글쓰기</Link>
+                </button>
+              </>
+            ) :
+            (
+              <>
+                <button
+                  className="borderBtn"
+                  onClick={() => setloginModalShow(true)}
+                >
+                  <BsPencil className="fa" />글쓰기
+                </button>
+              </>
+            )
+          }
         </div>
         <section className="container">
           <ol className="contentWrap row">
@@ -61,6 +82,10 @@ export default function Board() {
           </ol>
         </section>
       </div>
+      <LogInModal
+        show={loginModalShow}
+        onHide={() => setloginModalShow(false)}
+      />
     </main>
   )
 }
