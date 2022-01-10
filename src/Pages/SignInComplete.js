@@ -10,7 +10,7 @@ export default function SignInComplete() {
         </div>
         <section className="message">
           <p>가입이 완료되었습니다. 메일을 통해 인증을 완료해주세요.</p>
-          <button className="goHome"><Link to='/'>홈으로 가기</Link></button>
+          <Link to='/'><button className="goHome">홈으로 가기</button></Link>
         </section>
       </div>
     </main>

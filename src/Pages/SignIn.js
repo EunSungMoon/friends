@@ -16,7 +16,7 @@ export default function SignIn() {
 
   const [noMatchPassword, setNoMatchPassword] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState('');
-  
+
   const handlePasswordChk = e => {
     setNoMatchPassword(e.target.value !== values.password);
     setPasswordCheck(e.target.value);
@@ -32,22 +32,25 @@ export default function SignIn() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ "nickname": values.nickname })
-    }).then((response) => {
-      return response.json()
-    }).then((response) => {
-      if (response.message === 'possible nickname') {
-        if (values.nickname === '') {
-          alert('별명을 입력해주세요.')
-        } else {
-          alert('사용 가능한 별명입니다.')
-          setBtnName('확인완료')
-        }
-      } else if (response.message === 'already exists') {
-        alert('이미 존재하는 별명입니다.')
-      }
-    }).catch((error) => {
-      alert('별명 설정에 오류가 발생하였습니다. 다시 시도해주세요.')
     })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        if (response.message === 'possible nickname') {
+          if (values.nickname === '') {
+            alert('별명을 입력해주세요.')
+          } else {
+            alert('사용 가능한 별명입니다.')
+            setBtnName('확인완료')
+          }
+        } else if (response.message === 'already exists') {
+          alert('이미 존재하는 별명입니다.')
+        }
+      })
+      .catch((error) => {
+        alert('별명 설정에 오류가 발생하였습니다. 다시 시도해주세요.')
+      })
   }
 
   const changeBtnName = e => {
@@ -151,7 +154,7 @@ export default function SignIn() {
             }
 
             <p className='infoText'>회원가입 시 이메일 인증 메일이 발송됩니다. <br />정확한 이메일 주소를 입력해주세요.</p>
-            <button type='submit' className='joinComplete' disabled={btnName==='중복확인'} >회원가입</button>
+            <button type='submit' className='joinComplete' disabled={btnName === '중복확인'} >회원가입</button>
           </form>
         </section>
       </div>
