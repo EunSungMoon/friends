@@ -15,24 +15,34 @@ export default function ListDetail() {
       headers: {
         'Content-Type': 'application/json'
       },
-    }).then((response) => {
-      return response.json()
-    }).then(data => {
-      setLists(data)
-    }).catch(error=>{
-      setError(error)
     })
+      .then((response) => {
+        return response.json()
+      })
+      .then(data => {
+        setLists(data)
+      })
+      .catch(error => {
+        setError(error)
+      })
     setLoading(false);
   }
 
   useEffect(() => {
     loadFetch()
     return lists;
-  },[]);
+  }, []);
 
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
+
+  let stringToDate = new Date(lists.created_at)
+  let year = stringToDate.getFullYear()
+  let month = stringToDate.getMonth() + 1
+  let day = stringToDate.getDate()
+
+  let createdAt = `${year}-0${month.toString().slice(-2)}-0${day.toString().slice(-2)}`
 
   return (
     <div>
@@ -40,7 +50,7 @@ export default function ListDetail() {
         <section className="container">
           <article className="titleWrap">
             <h2 className="article-header">{lists.title}</h2>
-            <p className="article-date">{lists.created_at}</p>
+            <p className="article-date" value={createdAt}>{createdAt}</p>
           </article>
           <article className="tableWrap">
             <table>
