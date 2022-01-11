@@ -2,7 +2,6 @@ import '../style/Board.scss';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import LogInModal from '../Components/LogInModal';
 
 export default function Board() {
@@ -12,23 +11,27 @@ export default function Board() {
   const [error, setError] = useState(null);
   const [loginModalShow, setloginModalShow] = useState(false);
 
-  const fetchUsers = async () => {
-    try {
-      setError(null);
-      setUsers(null);
-      setLoading(true);
-      const response = await axios.get(
-        'http://15.164.62.156:8888/api/board'
-      );
-      setUsers(response.data);
-    } catch (e) {
-      setError(e);
-    }
+  const loadFetch = () => {
+    fetch(`http://15.164.62.156:8888/api/board`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then((response) => {
+      return response.json()
+    }).then(data => {
+      setUsers(data);
+    }).catch(error => {
+      setError(error)
+    })
     setLoading(false);
-  };
+  }
+
   useEffect(() => {
-    fetchUsers()
+    loadFetch()
+    return users
   }, []);
+
 
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>

@@ -1,11 +1,38 @@
 import { useParams } from "react-router-dom";
-import useFetch from "../Hooks/useFetch";
+import { useState, useEffect } from "react";
 import { BsFillPersonFill, BsChatDots } from "react-icons/bs";
 import '../style/ListDetail.scss';
 
 export default function ListDetail() {
   const { id } = useParams();
-  const lists = useFetch(`http://15.164.62.156:8888/api/board/${id}`)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [lists, setLists] = useState([])
+
+  const loadFetch = () => {
+    fetch(`http://15.164.62.156:8888/api/board/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then((response) => {
+      return response.json()
+    }).then(data => {
+      setLists(data)
+    }).catch(error=>{
+      setError(error)
+    })
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    loadFetch()
+    return lists;
+  },[]);
+
+  if (loading) return <div>로딩중...</div>
+  if (error) return <div>에러가 발생했습니다.</div>
+  if (!lists) return null;
 
   return (
     <div>
