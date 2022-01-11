@@ -13,10 +13,12 @@ export default function ListDetail() {
   const [loginModalShow, setloginModalShow] = useState(false);
 
   const loadFetch = () => {
+    let token = `Token ${localStorage.getItem('token')}`
     fetch(`http://15.164.62.156:8888/api/board/${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       },
     })
       .then((response) => {
@@ -97,7 +99,7 @@ export default function ListDetail() {
                 (lists.is_author === true ?
                   // 로그인 상태 and 내가 작성한 게시글
                   (<>
-                  <Link>
+                  <Link to={`/myarticle/${lists.id}/`}>
                     <button className="borderBtn chatBtn">
                       <BsPencil className="fa" />수정하기
                     </button>

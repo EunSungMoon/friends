@@ -16,19 +16,76 @@ export default function ArticleForm() {
     { value: "makeup", name: '메이크업' }
   ]
 
+  const [inputs, setInputs] = useState({
+    title: '',
+    // state: 'apply-state apply-ing',
+    // dday: '',
+    // members: '',
+    // part: '',
+    // postcode: '',
+    // roadAddress: '',
+    // jibunAddress: '',
+    // detailAddress: '',
+    detail: ''
+  })
+  const { title, detail } = inputs
+
+  const onChange = e => {
+    const { name, value } = e.target
+    const nextInputs = {
+      ...inputs,
+      [name]: value,
+    }
+    setInputs(nextInputs)
+    console.log(nextInputs)
+  }
+
+  const handleSubmit = e => {
+    let token = `Token ${localStorage.getItem('token')}`
+    e.preventDefault();
+    fetch('http://15.164.62.156:8888/api/board/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      body: JSON.stringify({
+        title: title,
+        detail: detail
+      }),
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        console.log(token)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   return (
     <main id="articleForm-main">
       <div className='container'>
         <div className='titleWrap'>
           <h2 className='h2'>봉사 모집 등록</h2>
-          <button className='borderBtn'>등록하기</button>
+          <button type='submit' className='borderBtn'>등록하기</button>
         </div>
         <section className='section'>
           <form>
             <div className='article-title formWrap'>
-              <span>글 제목</span>
+              <span onClick={handleSubmit}>글 제목</span>
               <div className='inputWrap'>
-                <input type='text' className='article-input' placeholder='제목을 입력해주세요.' />
+                <input
+                  type='text'
+                  className='article-input'
+                  placeholder='제목을 입력해주세요.'
+                  name='title'
+                  value={title}
+                  onChange={onChange}
+                />
               </div>
             </div>
             <div className='article-date formWrap'>
@@ -48,7 +105,7 @@ export default function ArticleForm() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap'>
-                <NumberCountCom value={1} number={1}/>
+                <NumberCountCom isEdit={false} />
               </div>
             </div>
             <div className='artivle-part formWrap'>
@@ -66,7 +123,7 @@ export default function ArticleForm() {
             <div className='article-detail formWrap'>
               <span>상세 내용</span>
               <div className='inputWrap'>
-                <textarea placeholder='상세내용' className='textarea'></textarea>
+                <textarea name='detail' placeholder='상세내용' className='textarea' onChange={onChange}></textarea>
               </div>
             </div>
           </form>
