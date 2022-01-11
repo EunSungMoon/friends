@@ -1,13 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { BsFillPersonFill, BsChatDots } from "react-icons/bs";
+import { BsFillPersonFill, BsChatDots, BsPencil } from "react-icons/bs";
 import '../style/ListDetail.scss';
+import LogInModal from '../Components/LogInModal';
 
 export default function ListDetail() {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [lists, setLists] = useState([])
+
+  const [loginModalShow, setloginModalShow] = useState(false);
 
   const loadFetch = () => {
     fetch(`http://15.164.62.156:8888/api/board/${id}`, {
@@ -42,7 +45,9 @@ export default function ListDetail() {
   let month = stringToDate.getMonth() + 1
   let day = stringToDate.getDate()
 
-  let createdAt = `${year}-0${month.toString().slice(-2)}-0${day.toString().slice(-2)}`
+  let createdAt = `
+    ${year}-0${month.toString().slice(-2, 1)}-0${day.toString().slice(-2, 1)}
+  `
 
   return (
     <div>
@@ -88,14 +93,45 @@ export default function ListDetail() {
               <p>{lists.author}</p>
             </div>
             <div className="btnWrap">
-              {/* 사용자에 따라 보여줄지 말지 로직 생성 예정 */}
-              <button className="borderBtn chatBtn">
-                <BsChatDots className="fa" />채팅하기
-              </button>
+              {localStorage.token ?
+                (lists.is_author === true ?
+                  // 로그인 상태 and 내가 작성한 게시글
+                  (<>
+                  <Link>
+                    <button className="borderBtn chatBtn">
+                      <BsPencil className="fa" />수정하기
+                    </button>
+                  </Link>
+                  </>) :
+                  // 로그인 상태 and 내가 작성한 게시글 아님
+                  (<>
+                  {/* 채팅하기 완성되면 그 페이지로 */}
+                    <button
+                      className="borderBtn chatBtn"
+                      onClick={() => console.log('채팅하자')}
+                    >
+                      <BsChatDots className="fa" />채팅하기
+                    </button>
+                  </>)
+                ) :
+                //로그인 상태 아님
+                (<>
+                  <button
+                    className="borderBtn chatBtn"
+                    onClick={() => setloginModalShow(true)}
+                  >
+                    <BsChatDots className="fa" />채팅하기
+                  </button>
+                </>)
+              }
             </div>
           </article>
         </section>
       </main>
+      <LogInModal
+        show={loginModalShow}
+        onHide={() => setloginModalShow(false)}
+      />
     </div>
   );
 }

@@ -9,7 +9,6 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('token')
     document.location.href = '/'
-    console.log(localStorage.getItem('token'))
   }
 
   return (

@@ -17,13 +17,16 @@ export default function Board() {
       headers: {
         'Content-Type': 'application/json'
       },
-    }).then((response) => {
-      return response.json()
-    }).then(data => {
-      setUsers(data);
-    }).catch(error => {
-      setError(error)
     })
+      .then((response) => {
+        return response.json()
+      })
+      .then(data => {
+        setUsers(data);
+      })
+      .catch(error => {
+        setError(error)
+      })
     setLoading(false);
   }
 
@@ -46,9 +49,11 @@ export default function Board() {
           {localStorage.token ?
             (
               <>
-                <button className="borderBtn">
-                  <Link to={'/articleForm'}><BsPencil className="fa" />글쓰기</Link>
-                </button>
+                <Link to={'/articleForm'}>
+                  <button className="borderBtn">
+                    <BsPencil className="fa" />글쓰기
+                  </button>
+                </Link>
               </>
             ) :
             (
