@@ -11,9 +11,9 @@ export default function ListDetail() {
   const [lists, setLists] = useState([])
 
   const [loginModalShow, setloginModalShow] = useState(false);
+  let token = `Token ${localStorage.getItem('token')}`
 
   const loadFetch = () => {
-    let token = `Token ${localStorage.getItem('token')}`
     fetch(`http://15.164.62.156:8888/api/board/${id}`, {
       method: 'GET',
       headers: {
@@ -26,15 +26,38 @@ export default function ListDetail() {
       })
       .then(data => {
         setLists(data)
+        console.log(data.detail)
       })
       .catch(error => {
         setError(error)
+        console.log(error)
+      })
+    setLoading(false);
+  }
+
+  const loadFetchNoToken = () => {
+    fetch(`http://15.164.62.156:8888/api/board/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then(data => {
+        setLists(data)
+        console.log(data)
+      })
+      .catch(error => {
+        setError(error)
+        console.log(error)
       })
     setLoading(false);
   }
 
   useEffect(() => {
-    loadFetch()
+    localStorage.token ? loadFetch() : loadFetchNoToken()
     return lists;
   }, []);
 
@@ -99,15 +122,15 @@ export default function ListDetail() {
                 (lists.is_author === true ?
                   // 로그인 상태 and 내가 작성한 게시글
                   (<>
-                  <Link to={`/myarticle/${lists.id}/`}>
-                    <button className="borderBtn chatBtn">
-                      <BsPencil className="fa" />수정하기
-                    </button>
-                  </Link>
+                    <Link to={`/myarticle/${lists.id}/`}>
+                      <button className="borderBtn chatBtn">
+                        <BsPencil className="fa" />수정하기
+                      </button>
+                    </Link>
                   </>) :
                   // 로그인 상태 and 내가 작성한 게시글 아님
                   (<>
-                  {/* 채팅하기 완성되면 그 페이지로 */}
+                    {/* 채팅하기 완성되면 그 페이지로 */}
                     <button
                       className="borderBtn chatBtn"
                       onClick={() => console.log('채팅하자')}

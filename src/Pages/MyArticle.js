@@ -1,11 +1,11 @@
 import '../style/ArticleForm.scss';
-import SelectBoxCom from '../Components/SelectBoxCom';
-import NumberCountCom from '../Components/NumberCountCom';
-import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import SelectBoxCom from '../Components/SelectBoxCom';
+import NumberCountEditCom from '../Components/NumberCountEditCom';
+import AddressCom from '../Components/AddressCom';
+import DatePicker from 'react-datepicker'
 import { useState, useEffect } from 'react';
 import { ko } from 'date-fns/esm/locale'
-import AddressCom from '../Components/AddressCom';
 import { useParams } from "react-router-dom";
 
 export default function MyArticle() {
@@ -86,7 +86,7 @@ export default function MyArticle() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap'>
-                <NumberCountCom value={lists.members} number={lists.members} isEdit={true}/>
+                <NumberCountEditCom value={lists.members} number={lists.members}/>
               </div>
             </div>
 

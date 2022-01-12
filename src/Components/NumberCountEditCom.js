@@ -26,7 +26,7 @@ export default function NumberCountCom(props) {
   return (
     <div className="countDom">
       <button type="button" className="minus countBtn" onClick={onDecrease}></button>
-      <p value={number}>{number}명</p>
+      <p value={props.number}>{props.number}명</p>
       <button type="button" className="plus countBtn" onClick={onIncrease}></button>
     </div>
   )
