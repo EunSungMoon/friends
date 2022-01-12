@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import useFetch from '../Hooks/useFetch';
+import { useState } from 'react';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow, BsTrash } from "react-icons/bs";
 
 export default function MyBoardCom() {
-  const lists = useFetch('http://localhost:3001/lists')
-  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [lists, setLists] = useState([])
 
   return (
     <ol className="contentWrap row">

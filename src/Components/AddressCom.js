@@ -16,7 +16,7 @@ export default function AddressCom() {
   }
   return (
     <>
-      <input type="text" id="sample4_postcode" placeholder="우편번호" className='addressInput zipcode'/>
+      <input type="text" id="sample4_postcode" placeholder="우편번호" className='addressInput zipcode' disabled/>
       <input type="button" value="우편번호 찾기" onClick={openPostCode} className='codeFinder' /><br />
       <input type="text" id="sample4_roadAddress" placeholder="도로명주소" className='addressInput road' />
       <input type="text" id="sample4_jibunAddress" placeholder="지번주소" className='addressInput jibun' /><br />
