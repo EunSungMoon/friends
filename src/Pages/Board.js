@@ -23,8 +23,8 @@ export default function Board() {
       })
       setLists(loadData.data)
     }
-    catch(e) {
-      setError(e)
+    catch(error) {
+      setError(error)
     }
     setLoading(false)
   }

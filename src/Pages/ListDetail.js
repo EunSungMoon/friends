@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from 'axios'
 import { BsFillPersonFill, BsChatDots, BsPencil } from "react-icons/bs";
 import '../style/ListDetail.scss';
 import LogInModal from '../Components/LogInModal';
@@ -13,51 +14,45 @@ export default function ListDetail() {
   const [loginModalShow, setloginModalShow] = useState(false);
   let token = `Token ${localStorage.getItem('token')}`
 
-  const loadFetch = () => {
-    fetch(`http://15.164.62.156:8888/api/board/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
-      },
-    })
-      .then((response) => {
-        return response.json()
+  const loadAxios = async () => {
+    try {
+      setError(null);
+      setLists(null);
+      setLoading(true);
+      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
       })
-      .then(data => {
-        setLists(data)
-        console.log(data.detail)
-      })
-      .catch(error => {
-        setError(error)
-        console.log(error)
-      })
-    setLoading(false);
+      setLists(loadData.data)
+    }
+    catch(error) {
+      setError(error)
+    }
+    setLoading(false)
   }
 
-  const loadFetchNoToken = () => {
-    fetch(`http://15.164.62.156:8888/api/board/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        return response.json()
+  const loadAxiosNoToken = async () => {
+    try {
+      setError(null);
+      setLists(null);
+      setLoading(true);
+      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-      .then(data => {
-        setLists(data)
-        console.log(data)
-      })
-      .catch(error => {
-        setError(error)
-        console.log(error)
-      })
-    setLoading(false);
+      setLists(loadData.data)
+    }
+    catch(error) {
+      setError(error)
+    }
+    setLoading(false)
   }
 
   useEffect(() => {
-    localStorage.token ? loadFetch() : loadFetchNoToken()
+    localStorage.token ? loadAxios() : loadAxiosNoToken()
     return lists;
   }, []);
 
