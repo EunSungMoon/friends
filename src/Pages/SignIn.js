@@ -10,7 +10,7 @@ export default function SignIn() {
   const { values, errors, handleChange, handleSubmit } = useForm({
     initialValues: { username: '', password: '', nickname: '', password2: '' },
     onSubmit: () => {
-      console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname }));
+      // console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname }));
     },
     validate
   })

@@ -75,7 +75,8 @@ export default function ListDetail() {
         <section className="container">
           <article className="titleWrap">
             <h2 className="article-header">{lists.title}</h2>
-            <p className="article-date" value={createdAt}>{createdAt}</p>
+            <p className="article-date article-info" value={createdAt}>{createdAt}</p>
+            <p className="viewCount article-info">조회수 10</p>
           </article>
           <article className="tableWrap">
             <table>

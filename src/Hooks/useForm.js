@@ -23,21 +23,22 @@ export default function useForm({ initialValues, onSubmit, validate }) {
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.post('http://15.164.62.156:8888/api/register/', {
-        headers: {
-          'Content-Type': 'application/json'
+      const loadAxios = await axios.post('http://15.164.62.156:8888/api/register/',
+        {
+          username: values.username,
+          password: values.password,
+          nickname: values.nickname
         },
-        body: JSON.stringify(values)
-      })
-      console.log(JSON.stringify(values))
-      console.log(loadAxios)
-      console.log(loadAxios.data)
-
-      // if (loadAxios.data.message === 'success') {
-      //   history.push('/signinComplete')
-      // } else if (data.username[0] === 'custom_user with this username already exists.') {
-      //   alert('메일 주소 중복입니다.')
-      // }
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      if (loadAxios.data.message === 'success') {
+        history.push('/signinComplete')
+      } else if (loadAxios.data.username[0] === 'custom_user with this username already exists.') {
+        alert('메일 주소 중복입니다.')
+      }
     }
 
     catch (error) {
@@ -48,8 +49,9 @@ export default function useForm({ initialValues, onSubmit, validate }) {
   useEffect(() => {
     if (submitting) {
       if (Object.keys(errors).length === 0) {
-        onSubmit(values);
         handleAxios()
+        onSubmit(values);
+
       }
       setSubmitting(false);
     }
@@ -63,25 +65,3 @@ export default function useForm({ initialValues, onSubmit, validate }) {
     handleSubmit
   };
 }
-
-
-        // fetch('http://15.164.62.156:8888/api/register/', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(values)
-        // })
-        //   .then(response => {
-        //     return response.json()
-        //   })
-        //   .then(data => {
-        //     if (data.message === 'success') {
-        //       history.push('/signinComplete')
-        //     } else if (data.username[0] === 'custom_user with this username already exists.') {
-        //       alert('메일 주소 중복입니다.')
-        //     }
-        //   })
-        //   .catch(error => {
-        //     alert('회원가입에 실패하였습니다. 다시 시도해주세요.')
-        //   })
