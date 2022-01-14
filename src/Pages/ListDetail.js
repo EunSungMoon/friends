@@ -27,7 +27,7 @@ export default function ListDetail() {
       })
       setLists(loadData.data)
     }
-    catch(error) {
+    catch (error) {
       setError(error)
     }
     setLoading(false)
@@ -45,7 +45,7 @@ export default function ListDetail() {
       })
       setLists(loadData.data)
     }
-    catch(error) {
+    catch (error) {
       setError(error)
     }
     setLoading(false)
@@ -74,45 +74,58 @@ export default function ListDetail() {
       <main id="article-main" key={lists.id}>
         <section className="container">
           <article className="titleWrap">
-            <h2 className="article-header">{lists.title}</h2>
-            <p className="article-date article-info" value={createdAt}>{createdAt}</p>
-            <p className="viewCount article-info">조회수 10</p>
-          </article>
-          <article className="tableWrap">
-            <table>
-              <colgroup>
-                <col style={{ width: '200px' }}></col>
-                <col style={{ width: '1000px' }}></col>
-              </colgroup>
-              <tbody>
-                <tr>
-                  <th className="subject">봉사일</th>
-                  <td>{lists.dday}</td>
-                </tr>
-                <tr>
-                  <th className="subject">인원수</th>
-                  <td>{lists.members}명</td>
-                </tr>
-                <tr>
-                  <th className="subject">분야</th>
-                  <td>{lists.part}</td>
-                </tr>
-                <tr>
-                  <th className="subject">장소</th>
-                  <td>{lists.place}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="article-detail">
-              <p>{lists.detail}</p>
+            <div className="headerState">
+              <p className={lists.state} id="articleState">모집중</p>
+              <h2 className="article-header">{lists.title}</h2>
             </div>
-          </article>
-          <article className="profileWrap">
+            <div>
+              <span className="article-date article-info" value={createdAt}>{createdAt} | </span>
+              <span className="viewCount article-info">조회수 {lists.counter}</span>
+            </div>
             <div className="profile">
               {/* 해당 프로필 페이지로 이동 */}
-              <BsFillPersonFill size={50} />
-              <p>{lists.author}</p>
+              <BsFillPersonFill />
+              <span>{lists.author}</span>
             </div>
+          </article>
+          <article className="infoWrap">
+            <form>
+              <div className="wrapper">
+                <span className="subject">봉사일</span>
+                <span>{lists.dday}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">인원수</span>
+                <span>{lists.members}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">분야</span>
+                <span>{lists.part}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">장소</span>
+                <p>{lists.roadAddress} {lists.detailAddress}</p>
+                <p>{lists.jibunAddress} {lists.detailAddress}</p>
+              </div>
+              <div className="wrapper">
+                <span className="subject">담당자 이름</span>
+                <span>{lists.officialname}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">담당자 소속</span>
+                <span>{lists.belong}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">인증유무</span>
+                <span>{lists.authentication}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">상세내용</span>
+                <span>{lists.information}</span>
+              </div>
+            </form>
+          </article>
+          <article className="profileWrap">
             <div className="btnWrap">
               {localStorage.token ?
                 (lists.is_author === true ?

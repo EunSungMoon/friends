@@ -8,52 +8,43 @@
     padding: 30px;
     border-radius: 5px;
     .titleWrap {
-      @include display(space-between);
       padding-bottom: 25px;
       border-bottom: 1px solid #e7eaf1;
-      .article-header {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 0;
+      text-align: center;
+      .headerState {
+        @include display(center);
+        #articleState {
+          width: 60px;
+          height: 22px;
+          font-size: 14px;
+          line-height: 22px;
+          margin-right: 10px;
+        }
+        .article-header {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 12px;
+        }
       }
       .article-info {
         font-size: 13px;
         margin-bottom: 0;
+        color: gray;
       }
     }
-    .tableWrap {
-      tr {
-        font-size: 14px;
-        border-bottom: 1px solid #e7eaf1;
-        height: 60px;
-      }
-      .subject {
-        text-align: center;
-      }
-      td {
-        padding: 10px 0;
-      }
-      .article-detail {
-        margin-top: 20px;
-        p {
-          border-bottom: 1px solid#e7eaf1;
-          padding-bottom: 15px;
-        }
+
+    .profile {
+      float: right;
+      bottom: 24px;
+      position: relative;
+      p {
+        margin-bottom: 0;
+        margin-left: 10px;
       }
     }
-    .profileWrap {
-      @include display(space-between);
-      .profile {
-        @include display(center);
-        p {
-          margin-bottom: 0;
-          margin-left: 10px;
-        }
-      }
-      .borderBtn{
-        @include borderBtn(95px, 32px, 13px);
-        margin-right: 10px;
-      }
+    .borderBtn {
+      @include borderBtn(95px, 32px, 13px);
+      margin-right: 10px;
     }
   }
 }
