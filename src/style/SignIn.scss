@@ -43,12 +43,6 @@
           transition: background-color 5000s ease-in-out 0s;
         }
       }
-      .need-helper {
-        margin-left: 25px;
-      }
-      input[name="join"] {
-        margin-right: 5px;
-      }
       .confirmBtn {
         @include btn(#01c3bc, 90px, 48px, #00afa9);
         margin-left: 15px;

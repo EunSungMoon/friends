@@ -3,13 +3,14 @@ import { useState } from 'react';
 import InputCom from '../Components/InputCom';
 import useForm from '../Hooks/useForm';
 import validate from '../Components/validate';
+import axios from 'axios';
 
 export default function SignIn() {
   //빈 값일때, 비밀번호 오류 로직
-  const { values, errors, visible, handleChange, handleReason, handleSubmit } = useForm({
-    initialValues: { username: '', password: '', nickname: '', belong: '봉사자', purpose: 'true', password2: '' },
+  const { values, errors, handleChange, handleSubmit } = useForm({
+    initialValues: { username: '', password: '', nickname: '', password2: '' },
     onSubmit: () => {
-      console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname, "belong": values.belong, "purpose": values.purpose }));
+      console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname }));
     },
     validate
   })
@@ -25,32 +26,28 @@ export default function SignIn() {
   //별명 체크 로직
   const [btnName, setBtnName] = useState('중복확인')
 
-  const handleNickname = () => {
-    fetch('http://15.164.62.156:8888/api/nicknamecheck/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ "nickname": values.nickname })
-    })
-      .then((response) => {
-        return response.json()
+  const handleNickname = async () => {
+    try {
+      const loadAxios = await axios.post('http://15.164.62.156:8888/api/nicknamecheck/', {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "nickname": values.nickname })
       })
-      .then((response) => {
-        if (response.message === 'possible nickname') {
-          if (values.nickname === '') {
-            alert('별명을 입력해주세요.')
-          } else {
-            alert('사용 가능한 별명입니다.')
-            setBtnName('확인완료')
-          }
-        } else if (response.message === 'already exists') {
-          alert('이미 존재하는 별명입니다.')
+      if (loadAxios.data.message === 'possible nickname') {
+        if (values.nickname === '') {
+          alert('별명을 입력해주세요.')
+        } else {
+          alert('사용 가능한 별명입니다.')
+          setBtnName('확인완료')
         }
-      })
-      .catch((error) => {
-        alert('별명 설정에 오류가 발생하였습니다. 다시 시도해주세요.')
-      })
+      } else if (loadAxios.data.message === 'already exists') {
+        alert('이미 존재하는 별명입니다.')
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const changeBtnName = e => {
@@ -117,41 +114,6 @@ export default function SignIn() {
               <button type='button' className='confirmBtn' onClick={handleNickname}>{btnName}</button>
               {errors.nickname && <p style={{ color: 'red' }}>{errors.nickname}</p>}
             </div>
-
-            <div className='join-reason form-common'>
-              <p>가입이유</p>
-              <label className='volunteer' onChange={handleChange} value="true">
-                <input
-                  type='radio'
-                  name='purpose'
-                  onChange={handleReason}
-                  defaultChecked
-                  value='true'
-                />봉사활동을 하고 싶어요
-              </label>
-              <label className='need-helper' onChange={handleChange} value='false'>
-                <input
-                  type='radio'
-                  name='purpose'
-                  onChange={handleReason}
-                  value='false'
-                />봉사자의 도움이 필요해요
-              </label>
-            </div>
-
-            {visible &&
-              <div className='belongWrap form-common'>
-                <InputCom
-                  title="'소속' 또는 '기관'을 적어주세요."
-                  name="belong"
-                  type="text"
-                  class="longWidth text-input belong"
-                  placeholder="00병원"
-                  value={values.belongs}
-                  event={handleChange}
-                />
-              </div>
-            }
 
             <p className='infoText'>회원가입 시 이메일 인증 메일이 발송됩니다. <br />정확한 이메일 주소를 입력해주세요.</p>
             <button type='submit' className='joinComplete' disabled={btnName === '중복확인'} >회원가입</button>
