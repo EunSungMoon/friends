@@ -2,6 +2,7 @@ import { Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../style/LogIn.scss';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function LogInModal(props) {
 
@@ -20,35 +21,33 @@ export default function LogInModal(props) {
     setInputs(nextInputs)
   }
 
-  const handleLogin = e => {
-    e.preventDefault()
-    fetch('http://15.164.62.156:8888/api/login/', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      }),
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        if (data.token) {
-          alert('로그인 완료')
-          localStorage.setItem('token', data.token)
-          onClickLoginBtn()
-          document.location.href = '/'
-        }
-        else if (data.error === 'invalid user') {
-          alert('아이디 또는 비밀번호 확인헤주세요.')
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  const handleLogin = async e => {
+    e.preventDefault();
+    try {
+      const loadAxios = await axios.post('http://15.164.62.156:8888/api/login/',
+        {
+          email: email,
+          password: password
+        },
+        {
+          headers: {
+            'Content-type': 'application/json'
+          }
+        })
+      console.log(loadAxios)
+      if (loadAxios.data.token) {
+        alert('로그인 완료')
+        localStorage.setItem('token', loadAxios.data.token)
+        onClickLoginBtn()
+        document.location.href = '/'
+      }
+      else if (loadAxios.data.message === 'invalid user') {
+        alert('아이디 또는 비밀번호 확인헤주세요.')
+      }
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   const onClickLoginBtn = () => {
