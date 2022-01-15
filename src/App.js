@@ -6,7 +6,7 @@ import ListDetail from './Pages/ListDetail';
 import SignIn from './Pages/SignIn'
 import ArticleForm from './Pages/ArticleForm';
 import SignInComplete from './Pages/SignInComplete';
-import ProfilePage from './Pages/ProfilePage';
+import MyProfilePage from './Pages/MyProfilePage';
 import MyArticle from './Pages/MyArticle';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
               <ArticleForm />
             </Route>
             <Route path='/profile'>
-              <ProfilePage />
+              <MyProfilePage />
             </Route>
             <Route path='/myarticle/:id'>
               <MyArticle />
