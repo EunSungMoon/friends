@@ -1,51 +1,66 @@
 import '../style/ProfilePage.scss';
 import ProfileCom from '../Components/ProfileCom';
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
 import MyBoardCom from '../Components/MyBoardCom';
+import axios from 'axios';
 
 export default function ProfilePage() {
+  const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [lists, setLists] = useState([])
+  const [myLists, setMyLists] = useState([])
+  let token = `Token ${localStorage.getItem('token')}`
 
-  const [belong, setBlong] = useState('');
-  const handleChange = e => {
-    setBlong(e.target.value)
+  const loadAxios = async () => {
+    try {
+      setError(null);
+      setLists(null);
+      setLoading(true);
+      const loadData = await axios.get('http://15.164.62.156:8888/api/profile/', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+      setLists(loadData.data)
+      console.log(loadData)
+    }
+    catch (error) {
+      setError(error)
+      console.log(error)
+    }
+    setLoading(false)
   }
 
-  const loadFetch = () => {
-    let token = `Token ${localStorage.getItem('token')}`
-    fetch(`http://15.164.62.156:8888/api/profile/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
-      },
-    })
-      .then((response) => {
-        return response.json()
+  const loadMyList = async () => {
+    try {
+      setError(null);
+      setMyLists(null);
+      setLoading(true);
+      const loadData = await axios.get('http://15.164.62.156:8888/api/board/my_list/', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
       })
-      .then(data => {
-        setLists(data)
-        console.log(data.detail)
-      })
-      .catch(error => {
-        setError(error)
-        console.log(error)
-      })
-    setLoading(false);
+      setMyLists(loadData.data)
+    }
+    catch (error) {
+      console.log(error)
+    }
+    setLoading(false)
   }
 
   useEffect(() => {
-    loadFetch()
-    return lists;
+    loadAxios()
+    loadMyList()
+    return (lists, myLists);
   }, []);
 
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
-
+  if (!myLists) return null;
 
   return (
     <main id='profile-main'>
@@ -61,20 +76,15 @@ export default function ProfilePage() {
               head="별명"
               info={lists.nickname}
             />
-            <ProfileCom
-              head="업체명"
-              info={lists.belong}
-            />
-            {/* <div className='infoWrap'>
-              <span>업체명</span>
-
-              <input name="belong" type="text" className='belong-input' defaultValue={lists.belong} placeholder='변경할 소속명을 입력해주세요.' onChange={handleChange} />
-            </div> */}
           </form>
         </section>
         <section className='section' id='myBoard'>
           <h3 className='h3'>내 게시글</h3>
-          <MyBoardCom />
+          {myLists.length === 0 ?
+            <div className='noList'>내가 작성한 게시글이 없습니다.</div>
+            :
+            <MyBoardCom />
+          }
         </section>
       </div>
     </main>
