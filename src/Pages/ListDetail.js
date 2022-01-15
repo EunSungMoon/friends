@@ -69,6 +69,15 @@ export default function ListDetail() {
     ${year}-0${month.toString().slice(-2, 1)}-0${day.toString().slice(-2, 1)}
   `
 
+  let stringToCreatedDate = new Date(lists.created_at)
+  let yearCreated = stringToCreatedDate.getFullYear()
+  let monthCreated = stringToCreatedDate.getMonth() + 1
+  let dayCreated = stringToCreatedDate.getDate()
+
+  let ddayAt = `
+  ${yearCreated}-0${monthCreated.toString().slice(-2, 1)}-0${dayCreated.toString().slice(-2, 1)}
+`
+
   return (
     <div>
       <main id="article-main" key={lists.id}>
@@ -92,73 +101,71 @@ export default function ListDetail() {
             <form>
               <div className="wrapper">
                 <span className="subject">봉사일</span>
-                <span>{lists.dday}</span>
+                <span className="content">{ddayAt}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">인원수</span>
-                <span>{lists.members}</span>
+                <span className="content">{lists.members}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">분야</span>
-                <span>{lists.part}</span>
+                <span className="content">{lists.part}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">장소</span>
-                <p>{lists.roadAddress} {lists.detailAddress}</p>
-                <p>{lists.jibunAddress} {lists.detailAddress}</p>
+                <p className="content address">{lists.roadAddress} {lists.detailAddress} <br /> ({lists.jibunAddress})</p>
+                {/* <p className="content">{lists.jibunAddress} {lists.detailAddress}</p> */}
               </div>
               <div className="wrapper">
                 <span className="subject">담당자 이름</span>
-                <span>{lists.officialname}</span>
+                <span className="content">{lists.officialname}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">담당자 소속</span>
-                <span>{lists.belong}</span>
+                <span className="content">{lists.belong}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">인증유무</span>
-                <span>{lists.authentication}</span>
+                <span className="content">{lists.authentication}</span>
               </div>
               <div className="wrapper">
                 <span className="subject">상세내용</span>
-                <span>{lists.information}</span>
+                <span className="content">{lists.information}</span>
               </div>
             </form>
           </article>
-          <article className="profileWrap">
-            <div className="btnWrap">
-              {localStorage.token ?
-                (lists.is_author === true ?
-                  // 로그인 상태 and 내가 작성한 게시글
-                  (<>
-                    <Link to={`/myarticle/${lists.id}/`}>
-                      <button className="borderBtn chatBtn">
-                        <BsPencil className="fa" />수정하기
-                      </button>
-                    </Link>
-                  </>) :
-                  // 로그인 상태 and 내가 작성한 게시글 아님
-                  (<>
-                    {/* 채팅하기 완성되면 그 페이지로 */}
-                    <button
-                      className="borderBtn chatBtn"
-                      onClick={() => console.log('채팅하자')}
-                    >
-                      <BsChatDots className="fa" />채팅하기
-                    </button>
-                  </>)
-                ) :
-                //로그인 상태 아님
+          <article className="btnWrap">
+            {localStorage.token ?
+              (lists.is_author === true ?
+                // 로그인 상태 and 내가 작성한 게시글
                 (<>
+                  <Link to={`/myarticle/${lists.id}/`}>
+                    <button className="btnGreen">
+                      <BsPencil className="fa" />수정하기
+                    </button>
+                  </Link>
+                </>) :
+                // 로그인 상태 and 내가 작성한 게시글 아님
+                (<>
+                  {/* 채팅하기 완성되면 그 페이지로 */}
                   <button
-                    className="borderBtn chatBtn"
-                    onClick={() => setloginModalShow(true)}
+                    className="btnGreen"
+                    onClick={() => console.log('채팅하자')}
                   >
                     <BsChatDots className="fa" />채팅하기
                   </button>
                 </>)
-              }
-            </div>
+              ) :
+              //로그인 상태 아님
+              (<>
+                <button
+                  className="btnGreen"
+                  onClick={() => setloginModalShow(true)}
+                >
+                  <BsChatDots className="fa" />채팅하기
+                </button>
+              </>)
+            }
           </article>
         </section>
       </main>

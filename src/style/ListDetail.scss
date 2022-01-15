@@ -7,8 +7,10 @@
     background: #fff;
     padding: 30px;
     border-radius: 5px;
+    width: 1000px;
+    margin: 0 auto;
     .titleWrap {
-      padding-bottom: 25px;
+      padding-bottom: 20px;
       border-bottom: 1px solid #e7eaf1;
       text-align: center;
       .headerState {
@@ -21,7 +23,7 @@
           margin-right: 10px;
         }
         .article-header {
-          font-size: 20px;
+          font-size: 30px;
           font-weight: 600;
           margin-bottom: 12px;
         }
@@ -32,19 +34,39 @@
         color: gray;
       }
     }
-
+    .wrapper {
+      @include display(space-between);
+      margin: 0 auto;
+      border-bottom: 1px solid #f1f3fb;
+      padding: 20px 0;
+      width: 100%;
+      .subject {
+        width: 140px;
+        padding-left: 15px;
+        text-align: center;
+      }
+      .content {
+        width: 700px;
+      }
+      .address {
+        margin-bottom: 0;
+        line-height: 30px;
+      }
+    }
     .profile {
       float: right;
       bottom: 24px;
       position: relative;
-      p {
-        margin-bottom: 0;
-        margin-left: 10px;
-      }
+      right: 15px;
     }
-    .borderBtn {
-      @include borderBtn(95px, 32px, 13px);
-      margin-right: 10px;
+    .btnWrap {
+      text-align: center;
+      margin-top: 30px;
+      .btnGreen {
+        @include btn(#01c3bc, 120px, 35px, #00afa9);
+        font-size: 14px;
+        font-weight: bold;
+      }
     }
   }
 }
