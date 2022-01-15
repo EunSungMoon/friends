@@ -2,45 +2,54 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
-export default function useForm({ initialValues, onSubmit, validate }) {
+export default function useForm({ initialValues, onSubmit, errorMessage }) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
-  const history = useHistory()
+  const history = useHistory();
+
+  let token = `Token ${localStorage.getItem('token')}`
 
   const handleChange = event => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
+    console.log(values)
   };
 
   const handleSubmit = async event => {
     setSubmitting(true);
     event.preventDefault();
     await new Promise(r => setTimeout(r, 1000));
-    setErrors(validate(values));
+    setErrors(errorMessage(values));
   };
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.post('http://15.164.62.156:8888/api/register/',
+      const loadAxios = await axios.post('http://15.164.62.156:8888/api/board/',
         {
-          username: values.username,
-          password: values.password,
-          nickname: values.nickname
+          title: values.title,
+          dday: values.dday,
+          members: values.members,
+          part: values.part,
+          zipcode: values.zipcode,
+          roadAddress: values.roadAddress,
+          jibunAddress: values.jibunAddress,
+          detailAddress: values.detailAddress,
+          officialname: values.officialname,
+          belong: values.belong,
+          authentication: values.authentication,
+          information: values.information,
+          state: values.state
         },
         {
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': token
           }
         })
-      if (loadAxios.data.message === 'success') {
-        history.push('/signinComplete')
-      } else if (loadAxios.data.username[0] === 'custom_user with this username already exists.') {
-        alert('메일 주소 중복입니다.')
-      }
+      console.log(loadAxios)
     }
-
     catch (error) {
       console.log(error)
     }

@@ -20,8 +20,6 @@ export default function PostcodeCom(props) {
     document.getElementById('sample4_postcode').value = data.zonecode
     document.getElementById('sample4_roadAddress').value = data.address
     document.getElementById('sample4_jibunAddress').value = data.jibunAddress
-
-    console.log(data.zonecode)
   }
 
   const postCodeStyle = {

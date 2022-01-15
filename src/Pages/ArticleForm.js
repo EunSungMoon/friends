@@ -5,6 +5,9 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import { ko } from 'date-fns/esm/locale'
+import useSubmit from '../Hooks/useSubmit'
+import errorMessage from '../Components/errorMessage';
+
 import AddressCom from '../Components/AddressCom';
 
 export default function ArticleForm() {
@@ -16,79 +19,34 @@ export default function ArticleForm() {
     { value: "makeup", name: '메이크업' }
   ]
 
-  const [inputs, setInputs] = useState({
-    title: '',
-    officialname:'',
-    belong:'',
-    // state: 'apply-state apply-ing',
-    // dday: '',
-    // members: '',
-    // part: '',
-    // postcode: '',
-    // roadAddress: '',
-    // jibunAddress: '',
-    // detailAddress: '',
-    detail: ''
+  const { values, errors, handleChange, handleSubmit } = useSubmit({
+    initialValues: { title: '', members: '', part: 'haircut', zipcode: '', detailAddress: '', officialname: '', belong: '', information: '' },
+    onSubmit: () => {
+      console.log(JSON.stringify(values));
+    },
+    errorMessage
   })
-  const { title, officialname, belong, detail } = inputs
-
-  const onChange = e => {
-    const { name, value } = e.target
-    const nextInputs = {
-      ...inputs,
-      [name]: value,
-    }
-    setInputs(nextInputs)
-    console.log(nextInputs)
-  }
-
-  const handleSubmit = e => {
-    let token = `Token ${localStorage.getItem('token')}`
-    e.preventDefault();
-    fetch('http://15.164.62.156:8888/api/board/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
-      },
-      body: JSON.stringify({
-        title: title,
-        officialname: officialname,
-        belong:belong,
-        detail: detail
-      }),
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        console.log(token)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
 
   return (
     <main id="articleForm-main">
       <div className='container'>
 
-          <h2 className='h2'>봉사 모집 등록</h2>
+        <h2 className='h2'>봉사 모집 등록</h2>
 
         <section className='section'>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='article-title formWrap'>
-              <span onClick={handleSubmit}>글 제목</span>
+              <span>글 제목</span>
               <div className='inputWrap'>
                 <input
                   type='text'
                   className='article-input'
                   placeholder='제목을 입력해주세요.'
                   name='title'
-                  value={title}
-                  onChange={onChange}
+                  value={values.title}
+                  onChange={handleChange}
                 />
+                {errors.title && <p style={{ color: 'red' }}>{errors.title}</p>}
               </div>
             </div>
             <div className='article-date formWrap'>
@@ -107,21 +65,24 @@ export default function ArticleForm() {
             </div>
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
-              <div className='inputWrap'>
-                <NumberCountCom />
+              <div className='inputWrap' onChange={handleChange}>
+                <NumberCountCom  />
               </div>
             </div>
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
-              <div className='inputWrap'>
+              <div className='inputWrap' onChange={handleChange}>
                 <SelectBoxCom options={OPTIONS} defaultValue="haircut" />
               </div>
             </div>
             <div className='article-address formWrap'>
               <span>봉사 장소</span>
               <div className='inputWrap'>
-                <AddressCom />
+                <AddressCom event={handleChange} changEvent={handleChange} />
+                {errors.zipcode && <p style={{ color: 'red' }}>{errors.zipcode}</p>}
+                {errors.detailAddress && <p style={{ color: 'red' }}>{errors.detailAddress}</p>}
               </div>
+
             </div>
             <div className='article-title formWrap'>
               <span onClick={handleSubmit}>담당자 이름</span>
@@ -131,9 +92,10 @@ export default function ArticleForm() {
                   className='article-input'
                   placeholder='담당자 이름'
                   name='officialname'
-                  value={officialname}
-                  onChange={onChange}
+                  value={values.officialname}
+                  onChange={handleChange}
                 />
+                {errors.officialname && <p style={{ color: 'red' }}>{errors.officialname}</p>}
               </div>
             </div>
             <div className='article-title formWrap'>
@@ -144,9 +106,10 @@ export default function ArticleForm() {
                   className='article-input'
                   placeholder='담당자 소속'
                   name='belong'
-                  value={belong}
-                  onChange={onChange}
+                  value={values.belong}
+                  onChange={handleChange}
                 />
+                {errors.belong && <p style={{ color: 'red' }}>{errors.belong}</p>}
               </div>
             </div>
             <div className='article-title formWrap'>
@@ -160,7 +123,8 @@ export default function ArticleForm() {
             <div className='article-detail formWrap'>
               <span>상세 내용</span>
               <div className='inputWrap'>
-                <textarea name='detail' placeholder='상세내용' className='textarea' onChange={onChange}></textarea>
+                {errors.information && <p style={{ color: 'red' }}>{errors.information}</p>}
+                <textarea name='information' placeholder='상세내용' className='textarea' onChange={handleChange} ></textarea>
               </div>
             </div>
             <button type='submit' className='borderBtn'>등록하기</button>
