@@ -23,24 +23,12 @@
 
 #articleForm-main {
   margin-top: 30px;
-  .titleWrap {
-    @include display(center);
-    margin-bottom: 40px;
     .h2 {
       text-align: center;
       font-weight: bold;
-      width: 900px;
-      padding-left: 69px;
-      margin-bottom: 0;
+      margin-bottom: 40px;
     }
-    .borderBtn {
-      @include borderBtn(100px, 40px, 16px);
-      a {
-        color: #6a7684;
-        text-decoration: none;
-      }
-    }
-  }
+
   .section {
     background: #fff;
     padding: 40px;
@@ -63,7 +51,25 @@
           padding-left: 15px;
         }
         .inputWrap{
-          width: 700px
+          width: 700px;
+          .authentication{
+            @include borderBtn(60px, 30px, 16px);
+            font-weight: 500;
+            margin-right: 5px;
+            &:focus {
+              border: 2px solid #01c3bc;
+              outline: none;
+            }
+          }
+        }
+      }
+      .borderBtn {
+        @include btn(#01c3bc, 120px, 35px, #00afa9);
+        margin: 30px auto 0;
+        font-weight: 600;
+        a {
+          color: #6a7684;
+          text-decoration: none;
         }
       }
     }
@@ -130,7 +136,7 @@
       }
     }
     .zipcode {
-      width: 100px;
+      width: 88px;
     }
     .road,
     .jibun {
@@ -185,11 +191,6 @@
 
 @media screen and (max-width: 1400px) {
   #articleForm-main{
-    .titleWrap {
-      .h2 {
-        width: 838px !important;
-      }
-    }
     .section {
       width: 935px;
     }

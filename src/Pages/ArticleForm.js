@@ -18,6 +18,8 @@ export default function ArticleForm() {
 
   const [inputs, setInputs] = useState({
     title: '',
+    officialname:'',
+    belong:'',
     // state: 'apply-state apply-ing',
     // dday: '',
     // members: '',
@@ -28,7 +30,7 @@ export default function ArticleForm() {
     // detailAddress: '',
     detail: ''
   })
-  const { title, detail } = inputs
+  const { title, officialname, belong, detail } = inputs
 
   const onChange = e => {
     const { name, value } = e.target
@@ -51,6 +53,8 @@ export default function ArticleForm() {
       },
       body: JSON.stringify({
         title: title,
+        officialname: officialname,
+        belong:belong,
         detail: detail
       }),
     })
@@ -69,10 +73,9 @@ export default function ArticleForm() {
   return (
     <main id="articleForm-main">
       <div className='container'>
-        <div className='titleWrap'>
+
           <h2 className='h2'>봉사 모집 등록</h2>
-          <button type='submit' className='borderBtn'>등록하기</button>
-        </div>
+
         <section className='section'>
           <form>
             <div className='article-title formWrap'>
@@ -120,12 +123,47 @@ export default function ArticleForm() {
                 <AddressCom />
               </div>
             </div>
+            <div className='article-title formWrap'>
+              <span onClick={handleSubmit}>담당자 이름</span>
+              <div className='inputWrap'>
+                <input
+                  type='text'
+                  className='article-input'
+                  placeholder='담당자 이름'
+                  name='officialname'
+                  value={officialname}
+                  onChange={onChange}
+                />
+              </div>
+            </div>
+            <div className='article-title formWrap'>
+              <span onClick={handleSubmit}>담당자 소속</span>
+              <div className='inputWrap'>
+                <input
+                  type='text'
+                  className='article-input'
+                  placeholder='담당자 소속'
+                  name='belong'
+                  value={belong}
+                  onChange={onChange}
+                />
+              </div>
+            </div>
+            <div className='article-title formWrap'>
+              <span onClick={handleSubmit}>인증유무</span>
+              <div className='inputWrap'>
+                <button type='button' className='authentication'>VMS</button>
+                <button type='button' className='authentication'>1365</button>
+                <button type='button' className='authentication'>없음</button>
+              </div>
+            </div>
             <div className='article-detail formWrap'>
               <span>상세 내용</span>
               <div className='inputWrap'>
                 <textarea name='detail' placeholder='상세내용' className='textarea' onChange={onChange}></textarea>
               </div>
             </div>
+            <button type='submit' className='borderBtn'>등록하기</button>
           </form>
         </section>
       </div>
