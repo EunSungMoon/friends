@@ -70,6 +70,6 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
     errors,
     submitting,
     handleChange,
-    handleSubmit
+    handleSubmit,
   };
 }

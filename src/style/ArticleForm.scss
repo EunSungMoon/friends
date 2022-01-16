@@ -23,11 +23,11 @@
 
 #articleForm-main {
   margin-top: 30px;
-    .h2 {
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
+  .h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
 
   .section {
     background: #fff;
@@ -37,29 +37,36 @@
     width: 1000px;
     margin: 0 auto;
 
-    form{
+    form {
       display: flex;
       flex-direction: column;
-      .formWrap{
+      .formWrap {
         @include display(space-between);
         margin: 0 auto;
         border-bottom: 1px solid #f1f3fb;
         padding: 15px 0;
 
-        span{
+        span {
           width: 140px;
           padding-left: 15px;
         }
-        .inputWrap{
+        .inputWrap {
           width: 700px;
-          .authentication{
+          .icon {
             @include borderBtn(60px, 30px, 16px);
             font-weight: 500;
             margin-right: 5px;
-            &:focus {
-              border: 2px solid #01c3bc;
-              outline: none;
-            }
+            padding-left: 0;
+            text-align: center;
+            margin-bottom: 0;
+            line-height: 27px;
+          }
+          .checked{
+            border: 2px solid #01c3bc;
+            outline: none;
+          }
+          .displayNo{
+            display: none
           }
         }
       }
@@ -190,7 +197,7 @@
 }
 
 @media screen and (max-width: 1400px) {
-  #articleForm-main{
+  #articleForm-main {
     .section {
       width: 935px;
     }

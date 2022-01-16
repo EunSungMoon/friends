@@ -7,11 +7,12 @@ import { useState } from 'react';
 import { ko } from 'date-fns/esm/locale'
 import useSubmit from '../Hooks/useSubmit'
 import errorMessage from '../Components/errorMessage';
-
+import Authentication from '../Components/AuthenticationCom';
 import AddressCom from '../Components/AddressCom';
 
 export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());
+
   const OPTIONS = [
     { value: "haircut", name: '헤어컷트' },
     { value: "skin", name: '피부' },
@@ -20,7 +21,7 @@ export default function ArticleForm() {
   ]
 
   const { values, errors, handleChange, handleSubmit } = useSubmit({
-    initialValues: { title: '', members: '', part: 'haircut', zipcode: '', detailAddress: '', officialname: '', belong: '', information: '' },
+    initialValues: { title: '', dday: '', members: '1', part: 'haircut', zipcode: '', detailAddress: '', officialname: '', belong: '', authentication: 'vms', information: '' },
     onSubmit: () => {
       console.log(JSON.stringify(values));
     },
@@ -30,9 +31,7 @@ export default function ArticleForm() {
   return (
     <main id="articleForm-main">
       <div className='container'>
-
         <h2 className='h2'>봉사 모집 등록</h2>
-
         <section className='section'>
           <form onSubmit={handleSubmit}>
             <div className='article-title formWrap'>
@@ -51,8 +50,9 @@ export default function ArticleForm() {
             </div>
             <div className='article-date formWrap'>
               <span>봉사일</span>
-              <div className='inputWrap'>
+              <div className='inputWrap' onClick={handleChange} value={values.dday}>
                 <DatePicker
+                  name='dday'
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   locale={ko}
@@ -66,7 +66,7 @@ export default function ArticleForm() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap' onChange={handleChange}>
-                <NumberCountCom  />
+                <NumberCountCom />
               </div>
             </div>
             <div className='artivle-part formWrap'>
@@ -113,11 +113,21 @@ export default function ArticleForm() {
               </div>
             </div>
             <div className='article-title formWrap'>
-              <span onClick={handleSubmit}>인증유무</span>
-              <div className='inputWrap'>
-                <button type='button' className='authentication'>VMS</button>
-                <button type='button' className='authentication'>1365</button>
-                <button type='button' className='authentication'>없음</button>
+              <span>인증유무</span>
+              <div className='inputWrap' name='authentication'>
+                <Authentication
+                  value='vms'
+                  icon='VMS'
+                />
+                <Authentication
+                  value='1365'
+                  icon='1365'
+                />
+                <Authentication
+                  value='no'
+                  icon='없음'
+                />
+
               </div>
             </div>
             <div className='article-detail formWrap'>
