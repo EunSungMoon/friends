@@ -4,7 +4,21 @@ export default function Authentication(props) {
   const [isChecked, setIsChecked] = useState(false)
 
   const handleCheck = e => {
-    if(isChecked)
+    if(e.target.value==='vms'){
+      document.querySelector('.vmsText').classList.add('clicked');
+      document.querySelector('.goText').classList.remove('clicked')
+      document.querySelector('.noText').classList.remove('clicked')
+    }
+    else if(e.target.value==='1365'){
+      document.querySelector('.goText').classList.add('clicked');
+      document.querySelector('.vmsText').classList.remove('clicked')
+      document.querySelector('.noText').classList.remove('clicked')
+    }
+    else if(e.target.value==='no'){
+      document.querySelector('.noText').classList.add('clicked');
+      document.querySelector('.vmsText').classList.remove('clicked')
+      document.querySelector('.goText').classList.remove('clicked')
+    }
     console.log(e.target.value)
     setIsChecked(!isChecked)
   }
@@ -18,8 +32,9 @@ export default function Authentication(props) {
           className="displayNo"
           value={props.value}
           onClick={handleCheck}
+          defaultChecked={props.checked}
         />
-        <p className='icon'>{props.icon}</p>
+        <p className={`icon ${props.pClass}`}>{props.icon}</p>
       </label>
     </>
   )

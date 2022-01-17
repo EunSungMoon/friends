@@ -114,20 +114,24 @@ export default function ArticleForm() {
             </div>
             <div className='article-title formWrap'>
               <span>인증유무</span>
-              <div className='inputWrap' name='authentication'>
+              <div className='inputWrap' name='authentication' onChange={handleChange}>
                 <Authentication
+                  pClass='vmsText'
                   value='vms'
                   icon='VMS'
+                  checked='checked'
                 />
                 <Authentication
+                  pClass='goText'
                   value='1365'
                   icon='1365'
                 />
                 <Authentication
+                  pClass='noText'
                   value='no'
                   icon='없음'
                 />
-
+                {errors.authentication && <p style={{ color: 'red' }}>{errors.authentication}</p>}
               </div>
             </div>
             <div className='article-detail formWrap'>

@@ -1,4 +1,4 @@
-export default function errorMessage({ title, zipcode, detailAddress, officialname, belong, information }) {
+export default function errorMessage({ title, zipcode, detailAddress, officialname, belong, information, authentication }) {
   const errors = {};
 
   if (!title) {
@@ -22,6 +22,10 @@ export default function errorMessage({ title, zipcode, detailAddress, officialna
   }
   if (!information) {
     errors.information = "상세내용이 입력되지 않았습니다.";
+  }
+
+  if (!authentication) {
+    errors.information = "인증방법을 선택해주세요.";
   }
   return errors;
 }
