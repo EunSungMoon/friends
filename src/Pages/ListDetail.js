@@ -65,17 +65,8 @@ export default function ListDetail() {
   let day = stringToDate.getDate()
 
   let createdAt = `
-    ${year}-0${month.toString().slice(-2, 1)}-0${day.toString().slice(-2, 1)}
+    ${year}-0${month.toString().slice(-2, 1)}-${day.toString()}
   `
-
-  let stringToCreatedDate = new Date(lists.created_at)
-  let yearCreated = stringToCreatedDate.getFullYear()
-  let monthCreated = stringToCreatedDate.getMonth() + 1
-  let dayCreated = stringToCreatedDate.getDate()
-
-  let ddayAt = `
-  ${yearCreated}-0${monthCreated.toString().slice(-2, 1)}-0${dayCreated.toString().slice(-2, 1)}
-`
 
   return (
     <>
@@ -119,7 +110,7 @@ export default function ListDetail() {
               <form>
                 <div className="wrapper">
                   <span className="subject">봉사일</span>
-                  <span className="content">{ddayAt}</span>
+                  <span className="content">{lists.dday}</span>
                 </div>
                 <div className="wrapper">
                   <span className="subject">인원수</span>
@@ -131,7 +122,7 @@ export default function ListDetail() {
                 </div>
                 <div className="wrapper">
                   <span className="subject">장소</span>
-                  <p className="content address">{lists.roadAddress} {lists.detailAddress} <br /> ({lists.jibunAddress})</p>
+                  <p className="content address">{lists.roadAddress} <br /> {lists.detailAddress} <br /> ({lists.jibunAddress})</p>
                 </div>
                 <div className="wrapper">
                   <span className="subject">담당자 이름</span>

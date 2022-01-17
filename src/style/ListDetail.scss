@@ -7,7 +7,6 @@
     background: #fff;
     padding: 30px;
     border-radius: 5px;
-    width: 1000px;
     margin: 0 auto;
     .titleWrap {
       padding-bottom: 20px;
@@ -44,9 +43,10 @@
         width: 140px;
         padding-left: 15px;
         text-align: center;
+        color: gray;
       }
       .content {
-        width: 700px;
+        width: 1000px;
       }
       .address {
         margin-bottom: 0;
@@ -71,6 +71,14 @@
         font-size: 14px;
         font-weight: bold;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #article-main {
+    .content {
+      width: 340px !important;
     }
   }
 }

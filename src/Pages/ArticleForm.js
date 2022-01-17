@@ -13,6 +13,11 @@ import AddressCom from '../Components/AddressCom';
 export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());
 
+  const handleDatePicker = (date) => {
+    values.dday = document.querySelector('input[name="dday"]').value
+    setStartDate(date)
+  }
+
   const OPTIONS = [
     { value: "헤어컷트", name: '헤어컷트' },
     { value: "피부", name: '피부' },
@@ -25,18 +30,19 @@ export default function ArticleForm() {
       title: '',
       dday: '',
       members: '1',
-      part: 'haircut',
+      part: '헤어컷트',
       zipcode: '',
       roadAddress: '',
       jibunAddress: '',
       detailAddress: '',
       officialname: '',
       belong: '',
-      authentication: 'vms',
+      authentication: '없음',
       information: '',
       state: 'apply-state apply-ing'
     },
     onSubmit: () => {
+      console.log(values)
     },
     errorMessage
   })
@@ -63,17 +69,18 @@ export default function ArticleForm() {
             </div>
             <div className='article-date formWrap'>
               <span>봉사일</span>
-              <div className='inputWrap' onClick={handleChange} value={values.dday}>
+              <div className='inputWrap' onChange={handleChange} value={values.dday}>
                 <DatePicker
                   name='dday'
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={handleDatePicker}
                   locale={ko}
                   showTimeSelect
                   timeFormat='HH:mm'
                   timeCaption='time'
                   dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
                 />
+                {errors.dday && <p style={{ color: 'red' }}>{errors.dday}</p>}
               </div>
             </div>
             <div className='article-number formWrap'>
@@ -91,7 +98,7 @@ export default function ArticleForm() {
             <div className='article-address formWrap'>
               <span>봉사 장소</span>
               <div className='inputWrap' onClick={handleZipcode}>
-                <AddressCom event={handleChange} changEvent={handleChange}/>
+                <AddressCom event={handleChange} changEvent={handleChange} />
                 {errors.zipcode && <p style={{ color: 'red' }}>{errors.zipcode}</p>}
                 {errors.detailAddress && <p style={{ color: 'red' }}>{errors.detailAddress}</p>}
               </div>
@@ -130,9 +137,8 @@ export default function ArticleForm() {
               <div className='inputWrap' name='authentication' onChange={handleChange}>
                 <Authentication
                   pClass='vmsText'
-                  value='vms'
+                  value='VMS'
                   icon='VMS'
-                  checked='checked'
                 />
                 <Authentication
                   pClass='goText'
@@ -140,9 +146,10 @@ export default function ArticleForm() {
                   icon='1365'
                 />
                 <Authentication
-                  pClass='noText'
-                  value='no'
+                  pClass='noText clicked'
+                  value='없음'
                   icon='없음'
+                  checked='checked'
                 />
               </div>
             </div>

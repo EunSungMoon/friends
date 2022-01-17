@@ -4,7 +4,7 @@ export default function Authentication(props) {
   const [isChecked, setIsChecked] = useState(false)
 
   const handleCheck = e => {
-    if(e.target.value==='vms'){
+    if(e.target.value==='VMS'){
       document.querySelector('.vmsText').classList.add('clicked');
       document.querySelector('.goText').classList.remove('clicked')
       document.querySelector('.noText').classList.remove('clicked')
@@ -14,7 +14,7 @@ export default function Authentication(props) {
       document.querySelector('.vmsText').classList.remove('clicked')
       document.querySelector('.noText').classList.remove('clicked')
     }
-    else if(e.target.value==='no'){
+    else if(e.target.value==='없음'){
       document.querySelector('.noText').classList.add('clicked');
       document.querySelector('.vmsText').classList.remove('clicked')
       document.querySelector('.goText').classList.remove('clicked')

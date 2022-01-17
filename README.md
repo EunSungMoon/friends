@@ -175,4 +175,5 @@ scss파일은 페이지별로 만듬
   - 다른사용자 프로필 페이지
 
 ### 2022.01.17
-  - 게시물 작성 페이지 - 인증유무 radio button 동작 / 주소 / datepicker / counter 
+  - 게시물 작성 페이지 - 인증유무 radio button 동작 / 주소 / datepicker / counter (수정필요)
+  - 내 프로필, 게시물 작성자 프로필, 로그인 안하고 프로필 클릭 시 로그인 모달 출력

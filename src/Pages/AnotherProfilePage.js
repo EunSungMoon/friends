@@ -46,10 +46,6 @@ export default function ProfilePage() {
         <section className='section container'>
           <form className='profile'>
             <ProfileCom
-              head="이메일"
-              info={lists.username}
-            />
-            <ProfileCom
               head="별명"
               info={lists.nickname}
             />
