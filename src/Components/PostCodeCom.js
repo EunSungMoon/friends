@@ -1,6 +1,5 @@
 import DaumPostcode from "react-daum-postcode";
 
-
 export default function PostcodeCom(props) {
   const handlePostCode = (data) => {
     let fullAddress = data.address;
@@ -20,6 +19,7 @@ export default function PostcodeCom(props) {
     document.getElementById('sample4_postcode').value = data.zonecode
     document.getElementById('sample4_roadAddress').value = data.address
     document.getElementById('sample4_jibunAddress').value = data.jibunAddress
+    console.log(data.zonecode)
   }
 
   const postCodeStyle = {
@@ -31,7 +31,7 @@ export default function PostcodeCom(props) {
 
   return (
     <div className="postCodeDom">
-      <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} />
+      <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} { ...props }/>
       <button type='button' onClick={() => { props.onClose() }} className='postCode_btn'>닫기</button>
     </div>
   )

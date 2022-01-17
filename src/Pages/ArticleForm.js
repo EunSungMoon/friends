@@ -20,8 +20,22 @@ export default function ArticleForm() {
     { value: "makeup", name: '메이크업' }
   ]
 
-  const { values, errors, handleChange, handleSubmit } = useSubmit({
-    initialValues: { title: '', dday: '', members: '1', part: 'haircut', zipcode: '', detailAddress: '', officialname: '', belong: '', authentication: 'vms', information: '' },
+  const { values, errors, handleChange, handleSubmit, handleZipcode } = useSubmit({
+    initialValues: {
+      title: '',
+      dday: '',
+      members: '1',
+      part: 'haircut',
+      zipcode: '',
+      roadAddress: '',
+      jibunAddress: '',
+      detailAddress: '',
+      officialname: '',
+      belong: '',
+      authentication: 'vms',
+      information: '',
+      state: 'apply-state apply-ing'
+    },
     onSubmit: () => {
       console.log(JSON.stringify(values));
     },
@@ -77,8 +91,8 @@ export default function ArticleForm() {
             </div>
             <div className='article-address formWrap'>
               <span>봉사 장소</span>
-              <div className='inputWrap'>
-                <AddressCom event={handleChange} changEvent={handleChange} />
+              <div className='inputWrap' onClick={handleZipcode}>
+                <AddressCom event={handleChange} changEvent={handleChange}/>
                 {errors.zipcode && <p style={{ color: 'red' }}>{errors.zipcode}</p>}
                 {errors.detailAddress && <p style={{ color: 'red' }}>{errors.detailAddress}</p>}
               </div>
@@ -131,7 +145,6 @@ export default function ArticleForm() {
                   value='no'
                   icon='없음'
                 />
-                {errors.authentication && <p style={{ color: 'red' }}>{errors.authentication}</p>}
               </div>
             </div>
             <div className='article-detail formWrap'>

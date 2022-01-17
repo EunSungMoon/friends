@@ -17,6 +17,12 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
     console.log(values)
   };
 
+  const handleZipcode = () => {
+    values.zipcode = document.querySelector('.zipcode').value
+    values.roadAddress = document.querySelector('.road').value
+    values.jibunAddress = document.querySelector('.jibun').value
+  }
+
   const handleSubmit = async event => {
     setSubmitting(true);
     event.preventDefault();
@@ -49,6 +55,10 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
+      if (loadAxios.statusText === 'Created') {
+        alert('성공!')
+        history.push('/signinComplete')
+      }
     }
     catch (error) {
       console.log(error)
@@ -71,5 +81,6 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
     submitting,
     handleChange,
     handleSubmit,
+    handleZipcode,
   };
 }
