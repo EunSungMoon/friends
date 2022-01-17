@@ -47,21 +47,23 @@ export default function MyBoardCom() {
         <ol className="contentWrap row">
           {myLists.map(myList => (
             <li className="list" data-type={myList.id} key={myList.id}>
-              <div className="listTitle">
-                <h4 className="h4">{myList.title}</h4>
-                <p className={myList.state}>모집중</p>
-              </div>
-              <div className='listWrap'>
-                <div className="listContent">
-                  <p className="field">{myList.part}</p>
-                  <p className="date"><BsCalendarDate className="bi" />{myList.dday}</p>
-                  <p className="headcount"><BsPeople className="bi" />{myList.members}명</p>
-                  <p className="address"><BsShopWindow className="bi" />{myList.roadAddress} {myList.detailAddress}</p>
+              <Link to={`/board/${myList.id}/`}>
+                <div className="listTitle">
+                  <h4 className="h4">{myList.title}</h4>
+                  <p className={myList.state}>모집중</p>
                 </div>
-                <div className='buttonWrap'>
-                <Link to={`/editarticle/${myList.id}`}><button className='editBtn' title='수정하기'><BsPencil /></button></Link>
+                <div className='listWrap'>
+                  <div className="listContent">
+                    <p className="field">{myList.part}</p>
+                    <p className="date"><BsCalendarDate className="bi" />{myList.dday}</p>
+                    <p className="headcount"><BsPeople className="bi" />{myList.members}명</p>
+                    <p className="address"><BsShopWindow className="bi" />{myList.roadAddress} {myList.detailAddress}</p>
+                  </div>
+                  <div className='buttonWrap'>
+                    <Link to={`/editarticle/${myList.id}`}><button className='editBtn' title='수정하기'><BsPencil /></button></Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </li>
           ))}
         </ol>

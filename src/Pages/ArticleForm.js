@@ -14,10 +14,10 @@ export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());
 
   const OPTIONS = [
-    { value: "haircut", name: '헤어컷트' },
-    { value: "skin", name: '피부' },
-    { value: "nail", name: '네일' },
-    { value: "makeup", name: '메이크업' }
+    { value: "헤어컷트", name: '헤어컷트' },
+    { value: "피부", name: '피부' },
+    { value: "네일", name: '네일' },
+    { value: "메이크업", name: '메이크업' }
   ]
 
   const { values, errors, handleChange, handleSubmit, handleZipcode } = useSubmit({

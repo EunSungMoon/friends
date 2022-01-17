@@ -78,6 +78,10 @@ MyBoardCom  나의 게시글 리스트 디자인
       &:hover {
         transform: translateY(-4px);
       }
+      a{
+        text-decoration: none;
+        color: #333;
+      }
 
       .listTitle {
         @include display(space-between);
