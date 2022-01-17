@@ -1,34 +1,71 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow, BsTrash } from "react-icons/bs";
+import { useState, useEffect } from 'react';
+import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
+import axios from 'axios';
 
 export default function MyBoardCom() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [lists, setLists] = useState([])
+  const [myLists, setMyLists] = useState([])
+  let token = `Token ${localStorage.getItem('token')}`
+
+  const loadMyList = async () => {
+    try {
+      setError(null);
+      setMyLists(null);
+      setLoading(true);
+      const loadData = await axios.get('http://15.164.62.156:8888/api/board/my_list/', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+      setMyLists(loadData.data)
+    }
+    catch (error) {
+      console.log(error)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadMyList()
+    return () => setLoading(false);
+    // return myLists;
+  }, []);
+
+  if (loading) return <div>로딩중...</div>
+  if (error) return <div>에러가 발생했습니다.</div>
+  if (!myLists) return null;
 
   return (
-    <ol className="contentWrap row">
-      {lists.map(list => (
-        <li className="list" data-type={list.id} key={list.id}>
-          <div className="listTitle">
-            <h4 className="h4">{list.title}</h4>
-            <p className={list.state}>모집중</p>
-          </div>
-          <div className='listWrap'>
-            <div className="listContent">
-              <p className="field">{list.part}</p>
-              <p className="date"><BsCalendarDate className="bi" />{list.dday}</p>
-              <p className="headcount"><BsPeople className="bi" />{list.members}명</p>
-              <p className="address"><BsShopWindow className="bi" />{list.place}</p>
-            </div>
-            <div className='buttonWrap'>
-              <button className='editBtn' title='수정하기'><Link to={`/myarticle/${list.id}`}><BsPencil /></Link></button>
-              <button className='editBtn' title='삭제하기'><BsTrash /></button>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ol>
+    <>
+      <h3 className='h3'>내 게시글</h3>
+      {myLists.length === 0 ?
+        <div className='noList'>내가 작성한 게시글이 없습니다.</div>
+        :
+        <ol className="contentWrap row">
+          {myLists.map(myList => (
+            <li className="list" data-type={myList.id} key={myList.id}>
+              <div className="listTitle">
+                <h4 className="h4">{myList.title}</h4>
+                <p className={myList.state}>모집중</p>
+              </div>
+              <div className='listWrap'>
+                <div className="listContent">
+                  <p className="field">{myList.part}</p>
+                  <p className="date"><BsCalendarDate className="bi" />{myList.dday}</p>
+                  <p className="headcount"><BsPeople className="bi" />{myList.members}명</p>
+                  <p className="address"><BsShopWindow className="bi" />{myList.roadAddress} {myList.detailAddress}</p>
+                </div>
+                <div className='buttonWrap'>
+                <Link to={`/editarticle/${myList.id}`}><button className='editBtn' title='수정하기'><BsPencil /></button></Link>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      }
+    </>
   )
 }

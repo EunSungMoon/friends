@@ -37,7 +37,6 @@ export default function ArticleForm() {
       state: 'apply-state apply-ing'
     },
     onSubmit: () => {
-      console.log(JSON.stringify(values));
     },
     errorMessage
   })

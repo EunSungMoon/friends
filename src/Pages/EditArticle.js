@@ -8,7 +8,8 @@ import { useState, useEffect } from 'react';
 import { ko } from 'date-fns/esm/locale'
 import { useParams } from "react-router-dom";
 
-export default function MyArticle() {
+//수정하기 페이지
+export default function EditArticle() {
   const [startDate, setStartDate] = useState(new Date());
   const OPTIONS = [
     { value: "haircut", name: '헤어컷트' },

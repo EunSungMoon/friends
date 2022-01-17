@@ -8,7 +8,6 @@ export default function ProfilePage() {
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [myLists, setMyLists] = useState([])
   let token = `Token ${localStorage.getItem('token')}`
 
   const loadAxios = async () => {
@@ -23,7 +22,6 @@ export default function ProfilePage() {
         }
       })
       setLists(loadData.data)
-      console.log(loadData)
     }
     catch (error) {
       setError(error)
@@ -32,35 +30,14 @@ export default function ProfilePage() {
     setLoading(false)
   }
 
-  const loadMyList = async () => {
-    try {
-      setError(null);
-      setMyLists(null);
-      setLoading(true);
-      const loadData = await axios.get('http://15.164.62.156:8888/api/board/my_list/', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        }
-      })
-      setMyLists(loadData.data)
-    }
-    catch (error) {
-      console.log(error)
-    }
-    setLoading(false)
-  }
-
   useEffect(() => {
     loadAxios()
-    loadMyList()
-    return (lists, myLists);
+    return lists;
   }, []);
 
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
-  if (!myLists) return null;
 
   return (
     <main id='profile-main'>
@@ -79,12 +56,7 @@ export default function ProfilePage() {
           </form>
         </section>
         <section className='section' id='myBoard'>
-          <h3 className='h3'>내 게시글</h3>
-          {myLists.length === 0 ?
-            <div className='noList'>내가 작성한 게시글이 없습니다.</div>
-            :
-            <MyBoardCom />
-          }
+          <MyBoardCom />
         </section>
       </div>
     </main>

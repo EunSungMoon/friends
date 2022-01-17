@@ -57,7 +57,7 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
       console.log(loadAxios)
       if (loadAxios.statusText === 'Created') {
         alert('성공!')
-        history.push('/signinComplete')
+        history.push('/')
       }
     }
     catch (error) {
