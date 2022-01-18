@@ -73,12 +73,14 @@
       }
       .borderBtn {
         @include btn(#01c3bc, 120px, 35px, #00afa9);
-        margin: 30px auto 0;
         font-weight: 600;
         a {
           color: #6a7684;
           text-decoration: none;
         }
+      }
+      .enrollBtn {
+        margin: 30px auto 0;
       }
     }
 
@@ -207,4 +209,18 @@
 
 .fa {
   margin-right: 5px;
+}
+
+/**********************************************************
+
+수정하기 페이지 디자인
+
+***********************************************************/
+#articleForm-main {
+  .editBtnWrap{
+    @include display(center);
+    .editBtn {
+      margin: 30px 10px 0;
+    }
+  }
 }

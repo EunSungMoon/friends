@@ -1,7 +1,7 @@
 import '../style/ProfilePage.scss';
 import ProfileCom from '../Components/ProfileCom';
 import { useState, useEffect } from 'react';
-import MyBoardCom from '../Components/MyBoardCom';
+import YourBoardCom from '../Components/YourBoardCom';
 import axios from 'axios';
 
 export default function ProfilePage() {
@@ -52,7 +52,7 @@ export default function ProfilePage() {
           </form>
         </section>
         <section className='section container' id='myBoard'>
-          <MyBoardCom />
+          {/* <YourBoardCom /> */}
         </section>
       </div>
     </main>

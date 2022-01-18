@@ -147,7 +147,7 @@ export default function ListDetail() {
                 (lists.is_author === true ?
                   // 로그인 상태 and 내가 작성한 게시글
                   (<>
-                    <Link to={`/myarticle/${lists.id}/`}>
+                    <Link to={`/editarticle/${lists.id}/`}>
                       <button className="btnGreen">
                         <BsPencil className="fa" />수정하기
                       </button>

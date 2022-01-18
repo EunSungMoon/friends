@@ -38,16 +38,7 @@ export default function Board() {
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
-
-  let stringToCreatedDate = new Date(lists.dday)
-  let yearCreated = stringToCreatedDate.getFullYear()
-  let monthCreated = stringToCreatedDate.getMonth() + 1
-  let dayCreated = stringToCreatedDate.getDate()
-
-  let ddayAt = `
-  ${yearCreated}-0${monthCreated.toString().slice(-2, 1)}-0${dayCreated.toString()}
-`
-
+  
   return (
     <main id="board-main">
       <div className="container">

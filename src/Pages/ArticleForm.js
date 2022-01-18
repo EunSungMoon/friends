@@ -102,9 +102,8 @@ export default function ArticleForm() {
                 {errors.zipcode && <p style={{ color: 'red' }}>{errors.zipcode}</p>}
                 {errors.detailAddress && <p style={{ color: 'red' }}>{errors.detailAddress}</p>}
               </div>
-
             </div>
-            <div className='article-title formWrap'>
+            <div className='article-name formWrap'>
               <span onClick={handleSubmit}>담당자 이름</span>
               <div className='inputWrap'>
                 <input
@@ -118,7 +117,7 @@ export default function ArticleForm() {
                 {errors.officialname && <p style={{ color: 'red' }}>{errors.officialname}</p>}
               </div>
             </div>
-            <div className='article-title formWrap'>
+            <div className='article-belong formWrap'>
               <span onClick={handleSubmit}>담당자 소속</span>
               <div className='inputWrap'>
                 <input
@@ -132,7 +131,7 @@ export default function ArticleForm() {
                 {errors.belong && <p style={{ color: 'red' }}>{errors.belong}</p>}
               </div>
             </div>
-            <div className='article-title formWrap'>
+            <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication' onChange={handleChange}>
                 <Authentication
@@ -160,7 +159,7 @@ export default function ArticleForm() {
                 <textarea name='information' placeholder='상세내용' className='textarea' onChange={handleChange} ></textarea>
               </div>
             </div>
-            <button type='submit' className='borderBtn'>등록하기</button>
+            <button type='submit' className='borderBtn enrollBtn'>등록하기</button>
           </form>
         </section>
       </div>
