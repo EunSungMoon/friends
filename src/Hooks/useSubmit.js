@@ -14,13 +14,8 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
   const handleChange = event => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
+    console.log(values)
   };
-
-  const handleZipcode = () => {
-    values.zipcode = document.querySelector('.zipcode').value
-    values.roadAddress = document.querySelector('.road').value
-    values.jibunAddress = document.querySelector('.jibun').value
-  }
 
   const handleSubmit = async event => {
     setSubmitting(true);
@@ -80,6 +75,5 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
     submitting,
     handleChange,
     handleSubmit,
-    handleZipcode,
   };
 }

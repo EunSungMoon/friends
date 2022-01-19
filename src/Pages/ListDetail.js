@@ -114,7 +114,7 @@ export default function ListDetail() {
                 </div>
                 <div className="wrapper">
                   <span className="subject">인원수</span>
-                  <span className="content">{lists.members}</span>
+                  <span className="content">{lists.members}명</span>
                 </div>
                 <div className="wrapper">
                   <span className="subject">분야</span>

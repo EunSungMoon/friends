@@ -19,7 +19,6 @@ export default function Authentication(props) {
       document.querySelector('.vmsText').classList.remove('clicked')
       document.querySelector('.goText').classList.remove('clicked')
     }
-    console.log(e.target.value)
     setIsChecked(!isChecked)
   }
 

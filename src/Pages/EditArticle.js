@@ -13,11 +13,26 @@ import axios from 'axios'
 //수정하기 페이지
 export default function EditArticle() {
   const [startDate, setStartDate] = useState(new Date());
+  const today = new Date()
   const { id } = useParams();
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   let token = `Token ${localStorage.getItem('token')}`
+
+  const handleDatePicker = value => {
+    setStartDate(value)
+    let stringToDate = value
+    let year = stringToDate.getFullYear()
+    let month = stringToDate.getMonth() + 1
+    let day = stringToDate.getDate()
+    let hour = stringToDate.getHours()
+    let ampm = hour >= 12 ? '오후' : '오전'
+    let minutes = stringToDate.getMinutes()
+
+    lists.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour % 12 || 12}시 ${minutes}분`
+    console.log(lists.dday)
+  }
 
   const OPTIONS = [
     { value: "헤어컷트", name: '헤어컷트' },
@@ -47,6 +62,7 @@ export default function EditArticle() {
     }
     catch (error) {
       setError(error)
+      console.log(error)
     }
     setLoading(false)
   }
@@ -76,15 +92,16 @@ export default function EditArticle() {
               <span>봉사일</span>
               <div className='inputWrap'>
                 <DatePicker
+                  className='dday-input'
+                  name='dday'
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  value={lists.dday}
+                  onChange={value => handleDatePicker(value)}
                   locale={ko}
+                  minDate={today}
                   showTimeSelect
                   timeFormat='HH:mm'
                   timeCaption='time'
                   dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
-                  name='dday'
                 />
               </div>
             </div>
@@ -94,7 +111,6 @@ export default function EditArticle() {
                 <NumberCountEditCom value={lists.members} number={lists.members} />
               </div>
             </div>
-
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
               <div className='inputWrap'>
@@ -139,6 +155,7 @@ export default function EditArticle() {
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication'>
+                <span>{lists.authentication}</span>
                 <Authentication
                   pClass='vmsText'
                   value='VMS'
@@ -153,7 +170,6 @@ export default function EditArticle() {
                   pClass='noText'
                   value='없음'
                   icon='없음'
-                  checked='checked'
                 />
               </div>
             </div>

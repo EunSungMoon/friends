@@ -24,8 +24,19 @@ export default function ArticleForm() {
     let ampm = hour >= 12 ? '오후' : '오전'
     let minutes = stringToDate.getMinutes()
 
-    values.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour%12 ||12}시 ${minutes}분`
-    console.log(values.dday)
+    values.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour % 12 || 12}시 ${minutes}분`
+  }
+
+  const handleCounter = () => {
+    let membersValue = document.querySelector('.members').value
+    values.members = Number(membersValue) + 1
+    console.log(values.members)
+  }
+
+  const handleZipcode = () => {
+    values.zipcode = document.querySelector('.zipcode').value
+    values.roadAddress = document.querySelector('.road').value
+    values.jibunAddress = document.querySelector('.jibun').value
   }
 
   const OPTIONS = [
@@ -35,7 +46,7 @@ export default function ArticleForm() {
     { value: "메이크업", name: '메이크업' }
   ]
 
-  const { values, errors, handleChange, handleSubmit, handleZipcode } = useSubmit({
+  const { values, errors, handleChange, handleSubmit } = useSubmit({
     initialValues: {
       title: '',
       dday: '',
@@ -95,10 +106,10 @@ export default function ArticleForm() {
                 {errors.dday && <p style={{ color: 'red' }}>{errors.dday}</p>}
               </div>
             </div>
-            <div className='article-number formWrap'>
+            <div className='article-number formWrap' >
               <span>봉사 인원</span>
-              <div className='inputWrap' onChange={handleChange}>
-                <NumberCountCom />
+              <div className='inputWrap' onChange={handleChange} value={values.members}>
+                <NumberCountCom event={handleCounter} />
               </div>
             </div>
             <div className='artivle-part formWrap'>
