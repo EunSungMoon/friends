@@ -23,6 +23,7 @@ export default function AddressCom(props) {
         className='addressInput zipcode'
         name='zipcode'
         onChange={props.event}
+        defaultValue={props.zipcodeValue}
         disabled
       />
       <input
@@ -37,6 +38,7 @@ export default function AddressCom(props) {
         placeholder="도로명주소"
         name='roadAddress'
         className='addressInput road'
+        defaultValue={props.roadValue}
         disabled
       />
       <input
@@ -45,6 +47,7 @@ export default function AddressCom(props) {
         placeholder="지번주소"
         className='addressInput jibun'
         name='jibunAddress'
+        defaultValue={props.jibunValue}
         disabled
       /><br />
       <input
@@ -53,6 +56,7 @@ export default function AddressCom(props) {
         placeholder="상세주소"
         className='addressInput detail'
         name='detailAddress'
+        defaultValue={props.detailValue}
         onChange={props.changEvent}
       />
 

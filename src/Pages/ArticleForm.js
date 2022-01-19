@@ -12,10 +12,27 @@ import AddressCom from '../Components/AddressCom';
 
 export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());
+  const today = new Date()
 
-  const handleDatePicker = (date) => {
-    values.dday = document.querySelector('input[name="dday"]').value
-    setStartDate(date)
+  // const handleDatePicker = (date) => {
+
+  //   values.dday = document.querySelector('.dday-input').value
+  //   console.log(values.dday)
+  //   setStartDate(date)
+  // }
+  const handleDatePicker = (value, e) => {
+
+    setStartDate(value)
+    let stringToDate = value
+    let year = stringToDate.getFullYear()
+    let month = stringToDate.getMonth() + 1
+    let day = stringToDate.getDate()
+    let hour = stringToDate.getHours()
+    let ampm = hour >= 12 ? '오후' : '오전'
+    let minutes = stringToDate.getMinutes()
+
+    values.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour%12 ||12}시 ${minutes}분`
+    console.log(values.dday)
   }
 
   const OPTIONS = [
@@ -71,10 +88,12 @@ export default function ArticleForm() {
               <span>봉사일</span>
               <div className='inputWrap' onChange={handleChange} value={values.dday}>
                 <DatePicker
+                  className='dday-input'
                   name='dday'
                   selected={startDate}
-                  onChange={handleDatePicker}
+                  onChange={(value, e) => handleDatePicker(value, e)}
                   locale={ko}
+                  minDate={today}
                   showTimeSelect
                   timeFormat='HH:mm'
                   timeCaption='time'
@@ -92,7 +111,7 @@ export default function ArticleForm() {
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
               <div className='inputWrap' onChange={handleChange}>
-                <SelectBoxCom options={OPTIONS} defaultValue="haircut" />
+                <SelectBoxCom options={OPTIONS} />
               </div>
             </div>
             <div className='article-address formWrap'>

@@ -14,37 +14,37 @@ export default function MyBoardCom() {
       setError(null);
       setYourLists(null);
       setLoading(true);
-      const loadData = await axios.post('http://15.164.62.156:8888/api/board/your_list/', {
+      const loadData = await axios.get('http://15.164.62.156:8888/api/board/your_list/', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
         },
-        body: JSON.stringify({ "author": yourLists.author })
+        // body: JSON.stringify({ "author": yourLists.author })
       })
-      setYourLists(loadData.data)
       console.log(loadData)
-      console.log(yourLists.author)
-
+      setYourLists(loadData.data)
     }
     catch (error) {
       console.log(error)
+      setError(error)
     }
     setLoading(false)
   }
 
   useEffect(() => {
-    // if (yourLists.is_author === false) {
-
-    //   console.log(yourLists.author)
-    //   console.log(yourLists.is_author)
-
-    // }else {
-    //   console.log('안되나봐')
-    // }
     loadMyList()
-    return () => setLoading(false);
-    // return myLists;
+    return () => (setLoading(false));
+    // return yourLists;
   }, []);
+
+  // if (yourLists.is_author === false) {
+
+  //   console.log(yourLists.author)
+  //   console.log(yourLists.is_author)
+
+  // }else {
+  //   console.log('안되나봐')
+  // }
 
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>

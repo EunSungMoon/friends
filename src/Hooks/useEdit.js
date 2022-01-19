@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 export default function useForm({ initialValues, onSubmit, errorMessage }) {
   const { id } = useParams();
@@ -34,7 +34,7 @@ export default function useForm({ initialValues, onSubmit, errorMessage }) {
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.get(`http://15.164.62.156:8888/api/board/${id}/`,
+      const loadAxios = await axios.put(`http://15.164.62.156:8888/api/board/${id}`,
         {
           title: values.title,
           dday: values.dday,

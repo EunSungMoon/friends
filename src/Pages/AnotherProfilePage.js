@@ -36,7 +36,7 @@ export default function ProfilePage() {
   }, []);
 
   if (loading) return <div>로딩중...</div>
-  if (error) return <div>에러가 발생했습니다.</div>
+  if (error) return <div>에러가 발생했습니다.</div> 
   if (!lists) return null;
 
   return (
@@ -52,7 +52,7 @@ export default function ProfilePage() {
           </form>
         </section>
         <section className='section container' id='myBoard'>
-          {/* <YourBoardCom /> */}
+          <YourBoardCom />
         </section>
       </div>
     </main>
