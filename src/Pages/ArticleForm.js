@@ -30,7 +30,6 @@ export default function ArticleForm() {
   const handleCounter = () => {
     let membersValue = document.querySelector('.members').value
     values.members = Number(membersValue) + 1
-    console.log(values.members)
   }
 
   const handleZipcode = () => {

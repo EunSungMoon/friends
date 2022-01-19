@@ -12,12 +12,16 @@ import axios from 'axios'
 
 //수정하기 페이지
 export default function EditArticle() {
-  const [startDate, setStartDate] = useState(new Date());
-  const today = new Date()
+
+  
   const { id } = useParams();
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [startDate, setStartDate] = useState(new Date());
+  const today = new Date()
+
   let token = `Token ${localStorage.getItem('token')}`
 
   const handleDatePicker = value => {
