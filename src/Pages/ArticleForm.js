@@ -14,14 +14,7 @@ export default function ArticleForm() {
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date()
 
-  // const handleDatePicker = (date) => {
-
-  //   values.dday = document.querySelector('.dday-input').value
-  //   console.log(values.dday)
-  //   setStartDate(date)
-  // }
-  const handleDatePicker = (value, e) => {
-
+  const handleDatePicker = value => {
     setStartDate(value)
     let stringToDate = value
     let year = stringToDate.getFullYear()
@@ -91,7 +84,7 @@ export default function ArticleForm() {
                   className='dday-input'
                   name='dday'
                   selected={startDate}
-                  onChange={(value, e) => handleDatePicker(value, e)}
+                  onChange={value => handleDatePicker(value)}
                   locale={ko}
                   minDate={today}
                   showTimeSelect
