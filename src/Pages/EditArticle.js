@@ -12,14 +12,10 @@ import axios from 'axios'
 
 //수정하기 페이지
 export default function EditArticle() {
-
-
   const { id } = useParams();
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const [radioButton, setRadioButton] = useState('')
 
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date()
@@ -47,14 +43,21 @@ export default function EditArticle() {
     { value: "메이크업", name: '메이크업' }
   ]
 
+  let btns = [
+    { id: 1, value: '없음' },
+    { id: 2, value: 'VMS' },
+    { id: 3, value: '1365' },
+  ];
+
+  const Changed = v => {
+    lists.authentication = v.value
+    console.log(v.value)
+  }
+
   const handleZipcode = () => {
     lists.zipcode = document.querySelector('.zipcode').value
     lists.roadAddress = document.querySelector('.road').value
     lists.jibunAddress = document.querySelector('.jibun').value
-  }
-
-  const handleRadio = () => {
-    console.log(lists.authentication)
   }
 
   const handleCounter = () => {
@@ -75,7 +78,6 @@ export default function EditArticle() {
         }
       })
       setLists(loadData.data)
-      handleRadio()
     }
     catch (error) {
       setError(error)
@@ -173,23 +175,10 @@ export default function EditArticle() {
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication'>
+                <span onChange={Changed}>{lists.authentication}</span>
                 <Authentication
-                  pClass='vmsText'
-                  value='VMS'
-                  icon='VMS'
-                  checked={lists.authentication}
-                />
-                <Authentication
-                  pClass='goText'
-                  value='1365'
-                  icon='1365'
-                  checked={lists.authentication}
-                />
-                <Authentication
-                  pClass='noText'
-                  value='없음'
-                  icon='없음'
-                  checked={lists.authentication}
+                  btns={btns}
+                  changeEvt={Changed}
                 />
               </div>
             </div>
