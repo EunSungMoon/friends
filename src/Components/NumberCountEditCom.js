@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 export default function NumberCountCom(props) {
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState(props.number);
 
   const onIncrease = () => {
     let newNumber;
@@ -11,6 +11,7 @@ export default function NumberCountCom(props) {
       newNumber = number + 1
     }
     setNumber(newNumber)
+    console.log(number)
   }
 
   const onDecrease = () => {
@@ -21,12 +22,13 @@ export default function NumberCountCom(props) {
       newNumber = number - 1
     }
     setNumber(newNumber)
+    console.log(number)
   }
 
   return (
     <div className="countDom">
       <button type="button" className="minus countBtn" onClick={onDecrease}></button>
-      <input className="members" name='members' onChange={props.event} disabled placeholder={`${props.number}명`}/> 
+      <span className="membersSpan" onChange={props.event} value={number}>{number}</span>
       <button type="button" className="plus countBtn" onClick={onIncrease}></button>
     </div>
   )

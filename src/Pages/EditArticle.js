@@ -66,6 +66,13 @@ export default function EditArticle() {
     console.log(lists.authentication)
   }
 
+  const handleCounter = () => {
+    let membersValue = document.querySelector('.members').value
+    lists.members = Number(membersValue) + 1
+    console.log(lists.members)
+  }
+
+
   const loadAxios = async () => {
     try {
       setError(null);
@@ -130,7 +137,7 @@ export default function EditArticle() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap'>
-                <NumberCountEditCom value={lists.members} number={lists.members} />
+                <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter}/>
               </div>
             </div>
             <div className='artivle-part formWrap'>
