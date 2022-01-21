@@ -3,12 +3,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import SelectBoxCom from '../Components/SelectBoxCom';
 import NumberCountEditCom from '../Components/NumberCountEditCom';
 import AddressCom from '../Components/AddressCom';
-import DatePicker from 'react-datepicker'
-import { useState, useEffect } from 'react';
-import { ko } from 'date-fns/esm/locale'
-import { useParams } from "react-router-dom";
 import Authentication from '../Components/AuthenticationCom';
+import DatePicker from 'react-datepicker'
+import { ko } from 'date-fns/esm/locale'
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import axios from 'axios'
+import useRevise from '../Hooks/useRevise';
+import errorMessage from '../Components/errorMessage';
 
 //수정하기 페이지
 export default function EditArticle() {
@@ -91,6 +93,49 @@ export default function EditArticle() {
     return lists;
   }, []);
 
+  // const { values, errors, handleChange, handleSubmit } = useRevise({
+  //   initialValues: {
+  //     title: lists.title,
+  //     dday: lists.dday,
+  //     members: lists.members,
+  //     part: lists.part,
+  //     zipcode: lists.zipcode,
+  //     roadAddress: lists.roadAddress,
+  //     jibunAddress: lists.jibunAddress,
+  //     detailAddress: lists.detailAddress,
+  //     officialname: lists.officialname,
+  //     belong: lists.belong,
+  //     authentication: lists.authentication,
+  //     information: lists.information,
+  //     state: 'apply-state apply-ing'
+  //   },
+  //   onSubmit: () => {
+  //     console.log(values)
+  //   },
+  //   errorMessage
+  // })
+  const { values, errors, handleChange, handleSubmit } = useRevise({
+    initialValues: {
+      title: lists,
+      dday: lists,
+      members: lists,
+      part: lists,
+      zipcode: lists,
+      roadAddress: lists,
+      jibunAddress: lists,
+      detailAddress: lists,
+      officialname: lists,
+      belong: lists,
+      authentication: lists,
+      information: lists,
+      state: 'apply-state apply-ing'
+    },
+    onSubmit: () => {
+      console.log(values)
+    },
+    errorMessage
+  })
+
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
@@ -100,16 +145,29 @@ export default function EditArticle() {
       <div className="container">
         <h2 className='h2'>게시글 수정하기</h2>
         <section className="section container">
-          <form>
+          <form onSubmit={handleSubmit}>
+          <div className='article-toggle formWrap'>
+              <span>모집완료</span>
+              <div className='inputWrap'>
+                토글 넣고싶다
+              </div>
+            </div>
             <div className='article-title formWrap' key={lists.id}>
               <span>글 제목</span>
               <div className='inputWrap'>
-                <input type='text' defaultValue={lists.title} className='article-input' placeholder='제목을 입력해주세요.' />
+                <input
+                  name='title'
+                  type='text'
+                  defaultValue={lists.title}
+                  className='article-input'
+                  placeholder='제목을 입력해주세요.'
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className='article-date formWrap'>
               <span>봉사일</span>
-              <div className='inputWrap datepicker'>
+              <div className='inputWrap datepicker' name='dday' onChange={handleChange} value={lists.dday}>
                 <DatePicker
                   className='dday-input'
                   name='dday'
@@ -127,20 +185,20 @@ export default function EditArticle() {
             </div>
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
-              <div className='inputWrap'>
+              <div className='inputWrap' onChange={handleChange} value={lists.members}>
                 <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
               </div>
             </div>
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
-              <div className='inputWrap'>
+              <div className='inputWrap' onChange={handleChange}>
                 <SelectBoxCom options={OPTIONS} value={lists.part} />
               </div>
             </div>
             <div className='article-address formWrap'>
               <span>봉사 장소</span>
               <div className='inputWrap' onClick={handleZipcode}>
-                <AddressCom
+                <AddressCom event={handleChange} changEvent={handleChange} 
                   zipcodeValue={lists.zipcode}
                   roadValue={lists.roadAddress}
                   jibunValue={lists.jibunAddress}
@@ -149,7 +207,7 @@ export default function EditArticle() {
               </div>
             </div>
             <div className='article-name formWrap'>
-              <span>담당자 이름</span>
+              <span >담당자 이름</span>
               <div className='inputWrap'>
                 <input
                   type='text'
@@ -157,6 +215,7 @@ export default function EditArticle() {
                   placeholder='담당자 이름'
                   name='officialname'
                   defaultValue={lists.officialname}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -169,12 +228,13 @@ export default function EditArticle() {
                   placeholder='담당자 소속'
                   name='belong'
                   defaultValue={lists.belong}
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
-              <div className='inputWrap' name='authentication'>
+              <div className='inputWrap' name='authentication' onChange={handleChange}>
                 <span onChange={Changed}>{lists.authentication}</span>
                 <Authentication
                   btns={btns}
@@ -190,6 +250,7 @@ export default function EditArticle() {
                   className='textarea'
                   name='information'
                   defaultValue={lists.information}
+                  onChange={handleChange}
                 >
                 </textarea>
               </div>

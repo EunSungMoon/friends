@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useParams } from "react-router-dom";
 
-export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
+export default function useRevise({ initialValues, onSubmit, errorMessage }) {
+  const { id } = useParams();
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
@@ -26,7 +28,7 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.post('http://15.164.62.156:8888/api/board/',
+      const loadAxios = await axios.put(`http://15.164.62.156:8888/api/board/${id}`,
         {
           title: values.title,
           dday: values.dday,
@@ -49,10 +51,10 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
-      if (loadAxios.statusText === 'Created') {
-        alert('성공!')
-        history.push('/')
-      }
+      // if (loadAxios.statusText === 'Created') {
+      //   alert('성공!')
+      //   history.push('/')
+      // }
     }
     catch (error) {
       console.log(error)
