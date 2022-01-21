@@ -22,6 +22,8 @@ export default function EditArticle() {
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date()
 
+  const [complete, setComplete] = useState(true)
+
   let token = `Token ${localStorage.getItem('token')}`
 
   const handleDatePicker = value => {
@@ -66,6 +68,12 @@ export default function EditArticle() {
     let membersValue = document.querySelector('.members').value
     lists.members = Number(membersValue) + 1
     console.log(lists.members)
+  }
+
+  const handleCheckbox = (e) => {
+    setComplete(!complete)
+    console.log(complete)
+    console.log(e.target.value)
   }
 
   const loadAxios = async () => {
@@ -146,10 +154,13 @@ export default function EditArticle() {
         <h2 className='h2'>게시글 수정하기</h2>
         <section className="section container">
           <form onSubmit={handleSubmit}>
-          <div className='article-toggle formWrap'>
+            <div className='article-toggle formWrap'>
               <span>모집완료</span>
-              <div className='inputWrap'>
-                토글 넣고싶다
+              <div className='inputWrap' onChange={handleChange}>
+                <label onChange={handleCheckbox}>
+                  <input type='checkbox' name="state" value={`apply-state ${complete ? 'apply-complete' : 'apply-ing'}`} />
+                  <span>{complete ? '모집완료!' : '모집중!'}</span>
+                </label>
               </div>
             </div>
             <div className='article-title formWrap' key={lists.id}>
@@ -198,7 +209,7 @@ export default function EditArticle() {
             <div className='article-address formWrap'>
               <span>봉사 장소</span>
               <div className='inputWrap' onClick={handleZipcode}>
-                <AddressCom event={handleChange} changEvent={handleChange} 
+                <AddressCom event={handleChange} changEvent={handleChange}
                   zipcodeValue={lists.zipcode}
                   roadValue={lists.roadAddress}
                   jibunValue={lists.jibunAddress}
