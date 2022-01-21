@@ -225,4 +225,18 @@
       margin: 30px 10px 0;
     }
   }
+  .datepicker{
+    display: inline-flex;
+    align-items: center;
+    .react-datepicker-wrapper{
+      width: 50px;
+      input{
+        width: 10px;
+        padding-left: 37px;
+      }
+    }
+    .dday{
+      margin: 0;
+    }
+  }
 }

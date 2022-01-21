@@ -8,7 +8,7 @@ export default function SelectBoxCom(props) {
     console.log(e.target.value)
   };
   return (
-    <select className="optionSelector" name='part' onChange={handleSelect}>
+    <select className="optionSelector" name='part' onChange={handleSelect} value={props.value}>
       {props.options.map((option) => (
         <option value={option.value} defaultValue={props.defaultValue} key={option.value} onChange={props.event}>{option.name}</option>
       ))}

@@ -13,11 +13,13 @@ import axios from 'axios'
 //수정하기 페이지
 export default function EditArticle() {
 
-  
+
   const { id } = useParams();
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const[radioButton, setRadioButton] =useState('')
 
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date()
@@ -51,6 +53,19 @@ export default function EditArticle() {
     lists.jibunAddress = document.querySelector('.jibun').value
   }
 
+  const handleRadio = () => {
+    // if(document.querySelector('.abc').value==='VMS'){
+    //   setRadioButton('clicked')
+    // }
+    // if(document.querySelector('.abc').value==='1365'){
+    //   setRadioButton('clicked')
+    // }
+    // if(document.querySelector('.abc').value==='없음'){
+    //   setRadioButton('clicked')
+    // }
+    console.log(lists.authentication)
+  }
+
   const loadAxios = async () => {
     try {
       setError(null);
@@ -63,6 +78,8 @@ export default function EditArticle() {
         }
       })
       setLists(loadData.data)
+      console.log(loadData.data.dday)
+      handleRadio()
     }
     catch (error) {
       setError(error)
@@ -94,7 +111,7 @@ export default function EditArticle() {
             </div>
             <div className='article-date formWrap'>
               <span>봉사일</span>
-              <div className='inputWrap'>
+              <div className='inputWrap datepicker'>
                 <DatePicker
                   className='dday-input'
                   name='dday'
@@ -107,6 +124,7 @@ export default function EditArticle() {
                   timeCaption='time'
                   dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
                 />
+                <p className='dday'>{lists.dday}</p>
               </div>
             </div>
             <div className='article-number formWrap'>
@@ -118,7 +136,7 @@ export default function EditArticle() {
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
               <div className='inputWrap'>
-                <SelectBoxCom options={OPTIONS} defaultValue='네일' />
+                <SelectBoxCom options={OPTIONS} value={lists.part} />
               </div>
             </div>
             <div className='article-address formWrap'>
@@ -159,19 +177,19 @@ export default function EditArticle() {
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication'>
-                <span>{lists.authentication}</span>
+                <span className='abc' value={lists.authentication}>{lists.authentication}</span>
                 <Authentication
-                  pClass='vmsText'
+                  pClass={`vmsText ${radioButton}`}
                   value='VMS'
                   icon='VMS'
                 />
                 <Authentication
-                  pClass='goText'
+                  pClass={`goText ${radioButton}`}
                   value='1365'
                   icon='1365'
                 />
                 <Authentication
-                  pClass='noText'
+                  pClass={`noText ${radioButton}`}
                   value='없음'
                   icon='없음'
                 />
