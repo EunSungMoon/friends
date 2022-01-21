@@ -44,7 +44,15 @@ export default function ArticleForm() {
     { value: "네일", name: '네일' },
     { value: "메이크업", name: '메이크업' }
   ]
+  let btns = [
+    { id: 1, value: '없음' },
+    { id: 2, value: 'VMS' },
+    { id: 3, value: '1365' },
+  ];
 
+  const Changed = v => {
+    values.authentication = v.value
+  }
   const { values, errors, handleChange, handleSubmit } = useSubmit({
     initialValues: {
       title: '',
@@ -157,20 +165,8 @@ export default function ArticleForm() {
               <span>인증유무</span>
               <div className='inputWrap' name='authentication' onChange={handleChange}>
                 <Authentication
-                  pClass='vmsText'
-                  value='VMS'
-                  icon='VMS'
-                />
-                <Authentication
-                  pClass='goText'
-                  value='1365'
-                  icon='1365'
-                />
-                <Authentication
-                  pClass='noText clicked'
-                  value='없음'
-                  icon='없음'
-                  checked='checked'
+                  btns={btns}
+                  changeEvt={Changed}
                 />
               </div>
             </div>

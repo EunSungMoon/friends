@@ -19,7 +19,7 @@ export default function EditArticle() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const[radioButton, setRadioButton] =useState('')
+  const [radioButton, setRadioButton] = useState('')
 
   const [startDate, setStartDate] = useState(new Date());
   const today = new Date()
@@ -54,15 +54,6 @@ export default function EditArticle() {
   }
 
   const handleRadio = () => {
-    // if(document.querySelector('.abc').value==='VMS'){
-    //   setRadioButton('clicked')
-    // }
-    // if(document.querySelector('.abc').value==='1365'){
-    //   setRadioButton('clicked')
-    // }
-    // if(document.querySelector('.abc').value==='없음'){
-    //   setRadioButton('clicked')
-    // }
     console.log(lists.authentication)
   }
 
@@ -71,7 +62,6 @@ export default function EditArticle() {
     lists.members = Number(membersValue) + 1
     console.log(lists.members)
   }
-
 
   const loadAxios = async () => {
     try {
@@ -85,7 +75,6 @@ export default function EditArticle() {
         }
       })
       setLists(loadData.data)
-      console.log(loadData.data.dday)
       handleRadio()
     }
     catch (error) {
@@ -137,7 +126,7 @@ export default function EditArticle() {
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
               <div className='inputWrap'>
-                <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter}/>
+                <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
               </div>
             </div>
             <div className='artivle-part formWrap'>
@@ -184,21 +173,23 @@ export default function EditArticle() {
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication'>
-                <span className='abc' value={lists.authentication}>{lists.authentication}</span>
                 <Authentication
-                  pClass={`vmsText ${radioButton}`}
+                  pClass='vmsText'
                   value='VMS'
                   icon='VMS'
+                  checked={lists.authentication}
                 />
                 <Authentication
-                  pClass={`goText ${radioButton}`}
+                  pClass='goText'
                   value='1365'
                   icon='1365'
+                  checked={lists.authentication}
                 />
                 <Authentication
-                  pClass={`noText ${radioButton}`}
+                  pClass='noText'
                   value='없음'
                   icon='없음'
+                  checked={lists.authentication}
                 />
               </div>
             </div>

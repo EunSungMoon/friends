@@ -52,22 +52,21 @@
         }
         .inputWrap {
           width: 700px;
-          .icon {
-            @include borderBtn(60px, 30px, 16px);
-            margin-right: 5px;
-            padding-left: 0;
-            text-align: center;
-            margin-bottom: 0;
-            line-height: 27px;
-          }
-
-          .clicked {
-            border: 2px solid #01c3bc;
-            outline: none;
-          }
-
-          .displayNo {
-            display: none;
+          .authenticationWrap{
+            display: flex;
+            align-items: center;
+            .authenticationBtn {
+              @include borderBtn(60px, 30px, 16px);
+              margin-right: 5px;
+              padding-left: 0;
+              text-align: center;
+              margin-bottom: 0;
+              line-height: 27px;
+            }
+            .active {
+              border: 2px solid #01c3bc;
+              outline: none
+            }
           }
         }
       }
@@ -95,7 +94,7 @@
     }
     .countDom {
       display: flex;
-      .members{
+      .members {
         width: 40px;
         text-align: center;
         background: #fff;
@@ -219,27 +218,27 @@
 
 ***********************************************************/
 #articleForm-main {
-  .editBtnWrap{
+  .editBtnWrap {
     @include display(center);
     .editBtn {
       margin: 30px 10px 0;
     }
   }
-  .datepicker{
+  .datepicker {
     display: inline-flex;
     align-items: center;
-    .react-datepicker-wrapper{
+    .react-datepicker-wrapper {
       width: 50px;
-      input{
+      input {
         width: 10px;
         padding-left: 37px;
       }
     }
-    .dday{
+    .dday {
       margin: 0;
     }
   }
-  .membersSpan{
+  .membersSpan {
     width: 37px !important;
     line-height: 30px;
   }
