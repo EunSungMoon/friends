@@ -27,33 +27,37 @@
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .inputWrap {
-    width: 330px;
-  }
-  .textarea {
-    width: 330px;
+    width: 270px;
   }
   .article-input,
   .road,
-  .jibun {
-    width: 330px;
+  .jibun,
+  .detail,
+  .textarea{
+    width: 260px;
   }
   .react-datepicker-wrapper {
     input {
-      width: 330px;
+      width: 270px;
+      font-size: 14px;
     }
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .inputWrap,
+  .inputWrap {
+    width: 480px;
+  }
   .road,
   .jibun,
   .textarea,
   .article-input {
-    width: 500px;
+    width: 460px;
   }
-
+  .detail {
+    width: 275px;
+  }
   .react-datepicker-wrapper {
     input {
       width: 300px;
@@ -62,19 +66,19 @@
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .inputWrap {
-    width: 700px;
-  }
   .road,
   .jibun {
     width: 340px;
   }
   .textarea {
-    width: 685px;
+    width: 680px;
   }
-  // .article-input{
-  //   width: 500px;
-  // }
+  .inputWrap {
+    width: 700px;
+  }
+  .article-input {
+    width: 680px;
+  }
 }
 
 // X-Large devices (large desktops, 1200px and up)
@@ -95,10 +99,9 @@
 
   .section {
     background: #fff;
-    padding: 40px;
+    padding: 30px;
     border-radius: 5px;
     margin-bottom: 30px;
-    width: 1000px;
     margin: 0 auto;
 
     form {
@@ -213,9 +216,6 @@
       width: 88px;
     }
 
-    .detail {
-      width: 275px;
-    }
     .codeFinder {
       border: 2px solid #f1f3fb;
       border-radius: 5px;
