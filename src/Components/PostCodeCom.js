@@ -31,8 +31,8 @@ export default function PostcodeCom(props) {
 
   return (
     <div className="postCodeDom">
-      <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} { ...props }/>
-      <button type='button' onClick={() => { props.onClose() }} className='postCode_btn'>닫기</button>
+      <DaumPostcode style={postCodeStyle} onComplete={handlePostCode} { ...props } className="postcodeSearch"/>
+      <button type='button' onClick={() => { props.onClose() }} className='postCode_btn' title="닫기">X</button>
     </div>
   )
 }

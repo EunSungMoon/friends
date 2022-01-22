@@ -79,7 +79,7 @@ export default function ArticleForm() {
     <main id="articleForm-main">
       <div className='container'>
         <h2 className='h2'>봉사 모집 등록</h2>
-        <section className='section'>
+        <section className='section container'>
           <form onSubmit={handleSubmit}>
             <div className='article-title formWrap'>
               <span>글 제목</span>
