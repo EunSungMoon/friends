@@ -1,4 +1,7 @@
 @import "common";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 /**********************************************************
 
 프로필 디자인
@@ -32,7 +35,6 @@
           width: 186px;
         }
         .infoBox {
-          width: 400px;
           border-radius: 5px;
           background: #f1f3fb;
 
@@ -43,8 +45,8 @@
       }
     }
   }
-  #myBoard{
-    .noList{
+  #myBoard {
+    .noList {
       text-align: center;
       padding-top: 10px;
     }
@@ -78,7 +80,7 @@ MyBoardCom  나의 게시글 리스트 디자인
       &:hover {
         transform: translateY(-4px);
       }
-      a{
+      a {
         text-decoration: none;
         color: #333;
       }
@@ -122,3 +124,47 @@ MyBoardCom  나의 게시글 리스트 디자인
 MyArticleCom  나의 게시글 상세 폼 디자인
 
 ***********************************************************/
+
+/**********************************************************
+
+반응형
+
+***********************************************************/
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  #profile-main {
+    .infoBox {
+      width: 250px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  #profile-main {
+    .infoBox {
+      width: 400px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+}
+
+// @include media-breakpoint-up(sm) { ... }
+// @include media-breakpoint-up(md) { ... }
+// @include media-breakpoint-up(lg) { ... }
+// @include media-breakpoint-up(xl) { ... }
+// @include media-breakpoint-up(xxl) { ... }

@@ -105,7 +105,6 @@ export default function EditArticle() {
   }, []);
 
   const handleDelete = async () => {
-    console.log(id)
     if (window.confirm('???')) {
       await axios.delete(`http://15.164.62.156:8888/api/board/${id}`, {
         headers: {
