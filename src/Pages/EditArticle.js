@@ -4,16 +4,19 @@ import SelectBoxCom from '../Components/SelectBoxCom';
 import NumberCountEditCom from '../Components/NumberCountEditCom';
 import AddressCom from '../Components/AddressCom';
 import Authentication from '../Components/AuthenticationCom';
+import useRevise from '../Hooks/useRevise';
+import errorMessage from '../Components/errorMessage';
 import DatePicker from 'react-datepicker'
 import { ko } from 'date-fns/esm/locale'
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import axios from 'axios'
-import useRevise from '../Hooks/useRevise';
-import errorMessage from '../Components/errorMessage';
+
 
 //수정하기 페이지
 export default function EditArticle() {
+  const history = useHistory();
   const { id } = useParams();
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
@@ -101,227 +104,191 @@ export default function EditArticle() {
     return lists;
   }, []);
 
-  // const handleDelete = async () => {
-  //   try {
-  //     const deleteAxios = await axios.delete(`http://15.164.62.156:8888/api/board/${id}`,
-  //     {
-  //       id:lists.id,
-  //       title: lists.title,
-  //       dday: lists.dday,
-  //       members: lists.members,
-  //       part: lists.part,
-  //       zipcode: lists.zipcode,
-  //       roadAddress: lists.roadAddress,
-  //       jibunAddress: lists.jibunAddress,
-  //       detailAddress: lists.detailAddress,
-  //       officialname: lists.officialname,
-  //       belong: lists.belong,
-  //       authentication: lists.authentication,
-  //       information: lists.information,
-  //       state: 'apply-state apply-ing'
-  //     },
-  //     {
-  //       headers: {
-  //         'Authorization': token
-  //       }
-  //     },
-  //       )
-  //     console.log(deleteAxios)
-  //   }
-  //   catch (error) {
-  //     console.log(error)
-  //     console.log(token)
-  //   }
-  // }
-
   const handleDelete = async () => {
     console.log(id)
     if (window.confirm('???')) {
       await axios.delete(`http://15.164.62.156:8888/api/board/${id}`, {
-              headers: {
-                'Authorization': token
-              },
-            },
-            {
-              data:{
-                title:lists.title
-              }
-            });
-      }
+        headers: {
+          'Authorization': token
+        },
+      });
+      alert('삭제되었습니다.')
+      history.push('/')
+    }
   }
 
-    // const { values, errors, handleChange, handleSubmit } = useRevise({
-    //   initialValues: {
-    //     title: lists.title,
-    //     dday: lists.dday,
-    //     members: lists.members,
-    //     part: lists.part,
-    //     zipcode: lists.zipcode,
-    //     roadAddress: lists.roadAddress,
-    //     jibunAddress: lists.jibunAddress,
-    //     detailAddress: lists.detailAddress,
-    //     officialname: lists.officialname,
-    //     belong: lists.belong,
-    //     authentication: lists.authentication,
-    //     information: lists.information,
-    //     state: 'apply-state apply-ing'
-    //   },
-    //   onSubmit: () => {
-    //     console.log(values)
-    //   },
-    //   errorMessage
-    // })
-    const { values, errors, handleChange, handleSubmit } = useRevise({
-      initialValues: {
-        title: lists,
-        dday: lists,
-        members: lists,
-        part: lists,
-        zipcode: lists,
-        roadAddress: lists,
-        jibunAddress: lists,
-        detailAddress: lists,
-        officialname: lists,
-        belong: lists,
-        authentication: lists,
-        information: lists,
-        state: 'apply-state apply-ing'
-      },
-      onSubmit: () => {
-        console.log(values)
-      },
-      errorMessage
-    })
+  // const { values, errors, handleChange, handleSubmit } = useRevise({
+  //   initialValues: {
+  //     title: lists.title,
+  //     dday: lists.dday,
+  //     members: lists.members,
+  //     part: lists.part,
+  //     zipcode: lists.zipcode,
+  //     roadAddress: lists.roadAddress,
+  //     jibunAddress: lists.jibunAddress,
+  //     detailAddress: lists.detailAddress,
+  //     officialname: lists.officialname,
+  //     belong: lists.belong,
+  //     authentication: lists.authentication,
+  //     information: lists.information,
+  //     state: 'apply-state apply-ing'
+  //   },
+  //   onSubmit: () => {
+  //     console.log(values)
+  //   },
+  //   errorMessage
+  // })
+  const { values, errors, handleChange, handleSubmit } = useRevise({
+    initialValues: {
+      title: lists,
+      dday: lists,
+      members: lists,
+      part: lists,
+      zipcode: lists,
+      roadAddress: lists,
+      jibunAddress: lists,
+      detailAddress: lists,
+      officialname: lists,
+      belong: lists,
+      authentication: lists,
+      information: lists,
+      state: 'apply-state apply-ing'
+    },
+    onSubmit: () => {
+      console.log(values)
+    },
+    errorMessage
+  })
 
-    if (loading) return <div>로딩중...</div>
-    if (error) return <div>에러가 발생했습니다.</div>
-    if (!lists) return null;
+  if (loading) return <div>로딩중...</div>
+  if (error) return <div>에러가 발생했습니다.</div>
+  if (!lists) return null;
 
-    return (
-      <main id="articleForm-main">
-        <div className="container">
-          <h2 className='h2'>게시글 수정하기</h2>
-          <section className="section container">
-            <form onSubmit={handleSubmit}>
-              <div className='article-toggle formWrap'>
-                <span>모집완료</span>
-                <div className='inputWrap' onChange={handleChange}>
-                  <label onChange={handleCheckbox}>
-                    <input type='checkbox' name="state" value={`apply-state ${complete ? 'apply-ing' : 'apply-complete'}`} />
-                    <span>{complete ? '모집중!' : '모집완료!'}</span>
-                  </label>
-                </div>
+  return (
+    <main id="articleForm-main">
+      <div className="container">
+        <h2 className='h2'>게시글 수정하기</h2>
+        <section className="section container">
+          <form onSubmit={handleSubmit}>
+            <div className='article-toggle formWrap'>
+              <span>모집완료</span>
+              <div className='inputWrap' onChange={handleChange}>
+                <label onChange={handleCheckbox}>
+                  <input type='checkbox' name="state" value={`apply-state ${complete ? 'apply-ing' : 'apply-complete'}`} />
+                  <span>{complete ? '모집중!' : '모집완료!'}</span>
+                </label>
               </div>
-              <div className='article-title formWrap' key={lists.id}>
-                <span>글 제목</span>
-                <div className='inputWrap'>
-                  <input
-                    name='title'
-                    type='text'
-                    defaultValue={lists.title}
-                    className='article-input'
-                    placeholder='제목을 입력해주세요.'
-                    onChange={handleChange}
-                  />
-                </div>
+            </div>
+            <div className='article-title formWrap' key={lists.id}>
+              <span>글 제목</span>
+              <div className='inputWrap'>
+                <input
+                  name='title'
+                  type='text'
+                  defaultValue={lists.title}
+                  className='article-input'
+                  placeholder='제목을 입력해주세요.'
+                  onChange={handleChange}
+                />
               </div>
-              <div className='article-date formWrap'>
-                <span>봉사일</span>
-                <div className='inputWrap datepicker' name='dday' onChange={handleChange} value={lists.dday}>
-                  <DatePicker
-                    className='dday-input'
-                    name='dday'
-                    selected={startDate}
-                    onChange={value => handleDatePicker(value)}
-                    locale={ko}
-                    minDate={today}
-                    showTimeSelect
-                    timeFormat='HH:mm'
-                    timeCaption='time'
-                    dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
-                  />
-                  <p className='dday'>{lists.dday}</p>
-                </div>
+            </div>
+            <div className='article-date formWrap'>
+              <span>봉사일</span>
+              <div className='inputWrap datepicker' name='dday' onChange={handleChange} value={lists.dday}>
+                <DatePicker
+                  className='dday-input'
+                  name='dday'
+                  selected={startDate}
+                  onChange={value => handleDatePicker(value)}
+                  locale={ko}
+                  minDate={today}
+                  showTimeSelect
+                  timeFormat='HH:mm'
+                  timeCaption='time'
+                  dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
+                />
+                <p className='dday'>{lists.dday}</p>
               </div>
-              <div className='article-number formWrap'>
-                <span>봉사 인원</span>
-                <div className='inputWrap' onChange={handleChange} value={lists.members}>
-                  <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
-                </div>
+            </div>
+            <div className='article-number formWrap'>
+              <span>봉사 인원</span>
+              <div className='inputWrap' onChange={handleChange} value={lists.members}>
+                <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
               </div>
-              <div className='artivle-part formWrap'>
-                <span>봉사 분야</span>
-                <div className='inputWrap' onChange={handleChange}>
-                  <SelectBoxCom options={OPTIONS} value={lists.part} />
-                </div>
+            </div>
+            <div className='artivle-part formWrap'>
+              <span>봉사 분야</span>
+              <div className='inputWrap' onChange={handleChange}>
+                <SelectBoxCom options={OPTIONS} value={lists.part} />
               </div>
-              <div className='article-address formWrap'>
-                <span>봉사 장소</span>
-                <div className='inputWrap' onClick={handleZipcode}>
-                  <AddressCom event={handleChange} changEvent={handleChange}
-                    zipcodeValue={lists.zipcode}
-                    roadValue={lists.roadAddress}
-                    jibunValue={lists.jibunAddress}
-                    detailValue={lists.detailAddress}
-                  />
-                </div>
+            </div>
+            <div className='article-address formWrap'>
+              <span>봉사 장소</span>
+              <div className='inputWrap' onClick={handleZipcode}>
+                <AddressCom event={handleChange} changEvent={handleChange}
+                  zipcodeValue={lists.zipcode}
+                  roadValue={lists.roadAddress}
+                  jibunValue={lists.jibunAddress}
+                  detailValue={lists.detailAddress}
+                />
               </div>
-              <div className='article-name formWrap'>
-                <span >담당자 이름</span>
-                <div className='inputWrap'>
-                  <input
-                    type='text'
-                    className='article-input'
-                    placeholder='담당자 이름'
-                    name='officialname'
-                    defaultValue={lists.officialname}
-                    onChange={handleChange}
-                  />
-                </div>
+            </div>
+            <div className='article-name formWrap'>
+              <span >담당자 이름</span>
+              <div className='inputWrap'>
+                <input
+                  type='text'
+                  className='article-input'
+                  placeholder='담당자 이름'
+                  name='officialname'
+                  defaultValue={lists.officialname}
+                  onChange={handleChange}
+                />
               </div>
-              <div className='article-belong formWrap'>
-                <span>담당자 소속</span>
-                <div className='inputWrap'>
-                  <input
-                    type='text'
-                    className='article-input'
-                    placeholder='담당자 소속'
-                    name='belong'
-                    defaultValue={lists.belong}
-                    onChange={handleChange}
-                  />
-                </div>
+            </div>
+            <div className='article-belong formWrap'>
+              <span>담당자 소속</span>
+              <div className='inputWrap'>
+                <input
+                  type='text'
+                  className='article-input'
+                  placeholder='담당자 소속'
+                  name='belong'
+                  defaultValue={lists.belong}
+                  onChange={handleChange}
+                />
               </div>
-              <div className='article-authentication formWrap'>
-                <span>인증유무</span>
-                <div className='inputWrap' name='authentication' onChange={handleChange}>
-                  <span onChange={Changed}>{lists.authentication}</span>
-                  <Authentication
-                    btns={btns}
-                    changeEvt={Changed}
-                  />
-                </div>
+            </div>
+            <div className='article-authentication formWrap'>
+              <span>인증유무</span>
+              <div className='inputWrap' name='authentication' onChange={handleChange}>
+                <span onChange={Changed}>{lists.authentication}</span>
+                <Authentication
+                  btns={btns}
+                  changeEvt={Changed}
+                />
               </div>
-              <div className='article-detail formWrap'>
-                <span>상세 내용</span>
-                <div className='inputWrap'>
-                  <textarea
-                    placeholder='상세내용'
-                    className='textarea'
-                    name='information'
-                    defaultValue={lists.information}
-                    onChange={handleChange}
-                  >
-                  </textarea>
-                </div>
+            </div>
+            <div className='article-detail formWrap'>
+              <span>상세 내용</span>
+              <div className='inputWrap'>
+                <textarea
+                  placeholder='상세내용'
+                  className='textarea'
+                  name='information'
+                  defaultValue={lists.information}
+                  onChange={handleChange}
+                >
+                </textarea>
               </div>
-              <div className='editBtnWrap'>
-                <button type='submit' className='borderBtn editBtn'>수정하기</button>
-                <button type='button' className='borderBtn editBtn' onClick={handleDelete}>삭제하기</button>
-              </div>
-            </form>
-          </section>
-        </div>
-      </main>
-    )
-  }
+            </div>
+            <div className='editBtnWrap'>
+              <button type='submit' className='borderBtn editBtn'>수정하기</button>
+              <button type='button' className='borderBtn editBtn' onClick={handleDelete}>삭제하기</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  )
+}
