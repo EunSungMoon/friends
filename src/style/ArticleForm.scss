@@ -1,5 +1,7 @@
 @import "common";
-@import "variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 @mixin input($length) {
   height: 32px;
@@ -19,74 +21,6 @@
   background-image: url($url);
   background-repeat: no-repeat;
   background-position: $position;
-}
-
-// X-Small devices (portrait phones, less than 576px)
-// No media query for `xs` since this is the default in Bootstrap
-
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .inputWrap {
-    width: 270px;
-  }
-  .article-input,
-  .road,
-  .jibun,
-  .detail,
-  .textarea{
-    width: 260px;
-  }
-  .react-datepicker-wrapper {
-    input {
-      width: 270px;
-      font-size: 14px;
-    }
-  }
-}
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .inputWrap {
-    width: 480px;
-  }
-  .road,
-  .jibun,
-  .textarea,
-  .article-input {
-    width: 460px;
-  }
-  .detail {
-    width: 275px;
-  }
-  .react-datepicker-wrapper {
-    input {
-      width: 300px;
-    }
-  }
-}
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .road,
-  .jibun {
-    width: 340px;
-  }
-  .textarea {
-    width: 680px;
-  }
-  .inputWrap {
-    width: 700px;
-  }
-  .article-input {
-    width: 680px;
-  }
-}
-
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-}
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {
 }
 
 #articleForm-main {
@@ -291,5 +225,83 @@
   .membersSpan {
     width: 37px !important;
     line-height: 30px;
+  }
+}
+/**********************************************************
+
+반응형
+
+***********************************************************/
+@include media-breakpoint-only(xs) {
+  .inputWrap {
+    width: 260px;
+  }
+  .article-input,
+  .road,
+  .jibun,
+  .detail,
+  .textarea {
+    width: 250px;
+  }
+  .react-datepicker-wrapper {
+    input {
+      width: 250px;
+      font-size: 13px;
+    }
+  }
+}
+@include media-breakpoint-only(sm) {
+  .inputWrap {
+    width: 270px;
+  }
+  .article-input,
+  .road,
+  .jibun,
+  .detail,
+  .textarea {
+    width: 260px;
+  }
+  .react-datepicker-wrapper {
+    input {
+      width: 260px;
+      font-size: 14px;
+    }
+  }
+}
+@include media-breakpoint-only(md) {
+  .inputWrap {
+    width: 480px;
+  }
+  .road,
+  .jibun,
+  .textarea,
+  .article-input {
+    width: 460px;
+  }
+  .detail {
+    width: 275px;
+  }
+}
+
+@include media-breakpoint-up(md){
+  .react-datepicker-wrapper {
+    input {
+      width: 300px;
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  .road,
+  .jibun {
+    width: 340px;
+  }
+  .textarea {
+    width: 680px;
+  }
+  .inputWrap {
+    width: 700px;
+  }
+  .article-input {
+    width: 680px;
   }
 }

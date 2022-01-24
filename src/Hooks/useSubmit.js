@@ -14,7 +14,6 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
   const handleChange = event => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
-    console.log(values)
   };
 
   const handleSubmit = async event => {
