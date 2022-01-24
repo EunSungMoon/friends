@@ -60,7 +60,7 @@ export default function SignIn() {
     <main id="sign-main">
       <div className="container">
         <h2 className='h2'>회원가입</h2>
-        <section className='section'>
+        <section className='section container'>
           <form onSubmit={handleSubmit}>
             <div className='email-input form-common'>
               <InputCom

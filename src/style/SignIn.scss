@@ -1,4 +1,7 @@
 @import "common";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 #sign-main {
   margin-top: 30px;
@@ -12,7 +15,6 @@
     @include display(center);
     padding: 40px;
     border-radius: 7px;
-    width: 628px;
     margin: 0 auto;
 
     form {
@@ -24,13 +26,6 @@
       .form-common {
         margin-bottom: 24px;
       }
-      .longWidth {
-        @include inputLength(425px);
-      }
-      .nickname {
-        @include inputLength(318px);
-      }
-
       .text-input {
         border: 1px solid #f1f3fb;
         background-color: #f1f3fb;
@@ -56,6 +51,43 @@
     .infoText {
       text-align: center;
       color: red;
+    }
+  }
+}
+
+/**********************************************************
+
+반응형
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+
+***********************************************************/
+@include media-breakpoint-only(xs) {
+  #sign-main {
+    .section{
+      width: 470px;
+    }
+    .longWidth {
+      @include inputLength(380px);
+    }
+    .nickname {
+      @include inputLength(275px);
+    }
+  }
+}
+@include media-breakpoint-up(sm) {
+  #sign-main {
+    .section{
+      width: 628px;
+    }
+    .longWidth {
+      @include inputLength(425px);
+    }
+    .nickname {
+      @include inputLength(318px);
     }
   }
 }
