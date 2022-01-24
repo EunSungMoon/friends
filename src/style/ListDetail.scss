@@ -1,4 +1,7 @@
 @import "common";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 #article-main {
   margin-top: 30px;
@@ -34,19 +37,15 @@
       }
     }
     .wrapper {
-      @include display(space-between);
+      @include display(start);
       margin: 0 auto;
       border-bottom: 1px solid #f1f3fb;
       padding: 20px 0;
       width: 100%;
       .subject {
-        width: 140px;
         padding-left: 15px;
         text-align: center;
         color: gray;
-      }
-      .content {
-        width: 1000px;
       }
       .address {
         margin-bottom: 0;
@@ -58,6 +57,7 @@
       bottom: 24px;
       position: relative;
       right: 15px;
+      cursor: pointer;
       a {
         text-decoration: none;
         color: #333;
@@ -75,10 +75,66 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+// @media screen and (max-width: 768px) {
+//   #article-main {
+//     .content {
+//       width: 340px !important;
+//     }
+//   }
+// }
+
+/**********************************************************
+
+반응형
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+
+***********************************************************/
+@include media-breakpoint-only(xs) {
   #article-main {
-    .content {
-      width: 340px !important;
+    .subject {
+      width: 150px;
+    }
+  }
+}
+@include media-breakpoint-only(sm) {
+  #article-main {
+    .subject {
+      width: 160px;
+    }
+  }
+}
+@include media-breakpoint-only(md) {
+  //768px
+  #article-main {
+    .subject {
+      width: 170px;
+    }
+  }
+}
+@include media-breakpoint-only(lg) {
+  #article-main {
+    .subject {
+      width: 180px;
+    }
+  }
+}
+@include media-breakpoint-only(xl) {
+  //1200px
+  #article-main {
+    .subject {
+      width: 190px;
+    }
+  }
+}
+@include media-breakpoint-only(xxl) {
+  //1400px
+  #article-main {
+    .subject {
+      width: 200px;
     }
   }
 }
