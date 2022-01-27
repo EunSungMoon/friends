@@ -24,7 +24,7 @@ export default function Header() {
             {localStorage.token ?
               (
                 <>
-                  <li><Link to='/profile' className='tab'>프로필</Link></li>
+                  <li><Link to='/myprofile' className='tab'>프로필</Link></li>
                 </>
               ) :
               (

@@ -21,7 +21,7 @@ export default function Board() {
           'Content-Type': 'application/json'
         }
       })
-      setLists(loadData.data)
+      setLists(loadData.data);
     }
     catch (error) {
       setError(error)

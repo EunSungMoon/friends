@@ -151,7 +151,7 @@ export default function EditArticle() {
       belong: lists,
       authentication: lists,
       information: lists,
-      state: 'apply-state apply-ing'
+      state: lists
     },
     onSubmit: () => {
       console.log(values)
@@ -168,7 +168,7 @@ export default function EditArticle() {
       <div className="container">
         <h2 className='h2'>게시글 수정하기</h2>
         <section className="section container">
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className='article-toggle formWrap'>
               <span>모집완료</span>
               <div className='inputWrap' onChange={handleChange}>
@@ -282,7 +282,7 @@ export default function EditArticle() {
               </div>
             </div>
             <div className='editBtnWrap'>
-              <button type='submit' className='borderBtn editBtn'>수정하기</button>
+              <button type='submit' className='borderBtn editBtn' onClick={handleSubmit}>수정하기</button>
               <button type='button' className='borderBtn editBtn' onClick={handleDelete}>삭제하기</button>
             </div>
           </form>

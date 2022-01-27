@@ -2,10 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import { BsFillPersonFill, BsChatDots, BsPencil } from "react-icons/bs";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import '../style/ListDetail.scss';
 import LogInModal from '../Components/LogInModal';
 
 export default function ListDetail() {
+  const history = useHistory();
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -50,9 +52,41 @@ export default function ListDetail() {
     setLoading(false)
   }
 
+  const loadProfile = async () => {
+    history.push({
+      pathname: '/yourprofile/',
+      state: lists.author,
+
+    })
+    try {
+      setError(null);
+      setLists(null);
+      setLoading(true);
+      const loadData = await axios.post(`http://15.164.62.156:8888/api/your_profile/`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          },
+          body: JSON.stringify({ "author": lists.author })
+        }
+      )
+
+      setLists(loadData.data)
+      console.log(loadData)
+      console.log(loadData.data.nickname)
+    }
+    catch (error) {
+      setError(error)
+      console.log(error)
+      console.log(lists.author)
+    }
+    setLoading(false)
+  }
+
   useEffect(() => {
     localStorage.token ? loadAxios() : loadAxiosNoToken()
-    return lists;
+    return () => setLoading(false);
   }, []);
 
   if (loading) return <div>로딩중...</div>
@@ -92,11 +126,9 @@ export default function ListDetail() {
                     </Link>
                   </div>) :
                   // 게시글 작성자 프로필
-                  (<div className="profile">
-                    <Link to={`/anotherprofile`}>
-                      <BsFillPersonFill />
-                      <span>{lists.author}</span>
-                    </Link>
+                  (<div className="profile" onClick={loadProfile}>
+                    <BsFillPersonFill />
+                    <span>{lists.author}</span>
                   </div>)
                 ) :
                 // 로그인모달

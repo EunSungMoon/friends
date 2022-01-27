@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
 import axios from 'axios';
 
-export default function MyBoardCom() {
+export default function YourBoardCom() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [yourLists, setYourLists] = useState([])

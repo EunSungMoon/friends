@@ -7,7 +7,7 @@ import SignIn from './Pages/SignIn'
 import ArticleForm from './Pages/ArticleForm';
 import SignInComplete from './Pages/SignInComplete';
 import MyProfilePage from './Pages/MyProfilePage';
-import AnotherProfilePage from './Pages/AnotherProfilePage'
+import YourProfilePage from './Pages/YourProfilePage'
 import EditArticle from './Pages/EditArticle';
 
 function App() {
@@ -26,11 +26,11 @@ function App() {
             <Route path='/articleForm'>
               <ArticleForm />
             </Route>
-            <Route path='/profile'>
+            <Route path='/myprofile'>
               <MyProfilePage />
             </Route>
-            <Route path='/anotherprofile'>
-              <AnotherProfilePage />
+            <Route path='/yourprofile'>
+              <YourProfilePage />
             </Route>
             <Route path='/editarticle/:id'>
               <EditArticle />

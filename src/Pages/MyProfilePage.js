@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import MyBoardCom from '../Components/MyBoardCom';
 import axios from 'axios';
 
-export default function ProfilePage() {
+export default function MyProfilePage() {
   const [lists, setLists] = useState([])
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
