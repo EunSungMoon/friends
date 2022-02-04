@@ -9,6 +9,7 @@ import SignInComplete from './Pages/SignInComplete';
 import MyProfilePage from './Pages/MyProfilePage';
 import YourProfilePage from './Pages/YourProfilePage'
 import EditArticle from './Pages/EditArticle';
+import LandingCom from './Components/LandingCom';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <div className="App">
         <div className="container-fluid">
           <Header />
+          <LandingCom />
           <Switch>
             <Route exact path='/'>
               <Board />
