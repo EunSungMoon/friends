@@ -17,9 +17,11 @@ function App() {
       <div className="App">
         <div className="container-fluid">
           <Header />
-          <LandingCom />
           <Switch>
             <Route exact path='/'>
+              <LandingCom />
+            </Route>
+            <Route path='/boards'>
               <Board />
             </Route>
             <Route path='/board/:id/'>

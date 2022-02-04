@@ -198,7 +198,6 @@ export default function EditArticle() {
               <span>봉사 분야</span>
               <div className='inputWrap' onChange={handleChange}>
                 <SelectBoxCom options={OPTIONS} />
-                <span>{lists.part}</span>
               </div>
             </div>
             <div className='article-address formWrap'>

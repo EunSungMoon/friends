@@ -79,29 +79,31 @@
 
 ***********************************************************/
 @media (min-width: 250px) {
-  .headerInner {
-    flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  .hamburger {
-    font-size: 40px;
-    position: absolute;
-    right: 25px;
-    top: 15px;
-    color: #00948e;
-  }
-  .tabName {
-    display: none;
-  }
-  .displayno {
-    display: none;
-  }
-  .active {
-    display: block;
-  }
-  .btnWrap {
-    padding: 20px 0;
+  #header{
+    .headerInner {
+      flex-direction: column;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .hamburger {
+      font-size: 40px;
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      color: #00948e;
+    }
+    .tabName {
+      display: none;
+    }
+    .displayno {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .btnWrap {
+      padding: 20px 0;
+    }
   }
 }
 
@@ -111,28 +113,29 @@
 @include media-breakpoint-up(lg) {
   #header {
     height: 90px;
-  }
-  .headerInner {
-    flex-direction: inherit;
-    padding-top: 0;
-    padding-bottom: 0;
-    nav {
-      .tabName {
-        @include display(space-between);
-        height: 50px;
-        li {
-          width: 100px;
+    .headerInner {
+      flex-direction: inherit;
+      padding-top: 0;
+      padding-bottom: 0;
+      nav {
+        .tabName {
+          @include display(space-between);
+          height: 50px;
+          li {
+            width: 100px;
+          }
         }
       }
     }
+    .hamburger {
+      display: none;
+    }
+    .btnWrap {
+      @include display(space-between);
+      margin-left: auto;
+    }
   }
-  .hamburger {
-    display: none;
-  }
-  .btnWrap {
-    @include display(space-between);
-    margin-left: auto;
-  }
+
 }
 /**********************************************************
 

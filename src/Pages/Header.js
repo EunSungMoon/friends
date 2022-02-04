@@ -28,7 +28,7 @@ export default function Header() {
         </h1>
         <nav>
           <ol className={`tabName ${hambuger ? '' : 'active'}`}>
-            <li><Link to='/' className='tab'>게시판</Link></li>
+            <li><Link to='/boards' className='tab'>게시판</Link></li>
             <li><Link to='/' className='tab'>채팅</Link></li>
             {localStorage.token ?
               (
