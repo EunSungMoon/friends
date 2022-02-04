@@ -1,10 +1,16 @@
 @import "common";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 #header {
-  border-bottom: 1px solid #e7eaf1;
-  background: #fff;
-  padding: 13px 30px 0;
-  height: 80px;
+  background: #006561;
+  padding: 5px 30px 0;
+  font-family: "Baeum";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .headerInner {
@@ -16,11 +22,12 @@
       text-decoration: none;
       color: black;
     }
+    img {
+      height: 45px;
+    }
   }
   nav {
-    ol {
-      @include display(space-between);
-      height: 50px;
+    .tabName {
       padding: 0;
       margin: 0;
       list-style: none;
@@ -28,38 +35,37 @@
 
       li {
         height: 100%;
-        width: 100px;
         text-align: center;
+        color: #00948e;
         a {
           text-decoration: none;
-          color: black;
+          color: #00948e;
           width: 100%;
         }
       }
       .tab {
-        font-weight: bold;
-        font-size: 20px;
-        color: black;
+        font-size: 23px;
         cursor: pointer;
-        &:hover {
-          color: #01c3bc;
-        }
       }
     }
   }
 
   .btnWrap {
-    @include display(space-between);
-    margin-left: auto;
     .login {
       margin-right: 10px;
-      @include btn(#01c3bc, 70px, 30px, #00afa9);
+      @include btn(#01c3bc, 100px, 45px, #01c3bc);
+      font-family: "NanumBold";
+      font-size: 23px;
     }
     .logout {
-      @include btn(#01c3bc, 80px, 30px, #00afa9);
+      @include btn(#01c3bc, 120px, 45px, #00afa9);
+      font-family: "NanumBold";
+      font-size: 23px;
     }
     .signIn {
-      @include btn(#ff7867, 80px, 30px, #ff6d5a);
+      @include btn(#e28248, 120px, 45px, #e28248);
+      font-family: "NanumBold";
+      font-size: 23px;
       a {
         color: #fff;
         text-decoration: none;
@@ -68,5 +74,67 @@
     .welcomeText {
       margin-right: 10px;
     }
+  }
+}
+
+/**********************************************************
+
+반응형
+
+***********************************************************/
+@media (min-width: 250px) {
+  .headerInner {
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .hamburger {
+    font-size: 40px;
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    color: #00948e;
+  }
+  .tabName {
+    display: none;
+  }
+  .displayno {
+    display: none;
+  }
+  .active {
+    display: block;
+  }
+  .btnWrap{
+    padding: 20px 0;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(lg) {
+  #header{
+    height: 90px;
+  }
+  .headerInner {
+    flex-direction: inherit;
+    margin-top: 0;
+    margin-bottom: 0;
+    nav {
+      .tabName {
+        @include display(space-between);
+        height: 50px;
+        li {
+          width: 100px;
+        }
+      }
+    }
+  }
+  .hamburger {
+    display: none;
+  }
+  .btnWrap{
+    @include display(space-between);
+    margin-left: auto;
   }
 }

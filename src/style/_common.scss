@@ -19,7 +19,7 @@
 @mixin borderBtn($width, $height, $size) {
   border: 2px solid #e7eaf1;
   border-radius: 5px;
-  background: #fff;
+  background: #ffffff;
   width: $width;
   height: $height;
   color: #6a7684;
@@ -34,4 +34,17 @@
   width: $width;
   height: 48px;
   border-radius: 7px;
+}
+
+@font-face{
+  font-family: 'Baeum';
+  src: url('./font/KOHIBaeum.ttf');
+}
+@font-face{
+  font-family: 'NanumLight';
+  src: url('./font/KOHINanum_Light.ttf');
+}
+@font-face{
+  font-family: 'NanumBold';
+  src: url('./font/KOHINanum_Bold.ttf');
 }

@@ -2,23 +2,32 @@ import '../style/Header.scss';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import LogInModal from '../Components/LogInModal';
+import logo from '../style/img/logo_friends.png';
+import { HiMenu } from "react-icons/hi";
 
 export default function Header() {
   const [loginModalShow, setloginModalShow] = useState(false);
+  const [hambuger, setHamburger] = useState(true);
 
   const handleLogout = () => {
     localStorage.removeItem('token')
     document.location.href = '/'
   }
 
+  const handleHamburger = e => {
+    setHamburger(!hambuger)
+  }
+
   return (
     <header id="header">
       <div className="headerInner container">
         <h1 className="title flexNone">
-          <Link to='/'>프렌즈</Link>
+          <Link to='/'>
+            <img src={logo} alt=''></img>
+          </Link>
         </h1>
         <nav>
-          <ol className="flexNone">
+          <ol className={`tabName ${hambuger ? '' : 'active'}`}>
             <li><Link to='/' className='tab'>게시판</Link></li>
             <li><Link to='/' className='tab'>채팅</Link></li>
             {localStorage.token ?
@@ -35,8 +44,11 @@ export default function Header() {
             }
 
           </ol>
+          <div className='hamburger' onClick={handleHamburger}>
+            <HiMenu />
+          </div>
         </nav>
-        <div className="btnWrap">
+        <div className={`btnWrap displayno ${hambuger ? '' : 'active'}`}>
 
           {localStorage.token ?
             (
