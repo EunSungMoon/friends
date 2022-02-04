@@ -26,6 +26,7 @@ export default function EditArticle() {
   const today = new Date()
 
   const [complete, setComplete] = useState(true)
+  const [changeDatepicker, setChangeDatepicker] = useState('')
 
   let token = `Token ${localStorage.getItem('token')}`
 
@@ -39,8 +40,8 @@ export default function EditArticle() {
     let ampm = hour >= 12 ? '오후' : '오전'
     let minutes = stringToDate.getMinutes()
 
-    lists.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour % 12 || 12}시 ${minutes}분`
-    console.log(lists.dday)
+    values.dday = `${year}년 0${month.toString().slice(-2, 1)}월 ${day.toString()}일 ${ampm} ${hour % 12 || 12}시 ${minutes}분`
+    setChangeDatepicker(values.dday)
   }
 
   const OPTIONS = [
@@ -57,20 +58,20 @@ export default function EditArticle() {
   ];
 
   const Changed = v => {
-    lists.authentication = v.value
+    values.authentication = v.value
     console.log(v.value)
   }
 
   const handleZipcode = () => {
-    lists.zipcode = document.querySelector('.zipcode').value
-    lists.roadAddress = document.querySelector('.road').value
-    lists.jibunAddress = document.querySelector('.jibun').value
+    values.zipcode = document.querySelector('.zipcode').value
+    values.roadAddress = document.querySelector('.road').value
+    values.jibunAddress = document.querySelector('.jibun').value
   }
 
   const handleCounter = () => {
     let membersValue = document.querySelector('.members').value
-    lists.members = Number(membersValue) + 1
-    console.log(lists.members)
+    values.members = Number(membersValue) + 1
+    console.log(values.members)
   }
 
   const handleCheckbox = (e) => {
@@ -84,7 +85,7 @@ export default function EditArticle() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
+      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}/`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
@@ -106,7 +107,7 @@ export default function EditArticle() {
 
   const handleDelete = async () => {
     if (window.confirm('???')) {
-      await axios.delete(`http://15.164.62.156:8888/api/board/${id}`, {
+      await axios.delete(`http://15.164.62.156:8888/api/board/${id}/`, {
         headers: {
           'Authorization': token
         },
@@ -116,42 +117,21 @@ export default function EditArticle() {
     }
   }
 
-  // const { values, errors, handleChange, handleSubmit } = useRevise({
-  //   initialValues: {
-  //     title: lists.title,
-  //     dday: lists.dday,
-  //     members: lists.members,
-  //     part: lists.part,
-  //     zipcode: lists.zipcode,
-  //     roadAddress: lists.roadAddress,
-  //     jibunAddress: lists.jibunAddress,
-  //     detailAddress: lists.detailAddress,
-  //     officialname: lists.officialname,
-  //     belong: lists.belong,
-  //     authentication: lists.authentication,
-  //     information: lists.information,
-  //     state: 'apply-state apply-ing'
-  //   },
-  //   onSubmit: () => {
-  //     console.log(values)
-  //   },
-  //   errorMessage
-  // })
   const { values, errors, handleChange, handleSubmit } = useRevise({
     initialValues: {
-      title: lists,
-      dday: lists,
-      members: lists,
-      part: lists,
-      zipcode: lists,
-      roadAddress: lists,
-      jibunAddress: lists,
-      detailAddress: lists,
-      officialname: lists,
-      belong: lists,
-      authentication: lists,
-      information: lists,
-      state: lists
+      title: '',
+      dday: '',
+      members: '',
+      part: '헤어컷트',
+      zipcode: '',
+      roadAddress: '',
+      jibunAddress: '',
+      detailAddress: '',
+      officialname: '',
+      belong: '',
+      authentication: '',
+      information: '',
+      state: 'apply-state apply-ing'
     },
     onSubmit: () => {
       console.log(values)
@@ -168,7 +148,7 @@ export default function EditArticle() {
       <div className="container">
         <h2 className='h2'>게시글 수정하기</h2>
         <section className="section container">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className='article-toggle formWrap'>
               <span>모집완료</span>
               <div className='inputWrap' onChange={handleChange}>
@@ -206,7 +186,7 @@ export default function EditArticle() {
                   timeCaption='time'
                   dateFormat='yyyy년 MM월 dd일 aa h시 mm분'
                 />
-                <p className='dday'>{lists.dday}</p>
+                <p className='dday'>{!changeDatepicker ? `${lists.dday}` : `${values.dday}`}</p>
               </div>
             </div>
             <div className='article-number formWrap'>
@@ -218,7 +198,8 @@ export default function EditArticle() {
             <div className='artivle-part formWrap'>
               <span>봉사 분야</span>
               <div className='inputWrap' onChange={handleChange}>
-                <SelectBoxCom options={OPTIONS} value={lists.part} />
+                <SelectBoxCom options={OPTIONS} />
+                <span>{lists.part}</span>
               </div>
             </div>
             <div className='article-address formWrap'>
@@ -282,7 +263,7 @@ export default function EditArticle() {
               </div>
             </div>
             <div className='editBtnWrap'>
-              <button type='submit' className='borderBtn editBtn' onClick={handleSubmit}>수정하기</button>
+              <button type='submit' className='borderBtn editBtn'>수정하기</button>
               <button type='button' className='borderBtn editBtn' onClick={handleDelete}>삭제하기</button>
             </div>
           </form>

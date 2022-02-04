@@ -48,10 +48,10 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
-      if (loadAxios.statusText === 'Created') {
-        alert('성공!')
-        history.push('/')
-      }
+      // if (loadAxios.statusText === 'Created') {
+      //   alert('성공!')
+      //   history.push('/')
+      // }
     }
     catch (error) {
       console.log(error)

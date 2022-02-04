@@ -28,7 +28,7 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.put(`http://15.164.62.156:8888/api/board/${id}`,
+      const loadAxios = await axios.put(`http://15.164.62.156:8888/api/board/${id}/`,
         {
           title: values.title,
           dday: values.dday,
@@ -51,7 +51,7 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
-      // if (loadAxios.statusText === 'Created') {
+      // if (loadAxios.message === 200) {
       //   alert('성공!')
       //   history.push('/')
       // }

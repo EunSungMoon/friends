@@ -97,7 +97,7 @@ export default function ListDetail() {
                 (lists.is_author === true ?
                   // 내 프로필로
                   (<div className="profile">
-                    <Link to={`/profile`}>
+                    <Link to={`/myprofile`}>
                       <BsFillPersonFill />
                       <span>{lists.author}</span>
                     </Link>
