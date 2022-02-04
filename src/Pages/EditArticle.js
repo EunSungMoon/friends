@@ -27,6 +27,7 @@ export default function EditArticle() {
 
   const [complete, setComplete] = useState(true)
   const [changeDatepicker, setChangeDatepicker] = useState('')
+  const [changeAuthen, setChangeAuthen] = useState('')
 
   let token = `Token ${localStorage.getItem('token')}`
 
@@ -59,7 +60,7 @@ export default function EditArticle() {
 
   const Changed = v => {
     values.authentication = v.value
-    console.log(v.value)
+    setChangeAuthen(values.authentication)
   }
 
   const handleZipcode = () => {
@@ -71,13 +72,11 @@ export default function EditArticle() {
   const handleCounter = () => {
     let membersValue = document.querySelector('.members').value
     values.members = Number(membersValue) + 1
-    console.log(values.members)
+    console.log('test')
   }
-
+  
   const handleCheckbox = (e) => {
     setComplete(!complete)
-    console.log(complete)
-    console.log(e.target.value)
   }
 
   const loadAxios = async () => {
@@ -122,7 +121,7 @@ export default function EditArticle() {
       title: '',
       dday: '',
       members: '',
-      part: '헤어컷트',
+      part: '',
       zipcode: '',
       roadAddress: '',
       jibunAddress: '',
@@ -191,7 +190,7 @@ export default function EditArticle() {
             </div>
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
-              <div className='inputWrap' onChange={handleChange} value={lists.members}>
+              <div className='inputWrap' onChange={handleChange}>
                 <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
               </div>
             </div>
@@ -242,7 +241,7 @@ export default function EditArticle() {
             <div className='article-authentication formWrap'>
               <span>인증유무</span>
               <div className='inputWrap' name='authentication' onChange={handleChange}>
-                <span onChange={Changed}>{lists.authentication}</span>
+                <p onChange={Changed}>현재 선택된 인증유무 : {!changeAuthen? `${lists.authentication}` : `${values.authentication}`}</p>
                 <Authentication
                   btns={btns}
                   changeEvt={Changed}
