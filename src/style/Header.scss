@@ -81,8 +81,8 @@
 @media (min-width: 250px) {
   .headerInner {
     flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   .hamburger {
     font-size: 40px;
@@ -114,8 +114,8 @@
   }
   .headerInner {
     flex-direction: inherit;
-    margin-top: 0;
-    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     nav {
       .tabName {
         @include display(space-between);
