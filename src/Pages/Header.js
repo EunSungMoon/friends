@@ -1,13 +1,18 @@
 import '../style/Header.scss';
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LogInModal from '../Components/LogInModal';
 import logo from '../style/img/logo_friends.png';
 import { HiMenu } from "react-icons/hi";
+import axios from 'axios';
 
 export default function Header() {
   const [loginModalShow, setloginModalShow] = useState(false);
   const [hambuger, setHamburger] = useState(true);
+  const [lists, setLists] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  let token = `Token ${localStorage.getItem('token')}`
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -17,6 +22,36 @@ export default function Header() {
   const handleHamburger = e => {
     setHamburger(!hambuger)
   }
+
+  const loadAxios = async () => {
+    try {
+      const loadNickname = await axios.get(`http://15.164.62.156:8888/api/profile/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      })
+      console.log(loadNickname)
+      setLists(loadNickname.data)
+    }
+    catch (error) {
+      console.log(error)
+      setError(error)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    if (localStorage.token) {
+      loadAxios()
+    }
+    return lists;
+  }, []);
+
+  if (loading) return <div>로딩중...</div>
+  if (error) return <div>에러가 발생했습니다.</div>
+  if (!lists) return null;
+
 
   return (
     <header id="header">
@@ -53,7 +88,7 @@ export default function Header() {
           {localStorage.token ?
             (
               <>
-                <span className='welcomeText'>문은성님 환영합니다.</span>
+                <span className='welcomeText'>{lists.nickname}님 환영합니다.</span>
                 <button className="logout flexNone" onClick={handleLogout}>로그아웃</button>
               </>
             ) :
