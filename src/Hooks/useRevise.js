@@ -24,6 +24,7 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
     event.preventDefault();
     await new Promise(r => setTimeout(r, 1000));
     setErrors(errorMessage(values));
+    console.log('test')
   };
 
   const handleAxios = async () => {
@@ -51,10 +52,6 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
-      // if (loadAxios.message === 200) {
-      //   alert('성공!')
-      //   history.push('/')
-      // }
     }
     catch (error) {
       console.log(error)
@@ -63,10 +60,8 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
 
   useEffect(() => {
     if (submitting) {
-      if (Object.keys(errors).length === 0) {
-        handleAxios()
-        onSubmit(values);
-      }
+      handleAxios()
+      onSubmit(values);
       setSubmitting(false);
     }
   }, [errors]);

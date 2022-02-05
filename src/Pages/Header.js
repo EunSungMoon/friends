@@ -31,7 +31,6 @@ export default function Header() {
           'Authorization': token
         }
       })
-      console.log(loadNickname)
       setLists(loadNickname.data)
     }
     catch (error) {

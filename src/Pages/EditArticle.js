@@ -130,7 +130,7 @@ export default function EditArticle() {
       belong: '',
       authentication: '',
       information: '',
-      state: 'apply-state apply-ing'
+      state: ''
     },
     onSubmit: () => {
       console.log(values)
@@ -190,7 +190,7 @@ export default function EditArticle() {
             </div>
             <div className='article-number formWrap'>
               <span>봉사 인원</span>
-              <div className='inputWrap' onChange={handleChange}>
+              <div className='inputWrap' onChange={handleChange} value={lists.value}>
                 <NumberCountEditCom value={lists.members} number={lists.members} event={handleCounter} />
               </div>
             </div>

@@ -10,6 +10,7 @@ export default function Board() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [loginModalShow, setloginModalShow] = useState(false);
+  const [applyState, setApplyState] = useState('모집중')
 
   const loadAxios = async () => {
     try {
@@ -34,11 +35,10 @@ export default function Board() {
     return lists
   }, []);
 
-
   if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
-  
+
   return (
     <main id="board-main">
       <div className="container">
@@ -75,7 +75,7 @@ export default function Board() {
                 <Link to={`/board/${list.id}/`}>
                   <div className="listTitle">
                     <h3 className="h3">{list.title}</h3>
-                    <p className={list.state}>모집중</p>
+                    <p className={list.state}>{applyState? '모집중' : '모집완료'}</p>
                   </div>
                   <div className="listContent">
                     <p className="field">{list.part}</p>
