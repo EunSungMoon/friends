@@ -31,6 +31,7 @@ export default function Board() {
   }
 
   useEffect(() => {
+    console.log(document.querySelectorAll('.apply-state'));
     loadAxios()
     return lists
   }, []);
@@ -75,7 +76,7 @@ export default function Board() {
                 <Link to={`/board/${list.id}/`}>
                   <div className="listTitle">
                     <h3 className="h3">{list.title}</h3>
-                    <p className={list.state}>{applyState? '모집중' : '모집완료'}</p>
+                    <p className={list.state}></p>
                   </div>
                   <div className="listContent">
                     <p className="field">{list.part}</p>

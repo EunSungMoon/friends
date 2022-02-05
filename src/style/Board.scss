@@ -88,10 +88,16 @@ list 디자인
 
 .apply-ing {
   background: #01c3bc;
+  &:after{
+    content:'모집중'
+  }
 }
 
 .apply-complete {
   background: #6c757d;
+  &:after{
+    content:'모집완료'
+  }
 }
 
 @media screen and (max-width: 1400px) {

@@ -86,7 +86,7 @@ export default function ListDetail() {
           <section className="container">
             <article className="titleWrap">
               <div className="headerState">
-                <p className={lists.state} id="articleState">모집중</p>
+                <p className={lists.state} id="articleState"></p>
                 <h2 className="article-header">{lists.title}</h2>
               </div>
               <div>
