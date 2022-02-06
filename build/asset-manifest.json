@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9457ccaf.css",
-    "main.js": "/static/js/main.9f668656.js",
+    "main.css": "/static/css/main.125b091a.css",
+    "main.js": "/static/js/main.5b12ab75.js",
     "static/js/787.c5083caf.chunk.js": "/static/js/787.c5083caf.chunk.js",
     "static/media/section_1_background.jpg": "/static/media/section_1_background.81cea7215bf5b81cc60e.jpg",
     "static/media/KOHINanum_Light.ttf": "/static/media/KOHINanum_Light.ad3d46fd3980c8bc56ec.ttf",
@@ -12,12 +12,12 @@
     "static/media/calendar.svg": "/static/media/calendar.8437dcc0686dddca58fb.svg",
     "static/media/add.svg": "/static/media/add.04428e00351f7ccf848f.svg",
     "static/media/remove.svg": "/static/media/remove.d1776579cf416cf7158c.svg",
-    "main.9457ccaf.css.map": "/static/css/main.9457ccaf.css.map",
-    "main.9f668656.js.map": "/static/js/main.9f668656.js.map",
+    "main.125b091a.css.map": "/static/css/main.125b091a.css.map",
+    "main.5b12ab75.js.map": "/static/js/main.5b12ab75.js.map",
     "787.c5083caf.chunk.js.map": "/static/js/787.c5083caf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9457ccaf.css",
-    "static/js/main.9f668656.js"
+    "static/css/main.125b091a.css",
+    "static/js/main.5b12ab75.js"
   ]
 }
