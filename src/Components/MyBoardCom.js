@@ -50,7 +50,7 @@ export default function MyBoardCom() {
               <Link to={`/board/${myList.id}/`}>
                 <div className="listTitle">
                   <h4 className="h4">{myList.title}</h4>
-                  <p className={myList.state}>모집중</p>
+                  <p className={myList.state}></p>
                 </div>
                 <div className='listWrap'>
                   <div className="listContent">

@@ -16,7 +16,6 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
   const handleChange = event => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
-    console.log(values)
   };
 
   const handleSubmit = async event => {
@@ -24,7 +23,6 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
     event.preventDefault();
     await new Promise(r => setTimeout(r, 1000));
     setErrors(errorMessage(values));
-    console.log('test')
   };
 
   const handleAxios = async () => {
@@ -52,6 +50,10 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
           }
         })
       console.log(loadAxios)
+      if (window.confirm('수정하시겠습니까?')) {
+        alert('수정되었습니다.')
+        history.push('/boards')
+      }
     }
     catch (error) {
       console.log(error)

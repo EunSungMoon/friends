@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../style/LogIn.scss';
 import { useState } from 'react';
 import axios from 'axios';
+import errorMessage from './errorMessage';
 
 export default function LogInModal(props) {
 
@@ -34,19 +35,15 @@ export default function LogInModal(props) {
             'Content-type': 'application/json'
           }
         })
-      console.log(loadAxios)
       if (loadAxios.data.token) {
         alert('로그인 완료')
         localStorage.setItem('token', loadAxios.data.token)
         onClickLoginBtn()
         document.location.href = '/'
       }
-      else if (loadAxios.data.message === 'invalid user') {
-        alert('아이디 또는 비밀번호 확인헤주세요.')
-      }
     }
     catch (error) {
-      console.log(error)
+      alert('아이디 또는 비밀번호 확인헤주세요.')
     }
   }
 

@@ -133,7 +133,6 @@ export default function EditArticle() {
       state: ''
     },
     onSubmit: () => {
-      console.log(values)
     },
     errorMessage
   })
