@@ -152,7 +152,7 @@ export default function EditArticle() {
               <div className='inputWrap' onChange={handleChange}>
                 <label onChange={handleCheckbox}>
                   <input type='checkbox' name="state" value={`apply-state ${complete ? 'apply-ing' : 'apply-complete'}`} />
-                  <span>{complete ? '모집중!' : '모집완료!'}</span>
+                  <span className='applycheck'>{complete ? '모집중!' : '모집완료!'}</span>
                 </label>
               </div>
             </div>
