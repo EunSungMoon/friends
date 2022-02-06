@@ -81,112 +81,111 @@ export default function ListDetail() {
 
   return (
     <>
-      <div>
-        <main id="article-main" key={lists.id}>
-          <section className="container">
-            <article className="titleWrap">
-              <div className="headerState">
-                <p className={lists.state} id="articleState"></p>
-                <h2 className="article-header">{lists.title}</h2>
-              </div>
-              <div>
-                <span className="article-date article-info" value={createdAt}>{createdAt} | </span>
-                <span className="viewCount article-info">조회수 {lists.counter}</span>
-              </div>
-              {localStorage.token ?
-                (lists.is_author === true ?
-                  // 내 프로필로
-                  (<div className="profile">
-                    <Link to={`/myprofile`}>
-                      <BsFillPersonFill />
-                      <span>{lists.author}</span>
-                    </Link>
-                  </div>) :
-                  // 게시글 작성자 프로필
-                  (<div className="profile" onClick={moveToProfile}>
-                      <BsFillPersonFill />
-                      <span>{lists.author}</span>
-                  </div>)
-                ) :
-                // 로그인모달
-                (<div className="profile" onClick={() => setloginModalShow(true)}>
+      <main id="article-main" key={lists.id}>
+        <section className="container">
+          <article className="titleWrap">
+            <div className="headerState">
+              <p className={lists.state} id="articleState"></p>
+              <h2 className="article-header">{lists.title}</h2>
+            </div>
+            <div>
+              <span className="article-date article-info" value={createdAt}>{createdAt} | </span>
+              <span className="viewCount article-info">조회수 {lists.counter}</span>
+            </div>
+            {localStorage.token ?
+              (lists.is_author === true ?
+                // 내 프로필로
+                (<div className="profile">
+                  <Link to={`/myprofile`}>
+                    <BsFillPersonFill />
+                    <span>{lists.author}</span>
+                  </Link>
+                </div>) :
+                // 게시글 작성자 프로필
+                (<div className="profile" onClick={moveToProfile}>
                   <BsFillPersonFill />
                   <span>{lists.author}</span>
                 </div>)
-              }
-            </article>
-            <article className="infoWrap">
-              <form>
-                <div className="wrapper">
-                  <span className="subject">봉사일</span>
-                  <span className="content">{lists.dday}</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">인원수</span>
-                  <span className="content">{lists.members}명</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">분야</span>
-                  <span className="content">{lists.part}</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">장소</span>
-                  <p className="content address">{lists.roadAddress} <br /> {lists.detailAddress} <br /> ({lists.jibunAddress})</p>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">담당자 이름</span>
-                  <span className="content">{lists.officialname}</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">담당자 소속</span>
-                  <span className="content">{lists.belong}</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">인증유무</span>
-                  <span className="content">{lists.authentication}</span>
-                </div>
-                <div className="wrapper">
-                  <span className="subject">상세내용</span>
-                  <span className="content">{lists.information}</span>
-                </div>
-              </form>
-            </article>
-            <article className="btnWrap">
-              {localStorage.token ?
-                (lists.is_author === true ?
-                  // 로그인 상태 and 내가 작성한 게시글
-                  (<>
-                    <Link to={`/editarticle/${lists.id}/`}>
-                      <button className="btnGreen">
-                        <BsPencil className="fa" />수정하기
-                      </button>
-                    </Link>
-                  </>) :
-                  // 로그인 상태 and 내가 작성한 게시글 아님
-                  (<>
-                    {/* 채팅하기 완성되면 그 페이지로 */}
-                    <button
-                      className="btnGreen"
-                      onClick={() => console.log('채팅하자')}
-                    >
-                      <BsChatDots className="fa" />채팅하기
-                    </button>
-                  </>)
-                ) :
-                //로그인 상태 아님
+              ) :
+              // 로그인모달
+              (<div className="profile" onClick={() => setloginModalShow(true)}>
+                <BsFillPersonFill />
+                <span>{lists.author}</span>
+              </div>)
+            }
+          </article>
+          <article className="infoWrap">
+            <form>
+              <div className="wrapper">
+                <span className="subject">봉사일</span>
+                <span className="content">{lists.dday}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">인원수</span>
+                <span className="content">{lists.members}명</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">분야</span>
+                <span className="content">{lists.part}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">장소</span>
+                <p className="content address">{lists.roadAddress} <br /> {lists.detailAddress} <br /> ({lists.jibunAddress})</p>
+              </div>
+              <div className="wrapper">
+                <span className="subject">담당자 이름</span>
+                <span className="content">{lists.officialname}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">담당자 소속</span>
+                <span className="content">{lists.belong}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">인증유무</span>
+                <span className="content">{lists.authentication}</span>
+              </div>
+              <div className="wrapper">
+                <span className="subject">상세내용</span>
+                <span className="content">{lists.information}</span>
+              </div>
+            </form>
+          </article>
+          <article className="btnWrap">
+            {localStorage.token ?
+              (lists.is_author === true ?
+                // 로그인 상태 and 내가 작성한 게시글
                 (<>
+                  <Link to={`/editarticle/${lists.id}/`}>
+                    <button className="btnGreen">
+                      <BsPencil className="fa" />수정하기
+                    </button>
+                  </Link>
+                </>) :
+                // 로그인 상태 and 내가 작성한 게시글 아님
+                (<>
+                  {/* 채팅하기 완성되면 그 페이지로 */}
                   <button
                     className="btnGreen"
-                    onClick={() => setloginModalShow(true)}
+                    onClick={() => console.log('채팅하자')}
                   >
                     <BsChatDots className="fa" />채팅하기
                   </button>
                 </>)
-              }
-            </article>
-          </section>
-        </main>
-      </div>
+              ) :
+              //로그인 상태 아님
+              (<>
+                <button
+                  className="btnGreen"
+                  onClick={() => setloginModalShow(true)}
+                >
+                  <BsChatDots className="fa" />채팅하기
+                </button>
+              </>)
+            }
+          </article>
+        </section>
+      </main>
+
       <LogInModal
         show={loginModalShow}
         onHide={() => setloginModalShow(false)}

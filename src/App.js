@@ -10,6 +10,7 @@ import MyProfilePage from './Pages/MyProfilePage';
 import YourProfilePage from './Pages/YourProfilePage'
 import EditArticle from './Pages/EditArticle';
 import LandingCom from './Components/LandingCom';
+import Footer from './Pages/Footer';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <SignInComplete />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </div >
     </BrowserRouter>

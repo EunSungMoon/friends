@@ -10,6 +10,7 @@ list 디자인
 *********************************************************************/
 #board-main {
   margin-top: 30px;
+  min-height: 1191px;
   .titleWrap {
     @include display(center);
     margin-bottom: 20px;
