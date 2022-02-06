@@ -65,19 +65,23 @@
   xl: 1200px,
 
 ***********************************************************/
-@include media-breakpoint-only(xs) {
+@media (min-width: 250px) {
   #sign-main {
     .section{
-      width: 470px;
+      width: 335px;
     }
     .longWidth {
-      @include inputLength(380px);
+      @include inputLength(290px);
     }
     .nickname {
-      @include inputLength(275px);
+      @include inputLength(185px);
+    }
+    .infoText {
+      font-size: 14px;
     }
   }
 }
+
 @include media-breakpoint-up(sm) {
   #sign-main {
     .section{
@@ -88,6 +92,9 @@
     }
     .nickname {
       @include inputLength(318px);
+    }
+    .infoText {
+      font-size: 16px;
     }
   }
 }

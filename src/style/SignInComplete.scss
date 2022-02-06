@@ -1,4 +1,7 @@
 @import "common";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 #siginComplete-main {
   margin-top: 30px;
@@ -14,8 +17,8 @@
     @include display(center);
     flex-direction: column;
     p{
-      font-size: 25px;
       margin-bottom: 20px;
+      text-align: center;
     }
     .goHome{
       @include btn(#01c3bc, 200px, 48px, #00afa9);
@@ -23,6 +26,27 @@
         text-decoration: none;
         color: #fff;
       }
+    }
+  }
+}
+
+/**********************************************************
+
+반응형
+
+***********************************************************/
+@media (min-width: 250px) {
+  #siginComplete-main{
+    p{
+      font-size: 17px;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  #siginComplete-main{
+    p{
+      font-size: 25px;
     }
   }
 }

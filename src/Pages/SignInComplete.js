@@ -9,7 +9,7 @@ export default function SignInComplete() {
           <h2 className="h2">회원가입 완료</h2>
         </div>
         <section className="message">
-          <p>가입이 완료되었습니다. 메일을 통해 인증을 완료해주세요.</p>
+          <p>가입이 완료되었습니다.<br /> 메일을 통해 인증을 완료해주세요.</p>
           <Link to='/'><button className="goHome">홈으로 가기</button></Link>
         </section>
       </div>
