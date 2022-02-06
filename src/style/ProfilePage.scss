@@ -1,7 +1,7 @@
 @import "common";
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 /**********************************************************
 
 프로필 디자인
@@ -16,7 +16,6 @@
   }
   .section {
     background: #fff;
-    padding: 40px;
     border-radius: 7px;
     margin: 0 auto;
 
@@ -126,39 +125,50 @@ MyArticleCom  나의 게시글 상세 폼 디자인
 반응형
 
 ***********************************************************/
-@include media-breakpoint-only(xs) {
+@media (min-width: 250px) {
   #profile-main {
-    .infoWrap {
-      span{
-        width: 120px;
+    .section {
+      padding: 20px;
+      .infoWrap {
+        span {
+          width: 70px;
+        }
       }
-    }
-    .infoBox {
-      width: 240px;
+      .infoBox{
+        width: 220px;
+      }
     }
   }
 }
-@include media-breakpoint-only(sm) {
+
+@include media-breakpoint-up(sm) {
   #profile-main {
-    .infoWrap{
-      span {
-        width: 140px;
+    .section {
+      padding: 40px;
+      .infoWrap {
+        span {
+          width: 100px;
+        }
       }
-    }
-    .infoBox {
-      width: 250px;
+      .infoBox{
+        width: 300px;
+      }
     }
   }
 }
-@include media-breakpoint-up(md) { 
+
+@include media-breakpoint-up(md) {
   #profile-main {
-    .infoWrap {
-      span{
-        width: 160px;
+    .section {
+      padding: 40px;
+      .infoWrap {
+        span {
+          width: 120px;
+        }
       }
-    }
-    .infoBox {
-      width: 400px;
+      .infoBox{
+        width: 400px;
+      }
     }
   }
 }
