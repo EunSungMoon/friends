@@ -33,7 +33,6 @@
 
   .section {
     background: #fff;
-    padding: 30px;
     border-radius: 5px;
     margin-bottom: 30px;
     margin: 0 auto;
@@ -49,7 +48,7 @@
 
         span {
           width: 140px;
-          padding-left: 15px;
+          // padding-left: 15px;
         }
         .inputWrap {
           .authenticationWrap {
@@ -232,76 +231,100 @@
 반응형
 
 ***********************************************************/
-@include media-breakpoint-only(xs) {
-  .inputWrap {
-    width: 260px;
-  }
-  .article-input,
-  .road,
-  .jibun,
-  .detail,
-  .textarea {
-    width: 250px;
-  }
-  .react-datepicker-wrapper {
-    input {
-      width: 250px;
-      font-size: 13px;
+@media (min-width: 250px) {
+  #articleForm-main{
+    .section{
+      padding: 15px;
+      form{
+        .formWrap{
+          span{
+            width: 80px;
+            text-align: center;
+            font-size:14px ;
+          }
+          .article-input,
+          .road,
+          .jibun,
+          .detail,
+          .textarea
+          {
+            width: 225px;
+          }
+          .inputWrap{
+            width: 225px;
+            margin-left: 7px;
+          }
+        }
+      }
     }
-  }
-}
-@include media-breakpoint-only(sm) {
-  .inputWrap {
-    width: 270px;
-  }
-  .article-input,
-  .road,
-  .jibun,
-  .detail,
-  .textarea {
-    width: 260px;
-  }
-  .react-datepicker-wrapper {
-    input {
-      width: 260px;
-      font-size: 14px;
+    .react-datepicker-wrapper{
+      input{
+        width: 225px;
+        font-size: 12px;
+      }
     }
-  }
-}
-@include media-breakpoint-only(md) {
-  .inputWrap {
-    width: 480px;
-  }
-  .road,
-  .jibun,
-  .textarea,
-  .article-input {
-    width: 460px;
-  }
-  .detail {
-    width: 275px;
   }
 }
 
-@include media-breakpoint-up(md){
-  .react-datepicker-wrapper {
-    input {
-      width: 300px;
+@include media-breakpoint-up(sm) {
+  #articleForm-main{
+    .section{
+      padding: 30px;
+      form{
+        .formWrap{
+          span{
+            width: 140px;
+            font-size:16px ;
+          }
+          .article-input,
+          .road,
+          .jibun,
+          .detail,
+          .textarea
+          {
+            width: 250px;
+          }
+          .inputWrap{
+            width: 250px;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    .react-datepicker-wrapper{
+      input{
+        width: 250px;
+        font-size: 14px;
+      }
     }
   }
 }
-@include media-breakpoint-up(lg) {
-  .road,
-  .jibun {
-    width: 340px;
-  }
-  .textarea {
-    width: 680px;
-  }
-  .inputWrap {
-    width: 700px;
-  }
-  .article-input {
-    width: 680px;
+
+@include media-breakpoint-up(md) {
+  #articleForm-main{
+    .section{
+      padding: 30px;
+      form{
+        .formWrap{
+          .article-input,
+          .road,
+          .jibun,
+          .textarea
+          {
+            width: 450px;
+          }
+          .inputWrap{
+            width: 450px;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    .react-datepicker-wrapper{
+      input{
+        width: 450px;
+        font-size: 16px;
+      }
+    }
   }
 }
