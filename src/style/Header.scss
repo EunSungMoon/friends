@@ -79,6 +79,7 @@ landing img
 ***********************************************************/
 #landing {
   background: url("../style/img/section_1_background.jpg") no-repeat;
+  background-size: cover;
   background-position: center;
   .slogan {
     color: #00948e;
@@ -133,7 +134,7 @@ landing img
       .welcomeText {
         margin-right: 0;
       }
-      .logout{
+      .logout {
         margin-top: 10px;
       }
     }
@@ -154,7 +155,7 @@ landing img
       flex-direction: inherit;
       padding-top: 0;
       padding-bottom: 0;
-      h1{
+      h1 {
         margin-right: 50px;
       }
       nav {
@@ -178,7 +179,7 @@ landing img
       .welcomeText {
         margin-right: 15px;
       }
-      .logout{
+      .logout {
         margin-top: 0;
       }
     }

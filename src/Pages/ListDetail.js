@@ -43,7 +43,7 @@ export default function ListDetail() {
       const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token
+          // 'Authorization': token
         }
       })
       setLists(loadData.data)
