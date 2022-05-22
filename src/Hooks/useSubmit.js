@@ -51,7 +51,7 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
         })
       if (loadAxios.statusText === 'Created') {
         alert('성공!')
-        history.push('/')
+        history.push('/boards')
       }
     }
     catch (error) {
