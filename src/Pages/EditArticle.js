@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import '../style/ArticleForm.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import SelectBoxCom from '../Components/SelectBoxCom';
@@ -72,7 +74,6 @@ export default function EditArticle() {
   const handleCounter = () => {
     let membersValue = document.querySelector('.members').value
     values.members = Number(membersValue) + 1
-    console.log('test')
   }
   
   const handleCheckbox = (e) => {
@@ -94,7 +95,6 @@ export default function EditArticle() {
     }
     catch (error) {
       setError(error)
-      console.log(error)
     }
     setLoading(false)
   }
@@ -116,7 +116,7 @@ export default function EditArticle() {
     }
   }
 
-  const { values, errors, handleChange, handleSubmit } = useRevise({
+  const { values, handleChange, handleSubmit } = useRevise({
     initialValues: {
       title: '',
       dday: '',
@@ -137,7 +137,6 @@ export default function EditArticle() {
     errorMessage
   })
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
 

@@ -69,9 +69,7 @@ export default function ArticleForm() {
       information: '',
       state: 'apply-state apply-ing'
     },
-    onSubmit: () => {
-      console.log(values)
-    },
+    onSubmit: () => {},
     errorMessage
   })
 

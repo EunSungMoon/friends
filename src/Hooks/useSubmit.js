@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
@@ -48,14 +49,13 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
             'Authorization': token
           }
         })
-      console.log(loadAxios)
       if (loadAxios.statusText === 'Created') {
         alert('성공!')
         history.push('/')
       }
     }
     catch (error) {
-      console.log(error)
+      setErrors(error)
     }
   }
 

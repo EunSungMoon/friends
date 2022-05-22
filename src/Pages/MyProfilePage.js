@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import '../style/ProfilePage.scss';
 import ProfileCom from '../Components/ProfileCom';
 import { useState, useEffect } from 'react';
@@ -26,7 +28,6 @@ export default function MyProfilePage() {
     }
     catch (error) {
       setError(error)
-      console.log(error)
     }
     setLoading(false)
   }
@@ -36,7 +37,6 @@ export default function MyProfilePage() {
     return lists;
   }, []);
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
 

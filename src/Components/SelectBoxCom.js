@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 
 export default function SelectBoxCom(props) {
@@ -5,7 +6,6 @@ export default function SelectBoxCom(props) {
 
   const handleSelect = (e) => {
     setSelected(e.target.value);
-    console.log(e.target.value)
   };
   return (
     <select className="optionSelector" name='part' onChange={handleSelect} value={props.value}>

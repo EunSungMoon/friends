@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import '../style/SignIn.scss';
 import { useState } from 'react';
 import InputCom from '../Components/InputCom';
@@ -10,9 +11,7 @@ export default function SignIn() {
   //빈 값일때, 비밀번호 오류 로직
   const { values, errors, handleChange, handleSubmit } = useForm({
     initialValues: { username: '', password: '', nickname: '', password2: '' },
-    onSubmit: () => {
-      // console.log(JSON.stringify({ "username": values.username, "password": values.password, "nickname": values.nickname }));
-    },
+    onSubmit: () => {},
     validate
   })
 
@@ -47,7 +46,6 @@ export default function SignIn() {
       }
     }
     catch (error) {
-      console.log(error)
     }
   }
 

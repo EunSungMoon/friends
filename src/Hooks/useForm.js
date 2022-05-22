@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
@@ -43,7 +44,7 @@ export default function useForm({ initialValues, onSubmit, validate }) {
     }
 
     catch (error) {
-      console.log(error)
+      setErrors(error)
     }
   }
 

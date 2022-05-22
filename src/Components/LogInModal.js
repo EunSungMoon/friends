@@ -4,7 +4,6 @@ import '../style/LogIn.scss';
 import { useState } from 'react';
 import axios from 'axios';
 import apiSwagger from '../apiSwagger/apiSwagger.json'
-import errorMessage from './errorMessage';
 
 export default function LogInModal(props) {
 

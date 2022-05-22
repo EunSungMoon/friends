@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
@@ -24,11 +26,9 @@ export default function YourBoardCom() {
         },
         body: JSON.stringify({ "author": location.state })
       })
-      console.log(loadData)
       setYourLists(loadData.data)
     }
     catch (error) {
-      console.log(error)
       setError(error)
     }
     setLoading(false)
@@ -36,13 +36,10 @@ export default function YourBoardCom() {
   useEffect(() => {
     loadYourList()
     return () => setLoading(false);
-    // return yourLists
-  },[])
+  }, [])
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!yourLists) return null;
-
 
   return (
     <>

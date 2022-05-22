@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
@@ -24,7 +25,7 @@ export default function MyBoardCom() {
       setMyLists(loadData.data)
     }
     catch (error) {
-      console.log(error)
+      setError(error)
     }
     setLoading(false)
   }

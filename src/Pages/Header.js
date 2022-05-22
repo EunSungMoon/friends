@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import '../style/Header.scss';
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
@@ -35,7 +37,6 @@ export default function Header() {
       setLists(loadNickname.data)
     }
     catch (error) {
-      console.log(error)
       setError(error)
     }
     setLoading(false)
@@ -48,10 +49,8 @@ export default function Header() {
     return lists;
   }, []);
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
-
 
   return (
     <header id="header">

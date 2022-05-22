@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
@@ -50,14 +52,13 @@ export default function useRevise({ initialValues, onSubmit, errorMessage }) {
             'Authorization': token
           }
         })
-      console.log(loadAxios)
       if (window.confirm('수정하시겠습니까?')) {
         alert('수정되었습니다.')
         history.push('/boards')
       }
     }
     catch (error) {
-      console.log(error)
+      setErrors(error)
     }
   }
 

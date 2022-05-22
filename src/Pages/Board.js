@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import '../style/Board.scss';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
 import React, { useState, useEffect } from 'react'
@@ -32,12 +33,10 @@ export default function Board() {
   }
 
   useEffect(() => {
-    console.log(document.querySelectorAll('.apply-state'));
     loadAxios()
     return lists
   }, []);
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
 

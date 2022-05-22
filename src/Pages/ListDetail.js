@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import { BsFillPersonFill, BsChatDots, BsPencil } from "react-icons/bs";
+import { BsFillPersonFill, BsPencil } from "react-icons/bs";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import '../style/ListDetail.scss';
 import LogInModal from '../Components/LogInModal';
@@ -44,7 +46,6 @@ export default function ListDetail() {
       const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}`, {
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': token
         }
       })
       setLists(loadData.data)
@@ -67,7 +68,6 @@ export default function ListDetail() {
     return () => setLoading(false);
   }, []);
 
-  if (loading) return <div>로딩중...</div>
   if (error) return <div>에러가 발생했습니다.</div>
   if (!lists) return null;
 
@@ -163,25 +163,10 @@ export default function ListDetail() {
                   </Link>
                 </>) :
                 // 로그인 상태 and 내가 작성한 게시글 아님
-                (<>
-                  {/* 채팅하기 완성되면 그 페이지로 */}
-                  <button
-                    className="btnGreen"
-                    onClick={() => console.log('채팅하자')}
-                  >
-                    <BsChatDots className="fa" />채팅하기
-                  </button>
-                </>)
+                (<></>)
               ) :
               //로그인 상태 아님
-              (<>
-                <button
-                  className="btnGreen"
-                  onClick={() => setloginModalShow(true)}
-                >
-                  <BsChatDots className="fa" />채팅하기
-                </button>
-              </>)
+              (<></>)
             }
           </article>
         </section>
