@@ -5,6 +5,7 @@ import LogInModal from '../Components/LogInModal';
 import logo from '../style/img/logo_friends.png';
 import { HiMenu } from "react-icons/hi";
 import axios from 'axios';
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function Header() {
   const [loginModalShow, setloginModalShow] = useState(false);
@@ -25,7 +26,7 @@ export default function Header() {
 
   const loadAxios = async () => {
     try {
-      const loadNickname = await axios.get(`http://15.164.62.156:8888/api/profile/`, {
+      const loadNickname = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/profile/`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token

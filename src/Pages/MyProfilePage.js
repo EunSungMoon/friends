@@ -3,6 +3,7 @@ import ProfileCom from '../Components/ProfileCom';
 import { useState, useEffect } from 'react';
 import MyBoardCom from '../Components/MyBoardCom';
 import axios from 'axios';
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function MyProfilePage() {
   const [lists, setLists] = useState([])
@@ -15,7 +16,7 @@ export default function MyProfilePage() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get('http://15.164.62.156:8888/api/profile/', {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/profile/`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
   const [values, setValues] = useState(initialValues);
@@ -25,7 +26,7 @@ export default function useSubmit({ initialValues, onSubmit, errorMessage }) {
 
   const handleAxios = async () => {
     try {
-      const loadAxios = await axios.post('http://15.164.62.156:8888/api/board/',
+      const loadAxios = await axios.post(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/`,
         {
           title: values.title,
           dday: values.dday,

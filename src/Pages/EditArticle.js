@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import axios from 'axios'
-
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 //수정하기 페이지
 export default function EditArticle() {
@@ -84,7 +84,7 @@ export default function EditArticle() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}/`, {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}/`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
@@ -106,7 +106,7 @@ export default function EditArticle() {
 
   const handleDelete = async () => {
     if (window.confirm('???')) {
-      await axios.delete(`http://15.164.62.156:8888/api/board/${id}/`, {
+      await axios.delete(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}/`, {
         headers: {
           'Authorization': token
         },

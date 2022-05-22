@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import LogInModal from '../Components/LogInModal';
 import axios from 'axios'
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function Board() {
   const [lists, setLists] = useState([])
@@ -17,7 +18,7 @@ export default function Board() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get('http://15.164.62.156:8888/api/board', {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board`, {
         headers: {
           'Content-Type': 'application/json'
         }

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import YourBoardCom from '../Components/YourBoardCom';
 import axios from 'axios';
 import { useLocation } from 'react-router';
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function YourProfilePage() {
   const [yourLists, setYourLists] = useState([])
@@ -17,7 +18,7 @@ export default function YourProfilePage() {
       setError(null);
       setYourLists(null);
       setLoading(true);
-      const loadData = await axios.post(`http://15.164.62.156:8888/api/your_profile/`,
+      const loadData = await axios.post(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/your_profile/`,
         {
           headers: {
             'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../style/LogIn.scss';
 import { useState } from 'react';
 import axios from 'axios';
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 import errorMessage from './errorMessage';
 
 export default function LogInModal(props) {
@@ -25,7 +26,7 @@ export default function LogInModal(props) {
   const handleLogin = async e => {
     e.preventDefault();
     try {
-      const loadAxios = await axios.post('http://15.164.62.156:8888/api/login/',
+      const loadAxios = await axios.post(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/login/`,
         {
           email: email,
           password: password

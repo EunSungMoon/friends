@@ -5,6 +5,7 @@ import { BsFillPersonFill, BsChatDots, BsPencil } from "react-icons/bs";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import '../style/ListDetail.scss';
 import LogInModal from '../Components/LogInModal';
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 
 export default function ListDetail() {
   const history = useHistory();
@@ -21,7 +22,7 @@ export default function ListDetail() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
@@ -40,7 +41,7 @@ export default function ListDetail() {
       setError(null);
       setLists(null);
       setLoading(true);
-      const loadData = await axios.get(`http://15.164.62.156:8888/api/board/${id}`, {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': token

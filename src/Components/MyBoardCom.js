@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsPencil, BsCalendarDate, BsPeople, BsShopWindow } from "react-icons/bs";
+import apiSwagger from '../apiSwagger/apiSwagger.json'
 import axios from 'axios';
 
 export default function MyBoardCom() {
@@ -14,7 +15,7 @@ export default function MyBoardCom() {
       setError(null);
       setMyLists(null);
       setLoading(true);
-      const loadData = await axios.get('http://15.164.62.156:8888/api/board/my_list/', {
+      const loadData = await axios.get(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/my_list/`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token
