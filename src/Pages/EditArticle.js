@@ -105,14 +105,14 @@ export default function EditArticle() {
   }, []);
 
   const handleDelete = async () => {
-    if (window.confirm('???')) {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
       await axios.delete(`${apiSwagger.url}:${apiSwagger.port}/${apiSwagger.api}/board/${id}/`, {
         headers: {
           'Authorization': token
         },
       });
       alert('삭제되었습니다.')
-      history.push('/')
+      history.push('/boards')
     }
   }
 
