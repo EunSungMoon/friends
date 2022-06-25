@@ -11,6 +11,7 @@ import YourProfilePage from './Pages/YourProfilePage'
 import EditArticle from './Pages/EditArticle';
 import LandingCom from './Components/LandingCom';
 import Footer from './Pages/Footer';
+import EmptyPage from './Pages/EmptyPage';
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route path='/signinComplete'>
               <SignInComplete />
+            </Route>
+            <Route path='*'>
+              <EmptyPage />
             </Route>
           </Switch>
           <Footer />
